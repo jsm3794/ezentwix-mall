@@ -1,35 +1,25 @@
 <header>
     <div class="top-header">
         <div class="header-left">
-            <h1 th:text="${pageTitle}"></h1>
+            <h1>TeamCostco Mall</h1>
             <nav class="breadcrumb">
             </nav>
         </div>
         <div class="header-right">
-            <div class="shop-dropdown">
-                <button class="dropdown-btn">Bravaa shop ▼</button>
-                <div class="dropdown-content">
-                    <a href="#">Shop 1</a>
-                    <a href="#">Shop 2</a>
-                    <a href="#">Shop 3</a>
-                </div>
-            </div>
-            <div class="notification-icon" id="notification-icon">
+            <div class="icon-box">
                 <span class="material-symbols-outlined">
-                    notifications
+                    favorite
                 </span>
-                <div class="notifications">
-                    <p>알림 1</p>
-                    <p>알림 2</p>
-                    <p>알림 3</p>
-                </div>
-            </div>
-            <div class="profile">
-                <span id="user_name" th:text="${session.emp?.emp_name ?: 'NULL'}"></span>
-                <a th:href="${'/emp_detail?emp_id=' + session.emp?.emp_id}">
-                    <img src="/images/profile-default.svg" alt="user_profile" class="profile-pic">
-                </a>
+                <span class="material-symbols-outlined">
+                    person
+                </span>
+                <span class="material-symbols-outlined">
+                    shopping_cart
+                </span>
             </div>
         </div>
+    </div>
+    <div class="bottom-header">
+        <div th:replace="~{/component/category_header_bar}">
     </div>
 </header>

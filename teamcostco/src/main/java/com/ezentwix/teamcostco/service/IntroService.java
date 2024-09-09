@@ -10,16 +10,16 @@ import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
-public class DashBoardService implements PageMetadataProvider {
+public class IntroService implements PageMetadataProvider {
 
     @Override
     public String getUri() {
-        return "dashboard/dashboard";
+        return "intro/intro";
     }
 
     @Override
     public String getPageTitle() {
-        return "대시보드";
+        return "팀코스트코몰";
     }
 
     // 아래 두 메서드(getCssFiles, getJsFiles)는
@@ -27,14 +27,12 @@ public class DashBoardService implements PageMetadataProvider {
 
     @Override
     public List<String> getCssFiles() {
-        return List.of("/css/contents/dashboard.css");
+        return List.of("/css/contents/intro.css");
     }
 
     @Override
     public List<String> getJsFiles() {
         return List.of(
-                "https://cdn.jsdelivr.net/npm/chart.js",
-                "/js/contents/dashboard.js");
+                "/js/contents/intro.js");
     }
-
 }

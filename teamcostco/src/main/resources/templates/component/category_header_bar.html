@@ -1,0 +1,109 @@
+<div class="menu">
+    <button class="menu-button">Menu</button>
+    <div class="menu-content">
+      <!-- 대분류 1 -->
+      <div class="category">
+        <div class="category-title">대분류 1</div>
+        <div class="subcategory">
+          <!-- 중분류 항목 5개 생성 -->
+          <div th:each="i : ${#numbers.sequence(1, 5)}" class="subcategory-item">
+            <div class="subcategory-title" th:text="'중분류 1-' + ${i}"></div>
+            <div class="subsubcategory">
+              <!-- 소분류 항목 5개 생성 -->
+              <div th:each="j : ${#numbers.sequence(1, 5)}" class="subsubcategory-item" th:text="'소분류 1-' + ${i} + '-' + ${j}"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 대분류 2 -->
+      <div class="category">
+        <div class="category-title">대분류 2</div>
+        <div class="subcategory">
+          <!-- 중분류 항목 5개 생성 -->
+          <div th:each="i : ${#numbers.sequence(1, 5)}" class="subcategory-item">
+            <div class="subcategory-title" th:text="'중분류 2-' + ${i}"></div>
+            <div class="subsubcategory">
+              <!-- 소분류 항목 5개 생성 -->
+              <div th:each="j : ${#numbers.sequence(1, 5)}" class="subsubcategory-item" th:text="'소분류 2-' + ${i} + '-' + ${j}"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 대분류 3 -->
+      <div class="category">
+        <div class="category-title">대분류 3</div>
+        <div class="subcategory">
+          <!-- 중분류 항목 5개 생성 -->
+          <div th:each="i : ${#numbers.sequence(1, 5)}" class="subcategory-item">
+            <div class="subcategory-title" th:text="'중분류 3-' + ${i}"></div>
+            <div class="subsubcategory">
+              <!-- 소분류 항목 5개 생성 -->
+              <div th:each="j : ${#numbers.sequence(1, 5)}" class="subsubcategory-item" th:text="'소분류 3-' + ${i} + '-' + ${j}"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 대분류 4 -->
+      <div class="category">
+        <div class="category-title">대분류 4</div>
+        <div class="subcategory">
+          <!-- 중분류 항목 5개 생성 -->
+          <div th:each="i : ${#numbers.sequence(1, 5)}" class="subcategory-item">
+            <div class="subcategory-title" th:text="'중분류 4-' + ${i}"></div>
+            <div class="subsubcategory">
+              <!-- 소분류 항목 5개 생성 -->
+              <div th:each="j : ${#numbers.sequence(1, 5)}" class="subsubcategory-item" th:text="'소분류 4-' + ${i} + '-' + ${j}"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 대분류 5 -->
+      <div class="category">
+        <div class="category-title">대분류 5</div>
+        <div class="subcategory">
+          <!-- 중분류 항목 5개 생성 -->
+          <div th:each="i : ${#numbers.sequence(1, 5)}" class="subcategory-item">
+            <div class="subcategory-title" th:text="'중분류 5-' + ${i}"></div>
+            <div class="subsubcategory">
+              <!-- 소분류 항목 5개 생성 -->
+              <div th:each="j : ${#numbers.sequence(1, 5)}" class="subsubcategory-item" th:text="'소분류 5-' + ${i} + '-' + ${j}"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+document.addEventListener('DOMContentLoaded', function() {
+  const menuContent = document.querySelector('.menu-content');
+  const categories = document.querySelectorAll('.category');
+
+  categories.forEach(category => {
+    const subcategory = category.querySelector('.subcategory');
+    const subcategoryItems = subcategory.querySelectorAll('.subcategory-item');
+
+    category.addEventListener('mouseenter', () => {
+      const rect = category.getBoundingClientRect();
+      const top = Math.min(rect.top, window.innerHeight - 200); // 화면 하단을 넘지 않도록 조정
+      subcategory.style.top = `${top}px`;
+      subcategory.style.left = `${rect.right + 10}px`;
+    });
+
+    subcategoryItems.forEach(item => {
+      const subsubcategory = item.querySelector('.subsubcategory');
+      
+      item.addEventListener('mouseenter', () => {
+        const rect = item.getBoundingClientRect();
+        const top = Math.min(rect.top, window.innerHeight - 200); // 화면 하단을 넘지 않도록 조정
+        subsubcategory.style.top = `${top}px`;
+        subsubcategory.style.left = `${rect.right + 10}px`;
+      });
+    });
+  });
+});
+  </script>

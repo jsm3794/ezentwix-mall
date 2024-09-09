@@ -1,0 +1,96 @@
+.menu {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .menu-button {
+    padding: 10px;
+    cursor: pointer;
+  }
+  
+  .menu-content {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: #fff;
+    border: 1px solid #ccc;
+    z-index: 1000;
+    width: 300px;
+    height: 200px; /* 높이를 200px로 제한 */
+    overflow-y: auto; /* 세로 스크롤 적용 */
+  }
+  
+  .menu:hover .menu-content {
+    display: block;
+  }
+  
+  .category {
+    position: static;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .subcategory {
+    display: none;
+    position: fixed;
+    left: calc(100% + 10px);
+    top: 0;
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    width: 300px;
+    height: 200px; /* 높이를 200px로 제한 */
+    overflow-y: auto; /* 세로 스크롤 적용 */
+    z-index: 1001;
+  }
+  
+  .category:hover .subcategory {
+    display: block;
+  }
+  
+  .subcategory-item {
+    position: relative;
+    border-bottom: 1px solid #eee;
+  }
+  
+  .subsubcategory {
+    display: none;
+    position: fixed;
+    left: calc(100% + 320px);
+    top: 0;
+    background: #e9e9e9;
+    border: 1px solid #ddd;
+    width: 300px;
+    height: 200px; /* 높이를 200px로 제한 */
+    overflow-y: auto; /* 세로 스크롤 적용 */
+    z-index: 1002;
+  }
+  
+  .subcategory-item:hover .subsubcategory {
+    display: block;
+  }
+  
+  /* 메뉴 항목에 패딩 적용 */
+  .category-title,
+  .subcategory-title,
+  .subsubcategory-item {
+    padding: 10px;
+  }
+  
+  /* 스크롤바 스타일링 (선택사항) */
+  .menu-content::-webkit-scrollbar,
+  .subcategory::-webkit-scrollbar,
+  .subsubcategory::-webkit-scrollbar {
+    width: 5px;
+  }
+  
+  .menu-content::-webkit-scrollbar-thumb,
+  .subcategory::-webkit-scrollbar-thumb,
+  .subsubcategory::-webkit-scrollbar-thumb {
+    background: #888;
+  }
+  
+  .menu-content::-webkit-scrollbar-thumb:hover,
+  .subcategory::-webkit-scrollbar-thumb:hover,
+  .subsubcategory::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }

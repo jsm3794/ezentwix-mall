@@ -9,31 +9,40 @@
             category_large
     </select>
 
-    <select id="getMedium" parameterType="String" resultType="medium" >
+    <select id="getMedium" parameterType="String" resultType="medium">
         SELECT
-            medium_id, medium_name
+            medium_id, medium_name, large_id
         FROM
             category_medium
-        WHERE
-            large_id = #{large_id}
+        <where>
+            <if test="large_id != null">
+                large_id = #{large_id}
+            </if>
+        </where>
     </select>
 
     <select id="getSmall" parameterType="String" resultType="small" >
         SELECT
-            small_id, small_name
+            small_id, small_name, medium_id
         FROM
             category_small
-        WHERE
-            medium_id = #{medium_id}
+        <where>
+            <if test="medium_id != null">
+                medium_id = #{medium_id}
+            </if>
+        </where>
     </select>
 
     <select id="getDetail" parameterType="String" resultType="detail" >
         SELECT
-            detail_name
+            detail_id, detail_name, small_id
         FROM
             category_detail
-        WHERE
-            small_id = #{small_id}
+        <where>
+            <if test="small_id != null">
+                small_id = #{small_id}
+            </if>
+        </where>
     </select>
 
 </mapper>
