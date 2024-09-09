@@ -1,96 +1,132 @@
+/* 기본 메뉴 스타일 */
 .menu {
-    position: relative;
-    display: inline-block;
-  }
-  
-  .menu-button {
-    padding: 10px;
-    cursor: pointer;
-  }
-  
-  .menu-content {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    background: #fff;
-    border: 1px solid #ccc;
-    z-index: 1000;
-    width: 300px;
-    height: 200px; /* 높이를 200px로 제한 */
-    overflow-y: auto; /* 세로 스크롤 적용 */
-  }
-  
-  .menu:hover .menu-content {
-    display: block;
-  }
-  
-  .category {
-    position: static;
-    border-bottom: 1px solid #ddd;
-  }
-  
-  .subcategory {
-    display: none;
-    position: fixed;
-    left: calc(100% + 10px);
-    top: 0;
-    background: #f9f9f9;
-    border: 1px solid #ddd;
-    width: 300px;
-    height: 200px; /* 높이를 200px로 제한 */
-    overflow-y: auto; /* 세로 스크롤 적용 */
-    z-index: 1001;
-  }
-  
-  .category:hover .subcategory {
-    display: block;
-  }
-  
-  .subcategory-item {
-    position: relative;
-    border-bottom: 1px solid #eee;
-  }
-  
-  .subsubcategory {
-    display: none;
-    position: fixed;
-    left: calc(100% + 320px);
-    top: 0;
-    background: #e9e9e9;
-    border: 1px solid #ddd;
-    width: 300px;
-    height: 200px; /* 높이를 200px로 제한 */
-    overflow-y: auto; /* 세로 스크롤 적용 */
-    z-index: 1002;
-  }
-  
-  .subcategory-item:hover .subsubcategory {
-    display: block;
-  }
-  
-  /* 메뉴 항목에 패딩 적용 */
-  .category-title,
-  .subcategory-title,
-  .subsubcategory-item {
-    padding: 10px;
-  }
-  
-  /* 스크롤바 스타일링 (선택사항) */
-  .menu-content::-webkit-scrollbar,
-  .subcategory::-webkit-scrollbar,
-  .subsubcategory::-webkit-scrollbar {
-    width: 5px;
-  }
-  
-  .menu-content::-webkit-scrollbar-thumb,
-  .subcategory::-webkit-scrollbar-thumb,
-  .subsubcategory::-webkit-scrollbar-thumb {
-    background: #888;
-  }
-  
-  .menu-content::-webkit-scrollbar-thumb:hover,
-  .subcategory::-webkit-scrollbar-thumb:hover,
-  .subsubcategory::-webkit-scrollbar-thumb:hover {
-    background: #555;
-  }
+  position: relative;
+  display: inline-block;
+}
+
+.menu-button {
+  padding: 10px;
+  cursor: pointer;
+}
+
+/* 메인 메뉴 콘텐츠 스타일 */
+.menu-content {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: #fff;
+  border: 1px solid #ccc;
+  z-index: 1003;
+  width: 150px;
+  height: calc(100vh - 200px);
+  overflow-y: scroll;
+  overscroll-behavior: contain;
+}
+
+.large_category-title,
+.medium_category-title,
+.small_category-title,
+.detail_category-title{
+  width:155px;
+}
+
+/* 메인 메뉴가 호버될 때 메뉴 콘텐츠 표시 */
+.menu:hover .menu-content {
+  display: block;
+}
+
+/* 대분류 스타일 */
+.large_category {
+  border-bottom: 1px solid #ddd;
+}
+
+/* 중분류 스타일 */
+.medium_category_container {
+  display: none;
+  position: fixed;
+  left: calc(100% + 10px);
+  top: 0;
+  background: #f9f9f9;
+  border: 1px solid #ddd;
+  width: 150px;
+  height: 200px;
+  overflow-y: auto;
+  z-index: 1002;
+  overscroll-behavior: contain;
+}
+
+/* 대분류가 호버될 때 중분류 표시 */
+.large_category:hover .medium_category_container {
+  display: block;
+}
+
+/* 소분류 스타일 */
+.small_category_container {
+  display: none;
+  position: fixed;
+  left: calc(100% + 320px);
+  top: 0;
+  background: #e9e9e9;
+  border: 1px solid #ddd;
+  width: 150px;
+  height: 200px;
+  overflow-y: auto;
+  z-index: 1001;
+  overscroll-behavior: contain;
+}
+
+/* 중분류가 호버될 때 소분류 표시 */
+.medium_category:hover .small_category_container {
+  display: block;
+}
+
+/* 세부 카테고리 스타일 */
+.detail_category_container {
+  display: none;
+  position: fixed;
+  left: calc(100% + 630px);
+  top: 0;
+  background: #d9d9d9;
+  border: 1px solid #ddd;
+  width: 150px;
+  height: 200px;
+  overflow-y: auto;
+  z-index: 1000;
+  overscroll-behavior: contain;
+}
+
+/* 소분류가 호버될 때 세부 카테고리 표시 */
+.small_category:hover .detail_category_container {
+  display: block;
+}
+
+/* 메뉴 항목에 패딩 적용 */
+.large_category-title,
+.medium_category-title,
+.small_category-title,
+.detail_category {
+  padding: 10px;
+}
+
+/* 스크롤바 스타일링 */
+.menu-content::-webkit-scrollbar,
+.medium_category_container::-webkit-scrollbar,
+.small_category_container::-webkit-scrollbar,
+.detail_category_container::-webkit-scrollbar {
+  width: 5px;
+}
+
+.menu-content::-webkit-scrollbar-thumb,
+.medium_category_container::-webkit-scrollbar-thumb,
+.small_category_container::-webkit-scrollbar-thumb,
+.detail_category_container::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+.menu-content::-webkit-scrollbar-thumb:hover,
+.medium_category_container::-webkit-scrollbar-thumb:hover,
+.small_category_container::-webkit-scrollbar-thumb:hover,
+.detail_category_container::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
