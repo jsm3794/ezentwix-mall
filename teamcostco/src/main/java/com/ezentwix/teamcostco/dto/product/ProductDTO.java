@@ -15,6 +15,7 @@ public class ProductDTO {
     private String category_detail;
     private Integer purchase_price;
     private Integer selling_price;
+    private Double discount;
     private String brand;
     private Integer min_required_qty;
     private Integer storage_qty;

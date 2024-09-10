@@ -9,6 +9,8 @@ import com.ezentwix.teamcostco.dto.filter.EmployeeFilterDTO;
 import com.ezentwix.teamcostco.dto.filter.FilterDTO;
 import com.ezentwix.teamcostco.dto.filter.InventoryFilterDTO;
 import com.ezentwix.teamcostco.dto.filter.OrderRequestFilterDTO;
+import com.ezentwix.teamcostco.dto.product.ProductBrandGroupDTO;
+import com.ezentwix.teamcostco.repository.ProductRepository;
 
 import lombok.RequiredArgsConstructor;
 

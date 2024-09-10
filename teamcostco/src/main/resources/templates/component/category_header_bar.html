@@ -1,4 +1,7 @@
 <div class="menu">
+  <span class="material-symbols-outlined">
+    menu
+  </span>
   <button class="menu-button">Menu</button>
   <div class="menu-content">
     <!-- large_category 1 -->
@@ -72,74 +75,74 @@
 
 
 <script>
-document.addEventListener('DOMContentLoaded', () => {
-  const menuContent = document.querySelector('.menu-content');
-  const largeCategories = document.querySelectorAll('.large_category');
+  document.addEventListener('DOMContentLoaded', () => {
+    const menuContent = document.querySelector('.menu-content');
+    const largeCategories = document.querySelectorAll('.large_category');
 
-  let currentMediumCategory = null;
-  let currentSmallCategory = null;
-  let currentDetailCategory = null;
+    let currentMediumCategory = null;
+    let currentSmallCategory = null;
+    let currentDetailCategory = null;
 
-  largeCategories.forEach(largeCategory => {
-    const mediumCategoryContainer = largeCategory.querySelector('.medium_category_container');
-    const mediumCategories = mediumCategoryContainer.querySelectorAll('.medium_category');
+    largeCategories.forEach(largeCategory => {
+      const mediumCategoryContainer = largeCategory.querySelector('.medium_category_container');
+      const mediumCategories = mediumCategoryContainer.querySelectorAll('.medium_category');
 
-    largeCategory.addEventListener('mouseover', () => {
-      if (currentMediumCategory && currentMediumCategory !== mediumCategoryContainer) {
-        currentMediumCategory.style.display = 'none';
-      }
-      mediumCategoryContainer.style.top = `${menuContent.getBoundingClientRect().top}px`;
-      mediumCategoryContainer.style.left = `${largeCategory.getBoundingClientRect().right + 5}px`;
-      mediumCategoryContainer.style.display = 'block';
-      currentMediumCategory = mediumCategoryContainer;
-    });
-
-    largeCategory.addEventListener('mouseout', (event) => {
-      if (!mediumCategoryContainer.contains(event.relatedTarget) && !largeCategory.contains(event.relatedTarget)) {
-        mediumCategoryContainer.style.display = 'none';
-      }
-    });
-
-    mediumCategories.forEach(mediumCategory => {
-      const smallCategoryContainer = mediumCategory.querySelector('.small_category_container');
-      const smallCategories = smallCategoryContainer.querySelectorAll('.small_category');
-
-      mediumCategory.addEventListener('mouseover', () => {
-        if (currentSmallCategory && currentSmallCategory !== smallCategoryContainer) {
-          currentSmallCategory.style.display = 'none';
+      largeCategory.addEventListener('mouseover', () => {
+        if (currentMediumCategory && currentMediumCategory !== mediumCategoryContainer) {
+          currentMediumCategory.style.display = 'none';
         }
-        smallCategoryContainer.style.top = `${menuContent.getBoundingClientRect().top}px`;
-        smallCategoryContainer.style.left = `${mediumCategory.getBoundingClientRect().right + 5}px`;
-        smallCategoryContainer.style.display = 'block';
-        currentSmallCategory = smallCategoryContainer;
+        mediumCategoryContainer.style.top = `${menuContent.getBoundingClientRect().top}px`;
+        mediumCategoryContainer.style.left = `${largeCategory.getBoundingClientRect().right + 5}px`;
+        mediumCategoryContainer.style.display = 'block';
+        currentMediumCategory = mediumCategoryContainer;
       });
 
-      mediumCategory.addEventListener('mouseout', (event) => {
-        if (!smallCategoryContainer.contains(event.relatedTarget) && !mediumCategory.contains(event.relatedTarget)) {
-          smallCategoryContainer.style.display = 'none';
+      largeCategory.addEventListener('mouseout', (event) => {
+        if (!mediumCategoryContainer.contains(event.relatedTarget) && !largeCategory.contains(event.relatedTarget)) {
+          mediumCategoryContainer.style.display = 'none';
         }
       });
 
-      smallCategories.forEach(smallCategory => {
-        const detailCategoryContainer = smallCategory.querySelector('.detail_category_container');
+      mediumCategories.forEach(mediumCategory => {
+        const smallCategoryContainer = mediumCategory.querySelector('.small_category_container');
+        const smallCategories = smallCategoryContainer.querySelectorAll('.small_category');
 
-        smallCategory.addEventListener('mouseover', () => {
-          if (currentDetailCategory && currentDetailCategory !== detailCategoryContainer) {
-            currentDetailCategory.style.display = 'none';
+        mediumCategory.addEventListener('mouseover', () => {
+          if (currentSmallCategory && currentSmallCategory !== smallCategoryContainer) {
+            currentSmallCategory.style.display = 'none';
           }
-          detailCategoryContainer.style.top = `${menuContent.getBoundingClientRect().top}px`;
-          detailCategoryContainer.style.left = `${smallCategory.getBoundingClientRect().right + 5}px`;
-          detailCategoryContainer.style.display = 'block';
-          currentDetailCategory = detailCategoryContainer;
+          smallCategoryContainer.style.top = `${menuContent.getBoundingClientRect().top}px`;
+          smallCategoryContainer.style.left = `${mediumCategory.getBoundingClientRect().right + 5}px`;
+          smallCategoryContainer.style.display = 'block';
+          currentSmallCategory = smallCategoryContainer;
         });
 
-        smallCategory.addEventListener('mouseout', (event) => {
-          if (!detailCategoryContainer.contains(event.relatedTarget) && !smallCategory.contains(event.relatedTarget)) {
-            detailCategoryContainer.style.display = 'none';
+        mediumCategory.addEventListener('mouseout', (event) => {
+          if (!smallCategoryContainer.contains(event.relatedTarget) && !mediumCategory.contains(event.relatedTarget)) {
+            smallCategoryContainer.style.display = 'none';
           }
+        });
+
+        smallCategories.forEach(smallCategory => {
+          const detailCategoryContainer = smallCategory.querySelector('.detail_category_container');
+
+          smallCategory.addEventListener('mouseover', () => {
+            if (currentDetailCategory && currentDetailCategory !== detailCategoryContainer) {
+              currentDetailCategory.style.display = 'none';
+            }
+            detailCategoryContainer.style.top = `${menuContent.getBoundingClientRect().top}px`;
+            detailCategoryContainer.style.left = `${smallCategory.getBoundingClientRect().right + 5}px`;
+            detailCategoryContainer.style.display = 'block';
+            currentDetailCategory = detailCategoryContainer;
+          });
+
+          smallCategory.addEventListener('mouseout', (event) => {
+            if (!detailCategoryContainer.contains(event.relatedTarget) && !smallCategory.contains(event.relatedTarget)) {
+              detailCategoryContainer.style.display = 'none';
+            }
+          });
         });
       });
     });
   });
-});
 </script>

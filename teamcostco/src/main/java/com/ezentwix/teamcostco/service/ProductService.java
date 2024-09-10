@@ -6,6 +6,7 @@ import java.util.Map;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
+import com.ezentwix.teamcostco.dto.product.ProductBrandGroupDTO;
 import com.ezentwix.teamcostco.dto.product.ProductDTO;
 import com.ezentwix.teamcostco.dto.product.ProductSummaryDTO;
 import com.ezentwix.teamcostco.pagination.PaginationRepository;
@@ -50,5 +51,10 @@ public class ProductService {
 
     public void updateProduct(ProductDTO productDTO) {
         productRepository.updateProduct(productDTO);
+    }
+
+    
+    public List<ProductBrandGroupDTO> getBrandGroup(String product_name) {
+        return productRepository.getBrandGroup(product_name);
     }
 }

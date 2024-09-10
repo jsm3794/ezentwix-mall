@@ -1,14 +1,11 @@
-<div id="filter_area">
-    <button id="filter_btn" type="button" class="hidden">
-        <span id="filter_icon" class="material-symbols-outlined">
-            tune
-        </span>
-        검색옵션
-    </button>
-</div>
-<div id="filter_options" class="filter-options hidden">
-    <div id="filter_items" th:for="${id}"></div>
-    <div id="filter_submit_area">
-        <button id="filter_apply">필터적용</button>
+<div class="filter_wrap">
+    <div class="filter_main">
+        <ul>
+            <li th:each="brand :${brandgroup}">
+                <span th:text="${brand.name}"></span>
+                <span th:text="${brand.count}"></span>
+            </li>
+        </ul>
     </div>
+    
 </div>

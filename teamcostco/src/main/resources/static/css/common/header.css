@@ -1,7 +1,7 @@
 header {
     display: flex;
     flex-direction: column;
-    background-color: #99f;
+    background-color: #5A464C;
 }
 
 .top-header {
@@ -9,29 +9,87 @@ header {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid #ccf;
-    padding:10px 0;
-    color:white;
+    border-bottom: 1px solid #745a62;
+    padding: 10px 0;
+    height: 70px;
+    color: white;
 }
 
 .bottom-header {
-    display:flex;
+    display: flex;
     flex-direction: row;
-    height: 40px;
+    height: 35px;
 }
 
 .header-left h1 {
-    padding: 0 10px;
     margin: 0;
     font-size: 24px;
 }
 
-.header-left{
-    flex:1;
-}
-
 .header-right {
-    width:100px;
+    width: 120px;
     display: flex;
     align-items: center;
+    padding: 0 15px;
+}
+
+.header-left {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    flex: 1;
+    padding: 0 15px;
+}
+
+
+.search_box {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    border: 2px solid gray;
+    background-color: #fff;
+    font-size: 18px;
+    height: 40px;
+    width: 400px;
+    color: #000;
+    border-radius: 5px;
+}
+
+#search_btn {
+    display: block;
+    user-select: none;
+    cursor: pointer;
+    line-height: 40px;
+    padding: 0 10px;
+    font-size: 18px;
+}
+
+.search_box>form>#query {
+    border-radius: 5px;
+    outline: none;
+    border: none;
+    width: 100%;
+    padding: 3px 10px;
+    font-size: 16px;
+}
+
+
+.menu {
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+    width:150px;
+    border:none;
+    background-color: #FFFACC;
+    padding:0 15px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.menu-button {
+    width:100%;
+    border:none;
+    background-color: transparent;
 }

@@ -5,6 +5,7 @@ import java.util.List;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.ezentwix.teamcostco.dto.product.ProductBrandGroupDTO;
 import com.ezentwix.teamcostco.dto.product.ProductDTO;
 
 import lombok.RequiredArgsConstructor;
@@ -37,5 +38,9 @@ public class ProductRepository {
 
     public void updateProduct(ProductDTO productDTO) {
         sql.update("Products.updateProduct", productDTO);
+    }
+
+    public List<ProductBrandGroupDTO> getBrandGroup(String product_name){
+        return sql.selectList("Products.getBrandGroupByProductName", product_name);
     }
 }

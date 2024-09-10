@@ -1,13 +1,19 @@
 @font-face {
-    font-family: 'Material Symbols Outlined';
-    font-style: normal;
-    font-weight: 200;
+    font-family: 'material-symbols-outlined';
     src: url('/fonts/Material_Symbols_Outlined.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.material-symbols-outlined {
+    font-family: 'material-symbols-outlined';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 18px;
 }
 
 * {
     box-sizing: border-box;
-    font-family: 'Malgun Gothic', sans-serif;
 }
 
 html,
@@ -18,7 +24,6 @@ body {
     min-width: 900px;
 }
 
-
 tbody {
     height: 100%;
 }
@@ -26,16 +31,11 @@ tbody {
 .container {
     display: flex;
     flex-direction: column;
-    flex-wrap: wrap;
     height: 100%;
 }
 
 main {
     background-color: var(--background-sub-color);
-    width: calc(100% - 200px);
-    flex: 1;
-    padding: 20px;
-    overflow-y: auto;
 }
 
 .page-title {

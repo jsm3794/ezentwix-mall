@@ -1,0 +1,17 @@
+<div class="main_wrap">
+    <div id="search_title">
+        <span th:text="${'&quot;' + param.query + '&quot; 에 대한 검색결과'}"></span>
+        <span id="search_state"></span>
+    </div>
+    <div class="product_list_wrap">
+        <div th:replace="~{/component/filter}"></div>
+        <div class="product_list">
+            <div class="list_box">
+
+            </div>
+        </div>
+
+
+    </div>
+
+</div>

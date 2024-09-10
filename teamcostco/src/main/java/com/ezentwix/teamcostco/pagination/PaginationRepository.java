@@ -62,16 +62,18 @@ public class PaginationRepository {
             Map<String, Object> additionalParams,
             Class<T> dtoClass) {
 
-        if (pageable == null || pageable.getPageSize() <= 0) {
+        query = query.trim();
+
+        if (pageable == null || pageable.getPageSize() <= 0 || query.isEmpty()) {
             return new PaginationResult<>(List.of(), 0, 1, 1, 1, 1);
         }
 
         int limit = pageable.getPageSize();
-        
+
         Map<String, Object> params = new HashMap<>();
         params.put("queryId", queryId);
         params.put("query", query);
-    
+
         int count = sessionTemplate.selectOne("pagination.count", params);
 
         int totalPages = Math.max((int) Math.ceil((double) count / limit), 1);
