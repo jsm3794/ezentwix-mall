@@ -5,11 +5,7 @@
             <nav class="breadcrumb">
             </nav>
             <div class="search_box">
-                <form action="/search" method="GET">
-                    <input type="text" id="query" name="query" placeholder="상품검색" th:value="${param.query ?: ''}">
-                    <input type="hidden" id="page" name="page" th:value="${param.page ?: 1}">
-                    <input type="hidden" id="size" name="size" th:value="${param.size ?: 16}">
-                </form>
+                <input type="text" id="query" name="query" placeholder="상품검색" th:value="${param.query ?: ''}">
                 <span id="search_btn" class="material-symbols-outlined">
                     search
                 </span>

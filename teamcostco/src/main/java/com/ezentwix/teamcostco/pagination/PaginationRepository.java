@@ -77,7 +77,11 @@ public class PaginationRepository {
         int count = sessionTemplate.selectOne("pagination.count", params);
 
         int totalPages = Math.max((int) Math.ceil((double) count / limit), 1);
-        int currentPage = Math.min(pageable.getPageNumber(), totalPages);
+        int currentPage = pageable.getPageNumber();
+
+        if(currentPage > totalPages){
+            return new PaginationResult<>(List.of(), 0, 1, 1, 1, 1);
+        }
 
         int showPageNum = 5;
         int startPageNumber = (currentPage - 1) / showPageNum * showPageNum + 1;

@@ -1,11 +1,12 @@
 <div class="filter_wrap">
     <div class="filter_main">
-        <ul>
+        <h3>브랜드</h3>
+        <ul class="brand_filter">
             <li th:each="brand :${brandgroup}">
-                <span th:text="${brand.name}"></span>
-                <span th:text="${brand.count}"></span>
+                <input class="brand_checkbox" type="checkbox" th:id="${brand.name}">
+                <label th:for="${brand.name}" th:text="${brand.name}"></label>
+                <label th:for="${brand.name}" th:text="${'(' + brand.count + ')'}"></label>
             </li>
         </ul>
     </div>
-    
 </div>

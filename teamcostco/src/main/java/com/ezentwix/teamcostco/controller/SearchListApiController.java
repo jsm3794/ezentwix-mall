@@ -1,15 +1,18 @@
 package com.ezentwix.teamcostco.controller;
 
 import java.util.List;
+import java.util.Map;
 
-import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ezentwix.teamcostco.dto.filter.ProductFilterDTO;
 import com.ezentwix.teamcostco.dto.product.ProductDTO;
 import com.ezentwix.teamcostco.pagination.PaginationResult;
 import com.ezentwix.teamcostco.service.SearchListService;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import lombok.RequiredArgsConstructor;
 
@@ -17,15 +20,18 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class SearchListApiController {
     private final SearchListService searchListService;
+    private final ObjectMapper objectMapper;
 
     @PostMapping("/search")
-    public List<ProductDTO> showSearchList(
+    public PaginationResult<ProductDTO> showSearchList(
             @RequestParam(value = "query", defaultValue = "") String query,
             @RequestParam(value = "page", defaultValue = "1") Integer page,
-            @RequestParam(value = "size", defaultValue = "50") Integer size) {
+            @RequestParam(value = "size", defaultValue = "16") Integer size,
+            @ModelAttribute ProductFilterDTO productFilterDTO) {
 
-        PaginationResult<ProductDTO> result = searchListService.getPage(query, page, size, null);
+        Map<String, Object> map = objectMapper.convertValue(productFilterDTO, Map.class);
+        PaginationResult<ProductDTO> result = searchListService.getPage(query, page, size, map);
 
-        return result.getData();
+        return result;
     }
 }

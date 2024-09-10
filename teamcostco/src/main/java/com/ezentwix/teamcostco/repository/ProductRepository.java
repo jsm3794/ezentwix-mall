@@ -40,7 +40,10 @@ public class ProductRepository {
         sql.update("Products.updateProduct", productDTO);
     }
 
-    public List<ProductBrandGroupDTO> getBrandGroup(String product_name){
-        return sql.selectList("Products.getBrandGroupByProductName", product_name);
+    public List<ProductBrandGroupDTO> getBrandGroup(String product_name) {
+        if (!product_name.trim().isEmpty()) {
+            return sql.selectList("Products.getBrandGroupByProductName", product_name);
+        }
+        return null;
     }
 }

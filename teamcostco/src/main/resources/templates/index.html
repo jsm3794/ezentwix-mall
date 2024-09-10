@@ -2,6 +2,7 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 
 <head>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title th:text="${(pageTitle ?: 'No-Title')}"></title>
@@ -9,10 +10,7 @@
     <link rel="stylesheet" href="/css/common/styles.css">
     <link rel="stylesheet" href="/css/component/category_header_bar.css">
     <link rel="stylesheet" th:href="@{/css/common/header.css}">
-    <script th:src="@{/js/tinymce/tinymce.js}"></script>
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-
-
+    <script th:src="@{/js/component/category_header_bar.js}"></script>
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <th:block th:if="${cssFiles != null}">
         <th:block th:each="cssFile : ${cssFiles}">

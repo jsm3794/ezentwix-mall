@@ -2,67 +2,31 @@
   <span class="material-symbols-outlined">
     menu
   </span>
-  <button class="menu-button">Menu</button>
-  <div class="menu-content">
-    <!-- large_category 1 -->
-    <div class="large_category">
-      <div class="large_category-title">large_category 1</div>
-      <div class="medium_category_container">
-        <!-- medium_category 항목 5개 생성 -->
-        <div th:each="i : ${#numbers.sequence(1, 5)}" class="medium_category">
-          <div class="medium_category-title" th:text="'medium_category 1-' + ${i}"></div>
-          <div class="small_category_container">
-            <!-- small_category 항목 5개 생성 -->
-            <div th:each="j : ${#numbers.sequence(1, 5)}" class="small_category">
-              <div class="small_category-title" th:text="'small_category 1-' + ${i} + '-' + ${j}"></div>
-              <div class="detail_category_container">
-                <!-- detail_category 항목 5개 생성 -->
-                <div th:each="k : ${#numbers.sequence(1, 5)}" class="detail_category"
-                  th:text="'detail_category 1-' + ${i} + '-' + ${j} + '-' + ${k}"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- large_category 2 -->
-    <div class="large_category">
-      <div class="large_category-title">large_category 2</div>
-      <div class="medium_category_container">
-        <!-- medium_category 항목 5개 생성 -->
-        <div th:each="i : ${#numbers.sequence(1, 5)}" class="medium_category">
-          <div class="medium_category-title" th:text="'medium_category 2-' + ${i}"></div>
-          <div class="small_category_container">
-            <!-- small_category 항목 5개 생성 -->
-            <div th:each="j : ${#numbers.sequence(1, 5)}" class="small_category">
-              <div class="small_category-title" th:text="'small_category 2-' + ${i} + '-' + ${j}"></div>
-              <div class="detail_category_container">
-                <!-- detail_category 항목 5개 생성 -->
-                <div th:each="k : ${#numbers.sequence(1, 5)}" class="detail_category"
-                  th:text="'detail_category 2-' + ${i} + '-' + ${j} + '-' + ${k}"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- large_category 3 -->
-    <div class="large_category">
-      <div class="large_category-title">large_category 3</div>
-      <div class="medium_category_container">
-        <!-- medium_category 항목 5개 생성 -->
-        <div th:each="i : ${#numbers.sequence(1, 5)}" class="medium_category">
-          <div class="medium_category-title" th:text="'medium_category 3-' + ${i}"></div>
-          <div class="small_category_container">
-            <!-- small_category 항목 5개 생성 -->
-            <div th:each="j : ${#numbers.sequence(1, 5)}" class="small_category">
-              <div class="small_category-title" th:text="'small_category 3-' + ${i} + '-' + ${j}"></div>
-              <div class="detail_category_container">
-                <!-- detail_category 항목 5개 생성 -->
-                <div th:each="k : ${#numbers.sequence(1, 5)}" class="detail_category"
-                  th:text="'detail_category 3-' + ${i} + '-' + ${j} + '-' + ${k}"></div>
+  <button class="category_button">Menu</button>
+  <div class="category_container">
+    <div class="large_category_container">
+      <div class="large_category_wrapper">
+        <div th:each="i : ${#numbers.sequence(1, 30)}" class="large_category">
+          <div class="large_category-title" th:text="'large_category ' + ${i}"></div>
+          <div class="medium_category_container">
+            <div class="medium_category_wrapper">
+              <div th:each="j : ${#numbers.sequence(1, 20)}" class="medium_category">
+                <div class="medium_category-title" th:text="'medium_category ' + ${i} +  '-' + ${j}"></div>
+                <div class="small_category_container">
+                  <div class="small_category_wrapper">
+                    <div th:each="k : ${#numbers.sequence(1, 10)}" class="small_category">
+                      <div class="small_category-title" th:text="'small_category ' + ${i} + '-' + ${j} + '-' + ${k}">
+                      </div>
+                      <div class="detail_category_container">
+                        <div class="detail_category_wrapper">
+                          <div th:each="l : ${#numbers.sequence(1, 5)}" class="detail_category"
+                            th:text="'detail_category ' + ${i} + '-' + ${j} + '-' + ${k} + '-' + ${l}">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -70,79 +34,3 @@
       </div>
     </div>
   </div>
-</div>
-
-
-
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const menuContent = document.querySelector('.menu-content');
-    const largeCategories = document.querySelectorAll('.large_category');
-
-    let currentMediumCategory = null;
-    let currentSmallCategory = null;
-    let currentDetailCategory = null;
-
-    largeCategories.forEach(largeCategory => {
-      const mediumCategoryContainer = largeCategory.querySelector('.medium_category_container');
-      const mediumCategories = mediumCategoryContainer.querySelectorAll('.medium_category');
-
-      largeCategory.addEventListener('mouseover', () => {
-        if (currentMediumCategory && currentMediumCategory !== mediumCategoryContainer) {
-          currentMediumCategory.style.display = 'none';
-        }
-        mediumCategoryContainer.style.top = `${menuContent.getBoundingClientRect().top}px`;
-        mediumCategoryContainer.style.left = `${largeCategory.getBoundingClientRect().right + 5}px`;
-        mediumCategoryContainer.style.display = 'block';
-        currentMediumCategory = mediumCategoryContainer;
-      });
-
-      largeCategory.addEventListener('mouseout', (event) => {
-        if (!mediumCategoryContainer.contains(event.relatedTarget) && !largeCategory.contains(event.relatedTarget)) {
-          mediumCategoryContainer.style.display = 'none';
-        }
-      });
-
-      mediumCategories.forEach(mediumCategory => {
-        const smallCategoryContainer = mediumCategory.querySelector('.small_category_container');
-        const smallCategories = smallCategoryContainer.querySelectorAll('.small_category');
-
-        mediumCategory.addEventListener('mouseover', () => {
-          if (currentSmallCategory && currentSmallCategory !== smallCategoryContainer) {
-            currentSmallCategory.style.display = 'none';
-          }
-          smallCategoryContainer.style.top = `${menuContent.getBoundingClientRect().top}px`;
-          smallCategoryContainer.style.left = `${mediumCategory.getBoundingClientRect().right + 5}px`;
-          smallCategoryContainer.style.display = 'block';
-          currentSmallCategory = smallCategoryContainer;
-        });
-
-        mediumCategory.addEventListener('mouseout', (event) => {
-          if (!smallCategoryContainer.contains(event.relatedTarget) && !mediumCategory.contains(event.relatedTarget)) {
-            smallCategoryContainer.style.display = 'none';
-          }
-        });
-
-        smallCategories.forEach(smallCategory => {
-          const detailCategoryContainer = smallCategory.querySelector('.detail_category_container');
-
-          smallCategory.addEventListener('mouseover', () => {
-            if (currentDetailCategory && currentDetailCategory !== detailCategoryContainer) {
-              currentDetailCategory.style.display = 'none';
-            }
-            detailCategoryContainer.style.top = `${menuContent.getBoundingClientRect().top}px`;
-            detailCategoryContainer.style.left = `${smallCategory.getBoundingClientRect().right + 5}px`;
-            detailCategoryContainer.style.display = 'block';
-            currentDetailCategory = detailCategoryContainer;
-          });
-
-          smallCategory.addEventListener('mouseout', (event) => {
-            if (!detailCategoryContainer.contains(event.relatedTarget) && !smallCategory.contains(event.relatedTarget)) {
-              detailCategoryContainer.style.display = 'none';
-            }
-          });
-        });
-      });
-    });
-  });
-</script>

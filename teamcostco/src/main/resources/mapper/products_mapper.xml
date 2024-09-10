@@ -32,8 +32,11 @@
             <if test="selling_price_end != null and selling_price_end != ''">
                 AND selling_price <![CDATA[<]]>= #{selling_price_end}
             </if>
-            <if test="category_large != null and category_large != ''">
-                AND category_large LIKE '%' ||  #{category_large} || '%'
+            <if test="brands != null and !brands.isEmpty()">
+                AND brand IN
+                <foreach collection="brands" item="brand" open="(" close=")" separator=",">
+                    #{brand}
+                </foreach>
             </if>
         </where>
         ORDER BY product_id DESC

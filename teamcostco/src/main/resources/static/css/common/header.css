@@ -66,30 +66,11 @@ header {
     font-size: 18px;
 }
 
-.search_box>form>#query {
+.search_box>#query {
     border-radius: 5px;
     outline: none;
     border: none;
     width: 100%;
     padding: 3px 10px;
     font-size: 16px;
-}
-
-
-.menu {
-    display:flex;
-    flex-direction: row;
-    align-items: center;
-    width:150px;
-    border:none;
-    background-color: #FFFACC;
-    padding:0 15px;
-    cursor: pointer;
-    user-select: none;
-}
-
-.menu-button {
-    width:100%;
-    border:none;
-    background-color: transparent;
 }
