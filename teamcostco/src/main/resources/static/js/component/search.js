@@ -50,8 +50,10 @@ function fetchProduct() {
                 });
 
                 $('.list_box').append(productDiv);
-                $('#totalpage').val(pagedata.totalPages);
             });
+
+            $('#totalpage').val(pagedata.pageDetails.totalPages);
+            console.dir(pagedata);
         },
         error: function (data, status, err) {
         },
