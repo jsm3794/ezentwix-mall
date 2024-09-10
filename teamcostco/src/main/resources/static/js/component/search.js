@@ -22,10 +22,6 @@ function clearProductList() {
 }
 
 function fetchProduct() {
-    if (productList.hasClass('show')) {
-        productList.removeClass('show');
-    }
-
     let product_list = [];
 
     $.ajax({
@@ -54,32 +50,44 @@ function fetchProduct() {
                 });
 
                 $('.list_box').append(productDiv);
-                $('.totalpage').val(pagedata.totalpage);
+                $('#totalpage').val(pagedata.totalPages);
             });
         },
         error: function (data, status, err) {
         },
         complete: function () {
-            
-            if (!productList.hasClass('show')) {
-                productList.addClass('show');
-            }
+            showList();
         }
     });
 }
 
-fetchProduct();
+const hideList = () => {
+    if (productList.hasClass('show')) {
+        productList.removeClass('show');
+    }
+}
 
-size_select.on('change', (e)=>{
+const showList = () => {
+    if (!productList.hasClass('show')) {
+        productList.addClass('show');
+    }
+}
+
+size_select.on('change', (e) => {
     clearProductList();
+    hideList();
     fetchProduct();
 });
 
 $('#show_more_btn').on('click', () => {
     const currentPage = parseInt($('#page').val(), 10);
-    $('#page').val(currentPage + 1);
+    const totalpage = $('#totalpage').val();
 
-    fetchProduct();
+    if (currentPage < totalpage) {
+        $('#page').val(currentPage + 1);
+        fetchProduct();
+    }
+
 });
 
 $('.brand_checkbox').on('change', () => {
@@ -87,6 +95,7 @@ $('.brand_checkbox').on('change', () => {
     const checkedIds = checkedCheckboxes.map((_, checkbox) => $(checkbox).attr('id')).get();
     const joinedIds = checkedIds.join(' | ');
     $('#brands').val(joinedIds);
+    hideList();
     clearCurrentPage();
     clearProductList();
     fetchProduct();
@@ -106,3 +115,5 @@ function getQueryParam(param) {
     var urlParams = new URLSearchParams(window.location.search);
     return urlParams.get(param);
 }
+
+fetchProduct();

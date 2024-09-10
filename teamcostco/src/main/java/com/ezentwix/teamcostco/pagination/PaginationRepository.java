@@ -74,12 +74,16 @@ public class PaginationRepository {
         params.put("queryId", queryId);
         params.put("query", query);
 
+        if (additionalParams != null) {
+            params.putAll(additionalParams);
+        }
+
         int count = sessionTemplate.selectOne("pagination.count", params);
 
         int totalPages = Math.max((int) Math.ceil((double) count / limit), 1);
         int currentPage = pageable.getPageNumber();
 
-        if(currentPage > totalPages){
+        if (currentPage > totalPages) {
             return new PaginationResult<>(List.of(), 0, 1, 1, 1, 1);
         }
 
@@ -91,10 +95,6 @@ public class PaginationRepository {
 
         params.put("offset", offset);
         params.put("limit", limit);
-
-        if (additionalParams != null) {
-            params.putAll(additionalParams);
-        }
 
         // Query data only if the current page is within the valid range
         List<Map<String, Object>> rawData;
