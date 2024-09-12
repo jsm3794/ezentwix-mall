@@ -57,6 +57,10 @@
         SELECT * FROM products WHERE product_id = #{productId}
     </sql>
 
+    <sql id="getByProductCode">
+        SELECT * FROM products WHERE product_code = #{productCode}
+    </sql>
+
     <sql id="getLowProducts">
         SELECT COUNT(*) AS low_products
         FROM products
@@ -119,6 +123,10 @@
 
     <select id="getBrandGroupByProductName" parameterType="String" resultType="brandgroup">
         <include refid="getBrandGroupByProductName"></include>
+    </select>
+
+    <select id="getByProductCode" parameterType="Integer" resultType="product">
+        <include refid="getByProductCode"/>
     </select>
 
 </mapper>

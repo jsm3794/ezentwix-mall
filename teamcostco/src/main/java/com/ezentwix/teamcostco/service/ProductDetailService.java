@@ -12,26 +12,28 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @Service
-public class ProductDefectiveService implements PageMetadataProvider {
+public class ProductDetailService implements PageMetadataProvider {
 
     private final ProductDefectiveRepository productDefectiveRepository;
 
-    public List<ProductDefectiveDTO> getAll() {
-        return productDefectiveRepository.getAll();
-    }
 
     @Override
     public List<String> getCssFiles() {
-        return List.of("/css/contents/orderrequest.css");
+        return List.of("/css/contents/product_detail.css");
+    }
+
+    @Override
+    public List<String> getJsFiles() {
+        return List.of("/js/contents/product_detail.js");
     }
 
     @Override
     public String getUri() {
-        return "productdefective/productdefective";
+        return "/product/product_detail";
     }
     
     @Override
     public String getPageTitle() {
-        return "불량재고";        
+        return "";
     }
 }

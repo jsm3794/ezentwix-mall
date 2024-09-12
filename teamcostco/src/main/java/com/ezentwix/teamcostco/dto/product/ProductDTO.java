@@ -23,4 +23,8 @@ public class ProductDTO {
     private Integer total_qty;
     private Date create_date;
     private Date update_date;
+
+    public Integer getDiscountedPrice() {
+        return (int) Math.floor(this.selling_price * (1 - this.discount)) / 10 * 10;
+    }
 }

@@ -1,0 +1,22 @@
+<div class="product_list_wrap">
+    <div th:replace="~{/component/filter}"></div>
+    <div class="product_list">
+        <div class="option_area">
+            <select name="size" id="size">
+                <option value="8">8개씩보기</option>
+                <option value="16" selected>16개씩보기</option>
+                <option value="32">32개씩보기</option>
+                <option value="64">64개씩보기</option>
+            </select>
+        </div>
+        <input type="hidden" id="page" name="page" th:value="${param.page ?: 1}">
+        <input type="hidden" id="totalpage" name="totalpage" value="1">
+        <input type="hidden" id="brands" name="brands" value="">
+        <div class="list_container">
+            <div class="list_box"></div>
+        </div>
+        <div id="show_more_btn">
+            <span>상품 더 보기</span>
+        </div>
+    </div>
+</div>

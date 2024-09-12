@@ -46,4 +46,8 @@ public class ProductRepository {
         }
         return null;
     }
+
+    public ProductDTO getByProductCode(Integer productCode){
+        return sql.selectOne("Products.getByProductCode", productCode);
+    }
 }

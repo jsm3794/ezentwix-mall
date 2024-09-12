@@ -1,0 +1,185 @@
+<div class="main_wrap">
+    <div class="product_main">
+        <div class="product_image">
+            <div class="main_image"></div>
+            <div class="image_list">
+                <div class="image_item"></div>
+                <div class="image_item"></div>
+                <div class="image_item"></div>
+                <div class="image_item"></div>
+            </div>
+        </div>
+        <div class="product_info">
+            <h1 class="product_title" th:text="${product.product_name}"></h1>
+            <div class="product_price_info">
+                <input type="hidden" id="product_price" th:value="${product.discountedPrice}">
+                <input type="hidden" id="product_total_price" th:value="${product.discountedPrice}">
+                <th:block th:if="${product.discount > 0}">
+                    <p class="product_discount" th:text="${(product.discount * 100) + '%'}"></p>
+                </th:block>
+                <p class="product_selling_price"
+                    th:text="${#numbers.formatInteger(product.discountedPrice, 0, 'COMMA') + '원'}">
+                </p>
+                <th:block th:if="${product.discount > 0}">
+                    <p class="product_before_discount"
+                        th:text="${#numbers.formatInteger(product.selling_price, 0, 'COMMA') + '원'}"></p>
+                </th:block>
+            </div>
+            <div class="delivery-area">
+                <div class="info">
+                    <span>배송정보</span>
+                    <ul>
+                        <li>택배배송 | CJ대한통운</li>
+                        <li>오늘출발</li>
+                        <li>휴무일로 00/00(?) 배송출발</li>
+                    </ul>
+                </div>
+                <div class="expense">
+                    <span>배송비</span>
+                    <ul>
+                        <li>무료</li>
+                        <li>제주 3,000원, 도서산간 6,000원 추가</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="amount_area">
+                <span>구매수량</span>
+                <div class="amount_set">
+                    <div class="amount_btn_group">
+                        <button id="amount_decrease">-</button>
+                        <input type="text" id="amount" value="1">
+                        <button id="amount_increase">+</button>
+                    </div>
+                    <div>
+                        <span class="total_price" th:text="${#numbers.formatInteger(product.discountedPrice, 0, 'COMMA')}"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="button_group">
+                <button class="favorite_button">
+                    <span class="material-symbols-outlined">
+                        Favorite
+                    </span>
+                </button>
+                <button class="buy_button">구매하기</button>
+                <button class="cart_button">장바구니에 추가</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="additional_info">
+        <div class="tabs">
+            <button class="tab_button active" onclick="openTab(event, 'product_details')">상품 정보</button>
+            <button class="tab_button" onclick="openTab(event, 'reviews')">고객 리뷰</button>
+        </div>
+
+        <div id="product_details" class="tab_content">
+            <section class="product_details">
+                <h2>상품 정보</h2>
+                <ul>
+                    <li><strong>제조사:</strong> <span th:text="${product.brand}"></span></li>
+                    <li><strong>대분류:</strong> <span th:text="${product.category_large}"></span></li>
+                    <li><strong>중분류:</strong> <span th:text="${product.category_medium}"></span></li>
+                    <li><strong>소분류:</strong> <span th:text="${product.category_small}"></span></li>
+                    <li><strong>세분류:</strong> <span th:text="${product.category_detail}"></span></li>
+                </ul>
+            </section>
+        </div>
+
+        <div id="reviews" class="tab_content">
+            <section class="reviews">
+                <h2>고객 리뷰</h2>
+                <div class="review">
+                    <h3>홍길동</h3>
+                    <p>⭐⭐⭐⭐⭐</p>
+                    <p>정말 좋은 제품입니다! 품질이 뛰어나고 사용하기 편리합니다.</p>
+                </div>
+                <div class="review">
+                    <h3>김철수</h3>
+                    <p>⭐⭐⭐⭐</p>
+                    <p>가격 대비 만족스럽습니다. 다만 배송이 조금 늦었습니다.</p>
+                </div>
+                <div class="review">
+                    <h3>홍길동</h3>
+                    <p>⭐⭐⭐⭐⭐</p>
+                    <p>정말 좋은 제품입니다! 품질이 뛰어나고 사용하기 편리합니다.</p>
+                </div>
+                <div class="review">
+                    <h3>김철수</h3>
+                    <p>⭐⭐⭐⭐</p>
+                    <p>가격 대비 만족스럽습니다. 다만 배송이 조금 늦었습니다.</p>
+                </div>
+                <div class="review">
+                    <h3>홍길동</h3>
+                    <p>⭐⭐⭐⭐⭐</p>
+                    <p>정말 좋은 제품입니다! 품질이 뛰어나고 사용하기 편리합니다.</p>
+                </div>
+                <div class="review">
+                    <h3>김철수</h3>
+                    <p>⭐⭐⭐⭐</p>
+                    <p>가격 대비 만족스럽습니다. 다만 배송이 조금 늦었습니다.</p>
+                </div>
+                <div class="review">
+                    <h3>홍길동</h3>
+                    <p>⭐⭐⭐⭐⭐</p>
+                    <p>정말 좋은 제품입니다! 품질이 뛰어나고 사용하기 편리합니다.</p>
+                </div>
+                <div class="review">
+                    <h3>김철수</h3>
+                    <p>⭐⭐⭐⭐</p>
+                    <p>가격 대비 만족스럽습니다. 다만 배송이 조금 늦었습니다.</p>
+                </div>
+                <div class="review">
+                    <h3>김철수</h3>
+                    <p>⭐⭐⭐⭐</p>
+                    <p>가격 대비 만족스럽습니다. 다만 배송이 조금 늦었습니다.</p>
+                </div>
+                <div class="review">
+                    <h3>김철수</h3>
+                    <p>⭐⭐⭐⭐</p>
+                    <p>가격 대비 만족스럽습니다. 다만 배송이 조금 늦었습니다.</p>
+                </div>
+                <div class="review">
+                    <h3>김철수</h3>
+                    <p>⭐⭐⭐⭐</p>
+                    <p>가격 대비 만족스럽습니다. 다만 배송이 조금 늦었습니다.</p>
+                </div>
+                <div class="review">
+                    <h3>김철수</h3>
+                    <p>⭐⭐⭐⭐</p>
+                    <p>가격 대비 만족스럽습니다. 다만 배송이 조금 늦었습니다.</p>
+                </div>
+                <div class="review">
+                    <h3>김철수</h3>
+                    <p>⭐⭐⭐⭐</p>
+                    <p>가격 대비 만족스럽습니다. 다만 배송이 조금 늦었습니다.</p>
+                </div>
+                <div class="review">
+                    <h3>김철수</h3>
+                    <p>⭐⭐⭐⭐</p>
+                    <p>가격 대비 만족스럽습니다. 다만 배송이 조금 늦었습니다.</p>
+                </div>
+                <div class="review">
+                    <h3>김철수</h3>
+                    <p>⭐⭐⭐⭐</p>
+                    <p>가격 대비 만족스럽습니다. 다만 배송이 조금 늦었습니다.</p>
+                </div>
+                <div class="review">
+                    <h3>김철수</h3>
+                    <p>⭐⭐⭐⭐</p>
+                    <p>가격 대비 만족스럽습니다. 다만 배송이 조금 늦었습니다.</p>
+                </div>
+                <div class="review">
+                    <h3>김철수</h3>
+                    <p>⭐⭐⭐⭐</p>
+                    <p>가격 대비 만족스럽습니다. 다만 배송이 조금 늦었습니다.</p>
+                </div>
+            </section>
+        </div>
+    </div>
+    <div class="side_menu">
+        <div class="go_top">
+            <span>↑</span>
+        </div>
+    </div>
+</div>

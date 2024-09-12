@@ -1,15 +1,25 @@
-const search_btn = $('#search_btn');
-const productList = $('.product_list');
-const size_select = $('#size');
+const $search_btn = $('#search_btn');
+const $productList = $('.product_list');
+const $size_select = $('#size');
+const $query = $('#query');
 
-search_btn.on('click', (e) => {
-    e.preventDefault();
+$search_btn.on('click', (e) => {
+    doSearch();
+});
+
+function doSearch() {
     const currentUrl = new URL(window.location.href);
     const params = new URLSearchParams(currentUrl.search);
     const newQuery = $('#query').val();
     params.set('query', newQuery);
-    const newUrl = `${currentUrl.origin}${currentUrl.pathname}?${params.toString()}`;
+    const newUrl = `/product/search?${params.toString()}`;
     window.location.href = newUrl;
+}
+
+$query.on('keypress', function (event) {
+    if(event.keyCode == 13){
+        doSearch();
+    }
 });
 
 function clearCurrentPage() {
@@ -25,7 +35,7 @@ function fetchProduct() {
     let product_list = [];
 
     $.ajax({
-        url: '/search',
+        url: '/product/search',
         method: 'POST',
         data: getQueryParams(), // 웹 uri 상 파라메터 전부 가져와 적용하기
         dataType: 'json',
@@ -41,19 +51,19 @@ function fetchProduct() {
                     ${item.discount > 0.00 ? `<span class='before_discount_price'>${item.selling_price.toLocaleString()}원</span>` : ''}
                     <div class='product_price'>
                     ${item.discount > 0.00 ? `<span class='discount'>${item.discount * 100}%</span>` : ''}
-                    <span class='product_price'>${(Math.floor(item.selling_price * (1 - item.discount) / 10) * 10).toLocaleString()}원</span>
+                    <span class='product_price'>${item.discountedPrice.toLocaleString()}원</span>
                     </div>`
                 })
 
                 productDiv.on('click', (e) => {
-                    location.href = `/productdetailview/${item.product_code}`;
+                    e.preventDefault(); // 기본 동작 방지
+                    window.open(`/product/product_detail?product_code=${item.product_code}`, '_blank');
                 });
 
                 $('.list_box').append(productDiv);
             });
 
             $('#totalpage').val(pagedata.pageDetails.totalPages);
-            console.dir(pagedata);
         },
         error: function (data, status, err) {
         },
@@ -64,18 +74,18 @@ function fetchProduct() {
 }
 
 const hideList = () => {
-    if (productList.hasClass('show')) {
-        productList.removeClass('show');
+    if ($productList.hasClass('show')) {
+        $productList.removeClass('show');
     }
 }
 
 const showList = () => {
-    if (!productList.hasClass('show')) {
-        productList.addClass('show');
+    if (!$productList.hasClass('show')) {
+        $productList.addClass('show');
     }
 }
 
-size_select.on('change', (e) => {
+$size_select.on('change', (e) => {
     clearProductList();
     hideList();
     fetchProduct();

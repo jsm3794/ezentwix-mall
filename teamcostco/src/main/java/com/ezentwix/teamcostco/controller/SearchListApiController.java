@@ -22,7 +22,7 @@ public class SearchListApiController {
     private final SearchListService searchListService;
     private final ObjectMapper objectMapper;
 
-    @PostMapping("/search")
+    @PostMapping("/product/search")
     public PaginationResult<ProductDTO> showSearchList(
             @RequestParam(value = "query", defaultValue = "") String query,
             @RequestParam(value = "page", defaultValue = "1") Integer page,

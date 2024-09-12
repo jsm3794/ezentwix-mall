@@ -19,7 +19,7 @@ public class SearchListController {
     private final SearchListService searchListService;
     private final ProductService productService;
 
-    @GetMapping("/search")
+    @GetMapping("/product/search")
     public String showSearchListPage(Model model,
             @RequestParam(value = "query", defaultValue = "", required = false) String query) {
         searchListService.setTitle("검색결과>" + query);

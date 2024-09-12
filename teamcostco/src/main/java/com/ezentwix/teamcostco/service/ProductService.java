@@ -53,6 +53,10 @@ public class ProductService {
         productRepository.updateProduct(productDTO);
     }
 
+    public ProductDTO getByProductCode(Integer productCode){
+        return productRepository.getByProductCode(productCode);
+    }
+
     
     public List<ProductBrandGroupDTO> getBrandGroup(String product_name) {
         return productRepository.getBrandGroup(product_name);

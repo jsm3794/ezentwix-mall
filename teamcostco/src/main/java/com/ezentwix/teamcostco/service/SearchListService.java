@@ -30,7 +30,7 @@ public class SearchListService implements PageMetadataProvider {
 
     @Override
     public String getUri() {
-        return "/search_list/search_list";
+        return "/search/search_product";
     }
 
     @Override
@@ -42,11 +42,6 @@ public class SearchListService implements PageMetadataProvider {
     public List<String> getCssFiles() {
         return List.of("/css/component/filter.css",
                 "/css/contents/search.css");
-    }
-
-    @Override
-    public List<String> getJsFiles() {
-        return List.of("/js/component/search.js");
     }
 
 }

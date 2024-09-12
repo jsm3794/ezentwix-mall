@@ -1,0 +1,7 @@
+<div class="main_wrap">
+    <div id="search_title">
+        <span th:text="${'&quot;' + param.query + '&quot; 에 대한 검색결과'}"></span>
+        <span id="search_state"></span>
+    </div>
+    <div th:replace="~{/product/product_list}"></div>
+</div>
