@@ -1,113 +1,73 @@
-@import url('https://fonts.googleapis.com/css?family=Raleway:400,700');
-
-* {
-    box-sizing: border-box;
+body {
+    font-family: 'Noto Sans KR', sans-serif;
+    background: #f5f5f5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
     margin: 0;
-    padding: 0;
-    font-family: 'Malgun Gothic', sans-serif;
 }
 
-html,
-body {
-    width: 100%;
-    height: 100%;
-}
-
-h3 {
-    margin:30px;
+.container {
+    background: white;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     text-align: center;
+    max-width: 400px;
+    width: 100%;
 }
 
-body {
-    background: linear-gradient(90deg, #fff, #e3e4ff);
+h1 {
+    color: #3c1e1e;
+    font-size: 36px;
+    margin-bottom: 10px;
 }
 
-.auth-container {
+.subtitle {
+    color: #666;
+    margin-bottom: 30px;
+}
+
+.login-box {
+    margin-bottom: 30px;
+}
+
+.login-text {
+    font-size: 18px;
+    color: #3c1e1e;
+    margin-bottom: 15px;
+}
+
+.kakao_login_btn {
+    background-color: #FEE500;
+    border: none;
+    border-radius: 8px;
+    padding: 5px 0;
+    cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
     width: 100%;
-    height: 100%;
-
+    transition: background-color 0.3s;
 }
-
-.auth-card {
-    display:flex;
-    flex-direction: column;
-    background-color: #fff;
-    height: 500px;
-    width: 360px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
-    border-radius: 10px;
-    padding: 50px;
-}
-
-.auth-form{
-    display:flex;
-    flex-direction: column;
-    justify-content: space-around;
-    height: 100%;
-    padding:30px 0;
-}
-
-.input-group {
-    position: relative;
-    margin-bottom: 20px;
-}
-
-.input-icon {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    left: 10px;
-    color: #b1b1b1;
-}
-
-.input-field {
-    border: none;
-    border-bottom: 2px solid #D1D1D4;
-    background: none;
-    padding: 10px;
-    padding-left: 35px;
-    width: 100%;
-    transition: .2s;
-}
-
-.input-field:active,
-.input-field:focus,
-.input-field:hover {
-    outline: none;
-    border-bottom-color: #9c9c9c;
-}
-
-.submit-btn {
-    background: #fff;
-    font-size: 14px;
-    padding: 16px 20px;
-    border-radius: 10px;
-    border: 1px solid #D4D3E8;
-    text-transform: uppercase;
-    font-weight: 700;
+.features {
     display: flex;
-    align-items: center;
-    width: 100%;
-    color: #333;
-    box-shadow: 0px 2px 2px #969696;
-    cursor: pointer;
-    transition: .2s;
+    justify-content: space-around;
+    margin-top: 30px;
 }
 
-
-
-.submit-btn:active,
-.submit-btn:focus,
-.submit-btn:hover {
-    border-color: #929292;
-    outline: none;
+.feature {
+    text-align: center;
 }
 
-.btn-icon {
+.feature i {
     font-size: 24px;
-    margin-left: auto;
-    color: #b3b3b3;
+    color: #3c1e1e;
+    margin-bottom: 10px;
+}
+
+.feature p {
+    font-size: 14px;
+    color: #666;
 }

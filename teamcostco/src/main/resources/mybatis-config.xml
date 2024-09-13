@@ -1,20 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "https://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
+    <settings>
+        <setting name="jdbcTypeForNull" value="VARCHAR"/>
+    </settings>
+    
     <typeAliases>
         <typeAlias type="com.ezentwix.teamcostco.dto.product.ProductDTO" alias="product" />
-        <typeAlias type="com.ezentwix.teamcostco.dto.category.CategoryDTO" alias="category" />
-        <typeAlias type="com.ezentwix.teamcostco.dto.employee.EmployeeDTO" alias="emp" />
-        <typeAlias type="com.ezentwix.teamcostco.dto.product.OrderRequestDTO" alias="orderrequest" />
-        <typeAlias type="com.ezentwix.teamcostco.dto.product.ProductDefectiveDTO" alias="productdefective" />
-        <typeAlias type="com.ezentwix.teamcostco.dto.notice.NoticeDTO" alias="notice" />
-        <typeAlias type="com.ezentwix.teamcostco.dto.notice.WritingDTO" alias="writing" />
-        <typeAlias type="com.ezentwix.teamcostco.dto.notice.BoardDTO" alias="board" />
-        <typeAlias type="com.ezentwix.teamcostco.dto.notice.BoardFixDTO" alias="boardfix" />
+        <!-- <typeAlias type="com.ezentwix.teamcostco.dto.category.CategoryDTO" alias="category" /> -->
+        <!-- <typeAlias type="com.ezentwix.teamcostco.dto.product.OrderRequestDTO" alias="orderrequest" /> -->
+        <!-- <typeAlias type="com.ezentwix.teamcostco.dto.product.ProductDefectiveDTO" alias="productdefective" /> -->
+        <!-- <typeAlias type="com.ezentwix.teamcostco.dto.notice.NoticeDTO" alias="notice" /> -->
+        <!-- <typeAlias type="com.ezentwix.teamcostco.dto.notice.WritingDTO" alias="writing" /> -->
+        <!-- <typeAlias type="com.ezentwix.teamcostco.dto.notice.BoardDTO" alias="board" /> -->
+        <!-- <typeAlias type="com.ezentwix.teamcostco.dto.notice.BoardFixDTO" alias="boardfix" /> -->
         <typeAlias type="com.ezentwix.teamcostco.dto.inventory.LargeCategoryDTO" alias="large" />
         <typeAlias type="com.ezentwix.teamcostco.dto.inventory.MediumCategoryDTO" alias="medium" />
         <typeAlias type="com.ezentwix.teamcostco.dto.inventory.SmallCategoryDTO" alias="small" />
         <typeAlias type="com.ezentwix.teamcostco.dto.inventory.DetailCategoryDTO" alias="detail" />
         <typeAlias type="com.ezentwix.teamcostco.dto.product.ProductBrandGroupDTO" alias="brandgroup" />
+        <typeAlias type="com.ezentwix.teamcostco.dto.customer.CustomerDTO" alias="customer" />
     </typeAliases>
 </configuration>

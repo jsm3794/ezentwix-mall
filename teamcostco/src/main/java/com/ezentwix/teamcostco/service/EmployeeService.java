@@ -7,7 +7,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import com.ezentwix.teamcostco.PageMetadataProvider;
-import com.ezentwix.teamcostco.dto.employee.EmployeeDTO;
+import com.ezentwix.teamcostco.dto.customer.CustomerDTO;
 import com.ezentwix.teamcostco.pagination.PaginationRepository;
 import com.ezentwix.teamcostco.pagination.PaginationResult;
 import com.ezentwix.teamcostco.repository.EmployeeRepository;
@@ -20,17 +20,17 @@ public class EmployeeService implements PageMetadataProvider {
     private final EmployeeRepository employeeRepository;
     private final PaginationRepository paginationRepository;
 
-    public PaginationResult<EmployeeDTO> getPage(String query, Integer page, Integer limit,
+    public PaginationResult<CustomerDTO> getPage(String query, Integer page, Integer limit,
             Map<String, Object> params) {
         return paginationRepository.getPage(
                 query,
                 "Employees.getAll",
                 PageRequest.of(page, limit),
                 params,
-                EmployeeDTO.class);
+                CustomerDTO.class);
     }
 
-    public List<EmployeeDTO> getEmpList() {
+    public List<CustomerDTO> getEmpList() {
         return employeeRepository.getEmpList();
     }
 
