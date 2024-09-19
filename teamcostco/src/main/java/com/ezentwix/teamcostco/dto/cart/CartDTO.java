@@ -1,16 +1,18 @@
-package com.ezentwix.teamcostco.dto.product;
-
-
+package com.ezentwix.teamcostco.dto.cart;
 
 import java.time.LocalDateTime;
 
 import lombok.Data;
 
 @Data
-public class ProductDTO {
+public class CartDTO {
+    private Long cart_id; // cart_id
+    private String customer_id; // customer_id
+    private Long product_count; // product_count
+    private Long product_code; // product_count
+    private Character checked;
     private Integer product_id;
     private String product_name;
-    private Long product_code;
     private String category_large;
     private String category_medium;
     private String category_small;
@@ -25,6 +27,7 @@ public class ProductDTO {
     private Integer total_qty;
     private LocalDateTime create_date;
     private LocalDateTime update_date;
+
 
     public Integer getDiscountedPrice() {
         return (int) Math.floor(this.selling_price * (1 - this.discount)) / 10 * 10;

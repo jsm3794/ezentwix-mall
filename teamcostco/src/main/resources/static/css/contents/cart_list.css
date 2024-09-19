@@ -1,0 +1,187 @@
+h1 {
+    text-align: center;
+}
+
+.container {
+    height: auto;
+}
+
+.cart_main {
+    width: 100%;
+    border: 1px solid red;
+}
+
+.cart_container {
+    display: flex;
+}
+
+.cart_list {
+    flex: 2;
+    margin-right: 20px;
+}
+
+.cart_item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid lightgray;
+
+}
+
+.item_info_area {
+    display: flex;
+    flex-direction: column;
+}
+
+.item_info_area p {
+    padding: 0;
+    margin: 0;
+}
+
+.item_row {
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+    align-items: center;
+}
+
+.item_label {
+    width: 100px;
+}
+
+.item_value {
+    width: 300px;
+}
+
+.item_image_area {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid lightgray;
+    width: 100px;
+    height: 100px;
+    margin-right: 20px;
+}
+
+.remove_btn {
+    margin-left: auto;
+}
+
+
+.item_details {
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+    width: 100%;
+    justify-content: flex-start;
+}
+
+.checkbox_area {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    margin: 0;
+    background-color: #eef;
+    padding: 10px;
+}
+
+.checkbox_area>label {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.item_checkbox {
+    margin-right: 10px;
+    border-right: 1px solid lightgray;
+    height: 15px;
+    width: 15px;
+    margin: 0;
+    cursor: pointer;
+}
+
+.item_price_area {
+    display: flex;
+    flex-direction: row;
+
+}
+
+.item_description_area {
+    border: 1px solid red;
+
+}
+
+.cart_item img {
+    width: 100%;
+    height: auto;
+}
+
+
+.quantity_controls {
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    flex: 1;
+    margin: 5px 0;
+
+}
+
+.quantity_input {
+    width: 40px;
+    text-align: center;
+    margin: 0 10px;
+}
+
+.decrease_btn,
+.increase_btn,
+.remove_btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.remove_btn {
+    background-color: #ff4d4d;
+}
+
+.decrease_btn:hover,
+.increase_btn:hover {
+    background-color: #0056b3;
+}
+
+.remove_btn:hover {
+    background-color: #ff1a1a;
+}
+
+.selected_items {
+    flex: 1;
+    border-left: 1px solid #ddd;
+    padding-left: 20px;
+}
+
+.item_info {
+    margin-top: 10px;
+}
+
+.total_price {
+    text-align: right;
+    margin-top: 20px;
+}
+
+.checkout_btn {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.checkout_btn:hover {
+    background-color: #218838;
+}

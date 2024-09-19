@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Cart">
+
+   <sql id="getByCustomerId">
+    SELECT cart_id, customer_id, product_code, product_count, checked
+    FROM cart
+    <where>
+      customer_id = #{customer_id}
+    </where>
+   </sql>
+
+   <sql id="getCartsWithProducts">
+    SELECT 
+        c.cart_id,
+        c.customer_id,
+        c.product_count,
+        c.checked,
+        p.*
+    FROM 
+        cart c
+    JOIN 
+        products p ON c.product_code = p.product_code
+    WHERE
+        customer_id = #{customer_id}
+   </sql>
+
+   <sql id="addToCart">
+    INSERT INTO cart (cart_id, customer_id, product_code, product_count, checked)
+    VALUES (cart_seq.nextval, #{customer_id}, #{product_code}, #{product_count}, 'Y')
+   </sql>
+
+   <sql id="updateProductCount">
+    UPDATE cart
+    SET product_count = #{product_count}
+    WHERE product_code = #{product_code}
+   </sql>
+
+   <sql id="getByProductCode">
+    SELECT cart_id, customer_id, product_code, product_count, checked
+    FROM (
+        SELECT cart_id, customer_id, product_code, product_count, checked
+        FROM cart
+        WHERE product_code = #{product_code} AND customer_id = #{customer_id}
+    )
+    WHERE ROWNUM = 1
+   </sql>
+
+   <select id="getCartsWithProducts" parameterType="String" resultType="cart">
+    <include refid="getCartsWithProducts"/>
+   </select>
+
+   <select id="getByCustomerId" parameterType="String" resultType="cart">
+    <include refid="getByCustomerId"/>
+   </select>
+
+   <insert id="addToCart" parameterType="cart">
+    <include refid="addToCart"/>
+   </insert>
+
+   <update id="updateProductCount" parameterType="map">
+    <include refid="updateProductCount"/>
+   </update>
+
+   <select id="getByProductCode" parameterType="map" resultType="cart">
+    <include refid="getByProductCode"/>
+   </select>
+
+</mapper>

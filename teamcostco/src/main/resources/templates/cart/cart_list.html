@@ -1,57 +1,51 @@
-<div class="content-box">
-    <form th:action="@{/detail/update}" th:object="${product}" method="post">
-        <input type="hidden" name="product_id" th:value="${product.product_id}" />
-        <table>
-            <tr>
-                <th>Product Name</th>
-                <td><input type="text" th:field="*{product_name}" class="editable" /></td>
-                <th>Product Code</th>
-                <td><input type="number" th:field="*{product_code}" class="readonly" readonly /></td>
-            </tr>
-            <tr>
-                <th>Category Large</th>
-                <td><input type="text" th:field="*{category_large}" class="editable" /></td>
-                <th>Category Medium</th>
-                <td><input type="text" th:field="*{category_medium}" class="editable" /></td>
-            </tr>
-            <tr>
-                <th>Category Small</th>
-                <td><input type="text" th:field="*{category_small}" class="editable" /></td>
-                <th>Category Detail</th>
-                <td><input type="text" th:field="*{category_detail}" class="editable" /></td>
-            </tr>
-            <tr>
-                <th>Purchase Price</th>
-                <td><input type="number" step="1" th:field="*{purchase_price}" class="editable" /></td>
-                <th>Selling Price</th>
-                <td><input type="number" step="1" th:field="*{selling_price}" class="editable" /></td>
-            </tr>
-            <tr>
-                <th>Brand</th>
-                <td><input type="text" th:field="*{brand}" class="editable" /></td>
-                <th>Min Required Qty</th>
-                <td><input type="number" th:field="*{min_required_qty}" class="readonly" readonly /></td>
-            </tr>
-            <tr>
-                <th>Display Qty</th>
-                <td><input type="number" th:field="*{display_qty}" class="readonly" readonly /></td>
-                <th>Storage Qty</th>
-                <td><input type="number" th:field="*{storage_qty}" class="readonly" readonly /></td>
-            </tr>
-            <tr>
-                <th>Create Date</th>
-                <td><span th:text="${#dates.format(product.create_date, 'yyyy-MM-dd')}"
-                        class="date-field readonly"></span>
-                </td>
-                <th>Update Date</th>
-                <td><span th:text="${#dates.format(product.update_date, 'yyyy-MM-dd')}"
-                        class="date-field  readonly"></span>
-                </td>
-            </tr>
-        </table>
-        <div class="btn-area">
-            <button type="submit" class="save-btn">저장하기</button>
-        </div>
-    </form>
+<div class="main_wrap">
+    <div class="cart_main">
 
+        <h1>장바구니</h1>
+        <div class="cart_container">
+            <div class="cart_list">
+                <div class="cart_item" th:each="item: ${items}">
+                    <div class="checkbox_area">
+                        <input type="checkbox" class="item_checkbox" th:id="${item.cart_id}"
+                            th:checked="${item.checked != null && item.checked == 'Y'}">
+                            <button class="remove_btn">삭제</button>
+                    </div>
+                    <div class="item_details">
+                        <div class="item_image_area">
+                            <img src="https://thumbnail6.coupangcdn.com/thumbnails/remote/120x120ex/image/vendor_inventory/950f/929963fd3bae624770c68b8d3409c92f0230409893437fedea143fb86a4b.png"
+                                alt="상품1">
+                        </div>
+                        <div class="item_info_area">
+                            <div class="item_row">
+                                <p class="item_label">상품코드</p>
+                                <p class="item_value" th:text="${item.product_code}"></p>
+                            </div>
+                            <div class="item_row">
+                                <p class="item_label">상품명</p>
+                                <p class="item_value" th:text="${item.product_name}"></p>
+                            </div>
+                            <div class="item_row">
+                                <p class="item_label" th:text="'상품가격'"></p>
+                                <p class="item_value" th:text="${#numbers.formatInteger(item.discountedPrice, 0, 'COMMA') + '원'}"></p>
+                            </div>
+                        </div>
+                        <div class="quantity_controls">
+                            <button class="decrease_btn">-</button>
+                            <input type="number" value="1" min="1" class="quantity_input">
+                            <button class="increase_btn">+</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="selected_items">
+                <h2>선택한 상품 정보</h2>
+                <div class="item_info"></div>
+            </div>
+        </div>
+        <div class="total_price">
+            <h2>총 가격: <span id="totalPrice">30,000원</span></h2>
+            <button class="checkout_btn">결제하기</button>
+        </div>
+    </div>
 </div>

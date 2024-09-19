@@ -8,7 +8,7 @@
         function handleLoginResponse(response) {
             if (response.success) {
                 if (window.opener) {
-                    window.opener.location.href = '/';
+                    window.opener.reload();
                     window.close();
                 } else {
                     window.location.href = '/';
