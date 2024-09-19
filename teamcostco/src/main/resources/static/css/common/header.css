@@ -27,7 +27,7 @@ header {
 }
 
 .header-right {
-    width: 120px;
+    width: 130px;
     display: flex;
     align-items: center;
     padding: 0 15px;
@@ -40,6 +40,10 @@ header {
     gap: 10px;
     flex: 1;
     padding: 0 15px;
+}
+
+.icon-box > *{
+    cursor: pointer;
 }
 
 

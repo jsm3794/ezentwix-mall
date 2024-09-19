@@ -1,0 +1,106 @@
+/* styles.css */
+
+/* 'body'에 대한 스타일 제거 */
+
+/* 메인 콘텐츠를 위한 컨테이너 클래스 사용 */
+.page-container {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px;
+}
+
+.menu-container, .content_myssg {
+    width: 48%;
+    padding: 20px;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    background-color: white;
+}
+
+/* 나머지 스타일 동일하게 유지 */
+.section-title {
+    font-size: 1.1em;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.menu-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.menu-list li {
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.menu-list li a {
+    text-decoration: none;
+    color: #333;
+}
+
+.menu-list li a:hover {
+    text-decoration: underline;
+}
+
+.section {
+    margin-bottom: 30px;
+}
+
+.divider {
+    border-bottom: 1px solid #e0e0e0;
+    margin-bottom: 20px;
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.data-table th, .data-table td {
+    border: 1px solid #e0e0e0;
+    padding: 10px;
+    text-align: center;
+}
+
+.data-table caption {
+    display: none;
+}
+
+.data-table th {
+    background-color: #f4f4f4;
+}
+
+.go-cancel, .button-btm {
+    text-align: right;
+    margin-top: 20px;
+}
+
+.btn-cs {
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-cs.ty1 {
+    background-color: #28a745;
+}
+
+.btn-cs.ty4 {
+    background-color: #dc3545;
+}
+
+.paginate {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.paginate strong {
+    font-weight: bold;
+}

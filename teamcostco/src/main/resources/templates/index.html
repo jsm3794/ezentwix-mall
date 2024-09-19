@@ -27,15 +27,17 @@
             <div th:replace="~{${uri}}"></div>
 
         </main>
+        <footer th:replace="~{/common/footer}"></footer>
     </div>
     <script th:src="@{/js/common/header.js}"></script>
-    <script th:src="@{/js/component/search.js(t=${#calendars.format(#calendars.createNow(), 'yyyyMMddHHmmss')})}"></script>
+    <script
+        th:src="@{/js/component/search.js(t=${#calendars.format(#calendars.createNow(), 'yyyyMMddHHmmss')})}"></script>
     <th:block th:if="${jsFiles != null}">
         <th:block th:each="jsFile : ${jsFiles}">
             <script th:src="@{${jsFile}}"></script>
         </th:block>
     </th:block>
-    <footer th:replace="~{/common/footer}"></footer>
+
 </body>
 
 </html>

@@ -28,13 +28,15 @@ public class CartDTO {
     private LocalDateTime create_date;
     private LocalDateTime update_date;
 
-
     public Integer getDiscountedPrice() {
         return (int) Math.floor(this.selling_price * (1 - this.discount)) / 10 * 10;
     }
 
     public Integer getTotal_qty() {
-        return this.storage_qty + this.display_qty;
+        if (this.storage_qty != null && this.display_qty != null) {
+            return this.storage_qty + this.display_qty;
+        }
+        return 0;
     }
 
 }

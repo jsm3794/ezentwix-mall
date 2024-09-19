@@ -1,0 +1,115 @@
+<!-- delivery_management.html -->
+
+<div class="page-container">
+    <!-- 메뉴 섹션 -->
+    <div class="menu-container">
+        <div class="section">
+            <h3 class="section-title">나의 주문관리</h3>
+            <ul class="menu-list">
+                <li><a href="#">주문/배송조회</a></li>
+                <li><a href="#">여행예약 조회</a></li>
+                <li><a href="#">구매 내역</a></li>
+                <li><a href="#">자주구매 상품</a></li>
+                <li><a href="#">정기배송 설정 관리</a></li>
+                <li><a href="#">영수증 통합 조회</a></li>
+            </ul>
+            <div class="divider"></div>
+        </div>
+        <div class="section">
+            <h3 class="section-title">신세계 유니버스 클럽</h3>
+            <ul class="menu-list">
+                <li><a href="#">나의 유니버스 클럽 혜택</a></li>
+                <li><a href="#">유니버스 클럽 관리</a></li>
+                <li><a href="#">유니버스 클럽 카드 설정</a></li>
+                <li><a href="#">유니버스 클럽 해지</a></li>
+                <li><a href="#">유니버스 클럽 스탬프</a></li>
+            </ul>
+            <div class="divider"></div>
+        </div>
+        <div class="section">
+            <h3 class="section-title">나의 혜택관리</h3>
+            <ul class="menu-list">
+                <li><a href="#">쿠폰</a></li>
+                <li><a href="#">SSG MONEY</a></li>
+                <li><a href="#">신세계 포인트</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 배송지 관리 섹션 -->
+    <div id="content" class="content_myssg myssg_delivery">
+        <h2 class="stit"><span>배송지 관리</span></h2>
+        <div class="my_order_info">
+            <div class="title">
+                <p>기본배송지</p>
+                <a href="javascript:fn_modify('7463333');" id="internalBtn" class="btn-cs ty1"><span>수정</span></a>
+            </div>
+            <p class="notranslate">(01761)<br>
+                도로명 : 서울 노원구 동일로215길 48 312동 307호<br>
+                지번 : 서울 노원구 상계동 737번지 상계주공3단지아파트 312동 307호
+            </p>
+        </div>
+
+        <div id="del01" class="section data_tbl content active">
+            <table border="1" class="data-table">
+                <caption></caption>
+                <colgroup>
+                    <col style="width:5%">
+                    <col style="width:12%">
+                    <col style="width:12%">
+                    <col>
+                    <col style="width:13%">
+                    <col style="width:17%">
+                </colgroup>
+                <thead>
+                <tr>
+                    <th scope="col"></th>
+                    <th scope="col">주소별칭</th>
+                    <th scope="col">받으실분</th>
+                    <th scope="col">배송주소</th>
+                    <th scope="col">연락처</th>
+                    <th scope="col">관리</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>
+                        <input type="radio" name="deliveryKr" class="radio" value="7463333" title="배송지 선택">
+                        <input type="hidden" name="shpplocSeq" id="shpplocSeq" value="7463333">
+                        <input type="hidden" name="bascShpplocYn" id="bascShpplocYn" value="Y">
+                    </td>
+                    <td>
+                        <span class="sub_tit warning">[기본배송지]</span>
+                        <strong class="notranslate">황지영</strong>
+                    </td>
+                    <td class="notranslate">황지영</td>
+                    <td class="subject address">
+                        <p class="notranslate">(01761)<br>
+                            도로명 : 서울 노원구 동일로215길 48 312동 307호<br>
+                            지번 : 서울 노원구 상계동 737번지 상계주공3단지아파트 312동 307호
+                        </p>
+                    </td>
+                    <td>010-9448-9748</td>
+                    <td>
+                        <a href="javascript:fn_modify('7463333');" class="btn-cs ty4"><span>수정</span></a>
+                    </td>
+                </tr>
+                <!-- 추가적인 배송지 항목들을 여기에 추가할 수 있습니다. -->
+                </tbody>
+            </table>
+
+            <div class="go-cancel">
+                <a href="javascript:fn_newForm('N');" class="btn-cs ty3"><span>새 배송지 추가</span></a>
+            </div>
+
+            <div class="paginate notranslate">
+                <strong title="현재위치">1</strong>
+            </div>
+
+            <div class="button-btm">
+                <button onclick="fn_setDefault(this)" class="btn-cs ty1"><span>기본 배송지 설정</span></button>
+                <button onclick="fn_setOnlyOne()" class="btn-cs ty4"><span>이번만 배송지 설정</span></button>
+            </div>
+        </div>
+    </div>
+</div>

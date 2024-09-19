@@ -12,6 +12,7 @@
         <div class="product_info">
             <h1 class="product_title" th:text="${product.product_name}"></h1>
             <div class="product_price_info">
+                <input type="hidden" id="product_code" th:value="${product.product_code}">
                 <input type="hidden" id="product_price" th:value="${product.discountedPrice}">
                 <input type="hidden" id="product_total_price" th:value="${product.discountedPrice}">
                 <th:block th:if="${product.discount > 0}">
@@ -103,76 +104,6 @@
                     <h3>홍길동</h3>
                     <p>⭐⭐⭐⭐⭐</p>
                     <p>정말 좋은 제품입니다! 품질이 뛰어나고 사용하기 편리합니다.</p>
-                </div>
-                <div class="review">
-                    <h3>김철수</h3>
-                    <p>⭐⭐⭐⭐</p>
-                    <p>가격 대비 만족스럽습니다. 다만 배송이 조금 늦었습니다.</p>
-                </div>
-                <div class="review">
-                    <h3>홍길동</h3>
-                    <p>⭐⭐⭐⭐⭐</p>
-                    <p>정말 좋은 제품입니다! 품질이 뛰어나고 사용하기 편리합니다.</p>
-                </div>
-                <div class="review">
-                    <h3>김철수</h3>
-                    <p>⭐⭐⭐⭐</p>
-                    <p>가격 대비 만족스럽습니다. 다만 배송이 조금 늦었습니다.</p>
-                </div>
-                <div class="review">
-                    <h3>홍길동</h3>
-                    <p>⭐⭐⭐⭐⭐</p>
-                    <p>정말 좋은 제품입니다! 품질이 뛰어나고 사용하기 편리합니다.</p>
-                </div>
-                <div class="review">
-                    <h3>김철수</h3>
-                    <p>⭐⭐⭐⭐</p>
-                    <p>가격 대비 만족스럽습니다. 다만 배송이 조금 늦었습니다.</p>
-                </div>
-                <div class="review">
-                    <h3>김철수</h3>
-                    <p>⭐⭐⭐⭐</p>
-                    <p>가격 대비 만족스럽습니다. 다만 배송이 조금 늦었습니다.</p>
-                </div>
-                <div class="review">
-                    <h3>김철수</h3>
-                    <p>⭐⭐⭐⭐</p>
-                    <p>가격 대비 만족스럽습니다. 다만 배송이 조금 늦었습니다.</p>
-                </div>
-                <div class="review">
-                    <h3>김철수</h3>
-                    <p>⭐⭐⭐⭐</p>
-                    <p>가격 대비 만족스럽습니다. 다만 배송이 조금 늦었습니다.</p>
-                </div>
-                <div class="review">
-                    <h3>김철수</h3>
-                    <p>⭐⭐⭐⭐</p>
-                    <p>가격 대비 만족스럽습니다. 다만 배송이 조금 늦었습니다.</p>
-                </div>
-                <div class="review">
-                    <h3>김철수</h3>
-                    <p>⭐⭐⭐⭐</p>
-                    <p>가격 대비 만족스럽습니다. 다만 배송이 조금 늦었습니다.</p>
-                </div>
-                <div class="review">
-                    <h3>김철수</h3>
-                    <p>⭐⭐⭐⭐</p>
-                    <p>가격 대비 만족스럽습니다. 다만 배송이 조금 늦었습니다.</p>
-                </div>
-                <div class="review">
-                    <h3>김철수</h3>
-                    <p>⭐⭐⭐⭐</p>
-                    <p>가격 대비 만족스럽습니다. 다만 배송이 조금 늦었습니다.</p>
-                </div>
-                <div class="review">
-                    <h3>김철수</h3>
-                    <p>⭐⭐⭐⭐</p>
-                    <p>가격 대비 만족스럽습니다. 다만 배송이 조금 늦었습니다.</p>
-                </div>
-                <div class="review">
-                    <h3>김철수</h3>
-                    <p>⭐⭐⭐⭐</p>
-                    <p>가격 대비 만족스럽습니다. 다만 배송이 조금 늦었습니다.</p>
                 </div>
             </section>
         </div>

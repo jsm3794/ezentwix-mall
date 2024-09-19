@@ -21,9 +21,9 @@ public class CartRepository {
         return result > 0; // 1 이상의 결과가 반환되면 성공
     }
 
-    public boolean updateProductCount(Long productCode, Long productCount) {
+    public boolean updateProductCount(Long cart_id, Long productCount) {
         Map<String, Object> params = new HashMap<>();
-        params.put("product_code", productCode);
+        params.put("cart_id", cart_id);
         params.put("product_count", productCount);
         int result = sql.update("Cart.updateProductCount", params);
         return result > 0;
@@ -38,7 +38,24 @@ public class CartRepository {
 
     public List<CartDTO> getCartsWithProducts(String customer_id){
         List<CartDTO> list = sql.selectList("Cart.getCartsWithProducts", customer_id);
-        System.out.println(list);
         return list;
+    }
+
+      // checked 상태를 업데이트하는 메서드 추가
+      public boolean updateCheckedStatus(Long cartId, String checked) {
+        Map<String, Object> params = new HashMap<>();
+        params.put("cart_id", cartId);
+        params.put("checked", checked);
+        int result = sql.update("Cart.updateCheckedStatus", params);
+        return result > 0;
+    }
+
+    public boolean deleteCartItem(Long cartId) {
+        int result = sql.delete("Cart.deleteCartItem", cartId);
+        return result > 0;
+    }
+
+    public CartDTO getCartItemById(Long cartId) {
+        return sql.selectOne("Cart.getCartItemById", cartId);
     }
 }

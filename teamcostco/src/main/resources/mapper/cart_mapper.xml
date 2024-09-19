@@ -33,7 +33,7 @@
    <sql id="updateProductCount">
     UPDATE cart
     SET product_count = #{product_count}
-    WHERE product_code = #{product_code}
+    WHERE cart_id = #{cart_id}
    </sql>
 
    <sql id="getByProductCode">
@@ -45,6 +45,38 @@
     )
     WHERE ROWNUM = 1
    </sql>
+
+   <sql id="updateCheckedStatus">
+    UPDATE cart
+    SET checked = #{checked}
+    WHERE cart_id = #{cart_id}
+   </sql>
+
+    <sql id="deleteCartItem">
+        DELETE FROM cart
+        WHERE cart_id = #{cart_id}
+    </sql>
+
+<sql id="getCartItemById">
+    SELECT cart_id, customer_id, product_code, product_count, checked
+    FROM cart
+    WHERE cart_id = #{cart_id}
+</sql>
+
+<select id="getCartItemById" parameterType="long" resultType="cart">
+    <include refid="getCartItemById"/>
+</select>
+
+
+    <delete id="deleteCartItem" parameterType="long">
+        <include refid="deleteCartItem"/>
+    </delete>
+
+
+   <update id="updateCheckedStatus" parameterType="map">
+    <include refid="updateCheckedStatus"/>
+   </update>
+
 
    <select id="getCartsWithProducts" parameterType="String" resultType="cart">
     <include refid="getCartsWithProducts"/>

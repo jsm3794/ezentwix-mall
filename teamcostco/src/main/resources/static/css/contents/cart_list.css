@@ -1,5 +1,11 @@
 h1 {
     text-align: center;
+    font-size: 20px;
+    margin: 40px;
+}
+
+h4 {
+    margin: 0 0 10px 0;
 }
 
 .container {
@@ -8,7 +14,6 @@ h1 {
 
 .cart_main {
     width: 100%;
-    border: 1px solid red;
 }
 
 .cart_container {
@@ -17,7 +22,7 @@ h1 {
 
 .cart_list {
     flex: 2;
-    margin-right: 20px;
+    margin-right: 100px;
 }
 
 .cart_item {
@@ -25,12 +30,15 @@ h1 {
     flex-direction: column;
     align-items: center;
     border: 1px solid lightgray;
-
+    margin-bottom: 20px;
+    border-radius: 3px;
 }
 
 .item_info_area {
     display: flex;
     flex-direction: column;
+    width: auto;
+    font-size: 14px;
 }
 
 .item_info_area p {
@@ -121,41 +129,53 @@ h1 {
 
 .quantity_controls {
     display: flex;
-    align-items: flex-end;
-    justify-content: flex-end;
-    flex: 1;
-    margin: 5px 0;
-
-}
-
-.quantity_input {
-    width: 40px;
-    text-align: center;
-    margin: 0 10px;
+    flex-direction: row;
+    height: auto;
+    width: 90px;
+    margin-top: auto;
+    margin-left: auto;
+    border: 1px solid lightgray;
+    border-radius: 3px;
 }
 
 .decrease_btn,
 .increase_btn,
+.quantity_input {
+    width: 30px;
+    height: 25px;
+    text-align: center;
+    border: none;
+    outline: none;
+}
+
+.decrease_btn {
+    border-right: 1px solid lightgray;
+    cursor: pointer;
+}
+
+.increase_btn {
+    border-left: 1px solid lightgray;
+    cursor: pointer;
+}
+
+.quantity_input {
+    width: 40px;
+}
+
 .remove_btn {
     background-color: #007bff;
     color: white;
     border: none;
-    padding: 5px 10px;
+    width: 15px;
+    height: 15px;
     cursor: pointer;
-    border-radius: 4px;
+    font-size: 10px;
+    padding: 0;
 }
 
 .remove_btn {
-    background-color: #ff4d4d;
-}
-
-.decrease_btn:hover,
-.increase_btn:hover {
-    background-color: #0056b3;
-}
-
-.remove_btn:hover {
-    background-color: #ff1a1a;
+    background-color: transparent;
+    color: #000;
 }
 
 .selected_items {
@@ -182,6 +202,51 @@ h1 {
     border-radius: 4px;
 }
 
-.checkout_btn:hover {
-    background-color: #218838;
+
+.item_quantity {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+}
+
+.item_summary {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    padding: 10px;
+    border-top: 1px solid lightgray;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.total_summary {
+    display: flex;
+    flex-direction: column;
+    height: 200px;
+    width: 300px;
+}
+
+.total_summary>.item_row {
+    border-bottom: 1px solid lightgray;
+    justify-content: space-between;
+}
+
+.total_summary .item_value {
+    text-align: right;
+}
+
+.total_summary p {
+    font-size: 14px;
+}
+
+.total_summary p {
+    padding: 0;
+    margin: 0;
+}
+
+
+.item_summary p {
+    padding: 0;
+    margin: 0;
 }

@@ -1,0 +1,61 @@
+/* 상품 섹션 스타일 */
+.product-section {
+    padding: 40px 20px;
+}
+
+.product-section h2 {
+    margin-bottom: 30px;
+    font-size: 1.8em;
+    color: #333;
+}
+
+.product-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.product-card {
+    background-color: #ffffff;
+    padding: 15px;
+    border-radius: 10px;
+    flex: 1 1 calc(25% - 40px);
+    box-sizing: border-box;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.product-card img {
+    max-width: 100%;
+    border-radius: 10px;
+}
+
+.product-card h3 {
+    margin: 15px 0 10px 0;
+    font-size: 1.2em;
+    color: #333;
+}
+
+.product-card .price {
+    font-size: 1.1em;
+    color: #e74c3c;
+}
+
+.product-card .original-price {
+    text-decoration: line-through;
+    color: #999;
+    margin-left: 10px;
+}
+
+/* 반응형 디자인을 위한 미디어 쿼리 */
+@media screen and (max-width: 768px) {
+    .product-card {
+        flex: 1 1 calc(50% - 40px);
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .product-card {
+        flex: 1 1 100%;
+    }
+}
