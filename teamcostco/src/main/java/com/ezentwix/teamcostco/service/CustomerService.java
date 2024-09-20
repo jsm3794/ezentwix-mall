@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
+import com.ezentwix.teamcostco.PageMetadataProvider;
 import com.ezentwix.teamcostco.dto.customer.CustomerDTO;
 import com.ezentwix.teamcostco.dto.kakao_auth.KakaoUserDTO;
 import com.ezentwix.teamcostco.repository.CustomerRepository;
@@ -13,7 +14,7 @@ import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
-public class CustomerService {
+public class CustomerService implements PageMetadataProvider {
     private final CustomerRepository customerRepository;
 
     public String getUserIdFromSession() {
@@ -37,5 +38,15 @@ public class CustomerService {
         customerDTO.setSocial_id(kakaoUserDTO.getId());
         System.out.println(customerDTO);
         return customerRepository.insertCustomer(customerDTO);
+    }
+
+    @Override
+    public String getUri() {
+        return "/customer/customer_info";
+    }
+
+    @Override
+    public String getPageTitle() {
+        return "사용자 정보";
     }
 }

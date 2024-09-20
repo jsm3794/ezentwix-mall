@@ -5,12 +5,12 @@
 }
 
 .filter_main {
-
     font-size: 14px;
 }
 
 .filter_main>h3 {
     color: rgb(59, 59, 59);
+    margin-bottom:  10px;
 }
 
 .brand_filter {
@@ -27,7 +27,8 @@
     flex-direction: row;
     gap: 3px;
     cursor: pointer;
-    padding:3px 0;
+    padding: 3px 0;
+    margin:0;
 }
 
 .brand_filter>li>* {

@@ -86,6 +86,7 @@ const showList = () => {
 }
 
 $size_select.on('change', (e) => {
+    clearCurrentPage();
     clearProductList();
     hideList();
     fetchProduct();

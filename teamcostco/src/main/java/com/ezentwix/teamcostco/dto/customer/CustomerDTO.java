@@ -16,6 +16,7 @@ public class CustomerDTO {
     private String status; // 상태 (ACTIVE/INACTIVE 등)
     private LocalDateTime created_at; // 가입일
     private LocalDateTime updated_at; // 마지막 수정일
+    private String default_address_id;
 
     // 소셜 로그인 관련 필드
     private String social_provider; // 소셜 로그인 제공자 (예: KAKAO, GOOGLE)

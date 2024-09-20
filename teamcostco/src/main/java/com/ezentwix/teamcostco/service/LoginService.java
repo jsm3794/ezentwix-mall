@@ -17,6 +17,7 @@ public class LoginService  {
 
     public void storeUserInSession(String userId) {
         httpSession.setAttribute("userId", userId);
+        httpSession.setAttribute("isLoggedIn", true);
     }
 
     public Long getUserIdFromSession() {

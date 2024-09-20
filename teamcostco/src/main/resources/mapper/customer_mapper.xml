@@ -6,7 +6,7 @@
   <sql id="getBySocialId">
     SELECT customer_id, nickname, email, phone_number,
            date_of_birth, gender, status, created_at, updated_at,
-           social_provider, social_id
+           social_provider, social_id, default_address_id
     FROM customer
     WHERE social_id = #{social_id}
   </sql>
@@ -23,7 +23,8 @@
             created_at,
             updated_at,
             social_provider,
-            social_id
+            social_id,
+            default_address_id,
         ) VALUES (
             customer_seq.NEXTVAL,
             #{nickname},
@@ -35,7 +36,8 @@
             #{created_at},
             #{updated_at},
             #{social_provider},
-            #{social_id}
+            #{social_id},
+            #{default_address_id}
         )
   </sql>
 

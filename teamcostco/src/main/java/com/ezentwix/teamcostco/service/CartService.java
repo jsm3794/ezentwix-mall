@@ -1,15 +1,13 @@
 package com.ezentwix.teamcostco.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.ServletRequestAttributes;
 
 import com.ezentwix.teamcostco.PageMetadataProvider;
 import com.ezentwix.teamcostco.dto.cart.CartDTO;
 import com.ezentwix.teamcostco.repository.CartRepository;
 
-import java.util.List;
-import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 
 @Service

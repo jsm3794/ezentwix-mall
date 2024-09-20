@@ -5,6 +5,8 @@
     font-style: normal;
 }
 
+
+
 .material-symbols-outlined {
     font-family: 'material-symbols-outlined';
     font-weight: normal;
@@ -38,6 +40,15 @@ tbody {
     flex-wrap: wrap;
     width: 1100px;
     margin: auto;
+    margin-bottom: 40px;
+}
+
+.content_title {
+    width: 100%;
+    text-align: center;
+    padding: 20px;
+    margin-bottom: 30px;
+    border-bottom: 1px solid lightgray;
 }
 
 .container {

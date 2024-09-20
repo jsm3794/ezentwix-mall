@@ -1,75 +1,85 @@
-footer {
+/* Footer 전체 스코프 설정 */
+.site-footer {
     background-color: #eef;
     padding: 20px;
+    font-family: Arial, sans-serif; /* 예시 폰트 추가 */
 }
 
+/* Footer 상단 제목 스타일 */
+.site-footer .footer-title {
+    font-size: 1.5em;
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+}
 
-.column_wrap {
+/* 컬럼 래퍼 스타일 */
+.site-footer .footer-column-wrap {
     display: flex;
-    flex-direction: row;
+    flex-wrap: wrap; /* 반응형을 위해 wrap 추가 */
+    gap: 20px; /* 컬럼 간 간격 추가 */
 }
 
-h3 {
+/* 개별 컬럼 스타일 */
+.site-footer .footer-column {
+    flex: 1;
+    min-width: 200px; /* 최소 너비 설정 */
+}
+
+/* 컬럼 헤딩 스타일 */
+.site-footer .footer-heading {
     font-size: 1.2em;
     color: #333;
+    margin-bottom: 10px;
+}
+
+/* 리스트 스타일 */
+.site-footer .footer-list {
+    list-style: none;
+    padding: 0;
     margin: 0;
-    padding: 0;
 }
 
-ul {
-    list-style: none;
-    padding: 0;
+/* 리스트 아이템 스타일 */
+.site-footer .footer-list li {
+    margin-bottom: 8px;
 }
 
-ul li {
-    margin-bottom: 10px;
-}
-
-a {
+/* 링크 스타일 */
+.site-footer .footer-link {
     text-decoration: none;
     color: #333;
+    transition: color 0.3s ease; /* 부드러운 색상 전환 효과 추가 */
 }
 
-a:hover {
+/* 링크 호버 스타일 */
+.site-footer .footer-link:hover {
     text-decoration: underline;
+    color: #007bff; /* 호버 시 색상 변경 */
 }
 
-.highlight {
+/* 강조 텍스트 스타일 */
+.site-footer .highlight {
     color: blue;
 }
 
-.column {
-    width: 100%;
-}
-
-ul {
-    list-style: none;
-    padding: 0;
-}
-
-ul li {
-    margin-bottom: 10px;
-}
-
-a {
-    text-decoration: none;
-    color: #333;
-}
-
-a:hover {
-    text-decoration: underline;
-}
-
-.highlight {
-    color: blue;
-}
-
-.footer_bottom {
-    border-top:1px solid lightgray;
+/* Footer 하단 섹션 스타일 */
+.site-footer .footer-bottom {
+    border-top: 1px solid lightgray;
     font-size: 0.8em;
     color: #666;
+    padding-top: 15px;
+    margin-top: 20px;
 }
 
-.footer_bottom a {
+/* Footer 하단 링크 스타일 */
+.site-footer .footer-bottom-link {
     color: #0066cc;
+    transition: color 0.3s ease;
+}
+
+/* Footer 하단 링크 호버 스타일 */
+.site-footer .footer-bottom-link:hover {
+    color: #004499;
+    text-decoration: underline;
 }

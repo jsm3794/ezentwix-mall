@@ -18,11 +18,14 @@ h4 {
 
 .cart_container {
     display: flex;
+    margin-bottom: 50px;
 }
 
 .cart_list {
     flex: 2;
     margin-right: 100px;
+    min-height: 200px;
+    border-bottom: 1px solid lightgray;
 }
 
 .cart_item {

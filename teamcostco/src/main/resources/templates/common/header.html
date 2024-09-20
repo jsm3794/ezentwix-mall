@@ -16,7 +16,7 @@
                 <span class="material-symbols-outlined">
                     favorite
                 </span>
-                <span id="person" class="material-symbols-outlined">
+                <span id="person" class="material-symbols-outlined" th:data-is-logged-in="${session.isLoggedIn ?: 'false'}">
                     person
                 </span>
                 <span id="cart" class="material-symbols-outlined">

@@ -1,0 +1,93 @@
+<div class="main_wrap">
+
+    <h3 class="content_title" th:text="${pageTitle}"></h3>
+
+    <div th:replace="~{/common/sidebar}"></div>
+
+    <div id="content" class="content_section">
+        <div class="order_info" th:if="${defaultShippingAddress != null}">
+            <div class="title">
+                <h3>기본배송지</h3>
+            </div>
+            <div class="item_row">
+                <span>우편번호</span>
+                <span th:text="${defaultShippingAddress.postal_code}"></span>
+            </div>
+            <div class="item_row">
+                <span>도로명주소</span>
+                <span th:text="${defaultShippingAddress.road_name_address}"></span>
+            </div>
+            <div class="item_row">
+                <span>상세주소</span>
+                <span th:text="${defaultShippingAddress.detail_address}"></span>
+            </div>
+            <div class="item_row">
+                <span>연락처</span>
+                <span th:text="${defaultShippingAddress.phone_number}"></span>
+            </div>
+        </div>
+        <div class="button_group">
+            <a th:href="@{'/customer/address/new'}" class="btn btn_add">
+                <span>새 배송지 추가</span>
+            </a>
+        </div>
+        <!-- 배송지 목록 테이블 -->
+        <div id="address_list" class="section data_table content active">
+            <table border="1" class="data_table">
+                <caption>배송지 목록</caption>
+                <colgroup>
+                    <col style="width:10%">
+                    <col style="width:10%">
+                    <col>
+                    <col style="width:17%">
+                    <col style="width:17%">
+                </colgroup>
+                <thead>
+                    <tr>
+                        <th scope="col">주소별칭</th>
+                        <th scope="col">받으실분</th>
+                        <th scope="col">배송주소</th>
+                        <th scope="col">연락처</th>
+                        <th scope="col">관리</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- 배송지 목록을 반복하여 표시 -->
+                    <tr th:each="address : ${shippingAddresses}">
+                        <td>
+                            <span th:if="${address.address_id == defaultShippingAddress.address_id}"
+                                class="sub_title">기본배송지</span>
+                            <span th:text="${address.recipient_name}" class="notranslate"></span>
+                        </td>
+                        <td class="notranslate" th:text="${address.recipient_name}"></td>
+                        <td class="subject address">
+                            <div class="item_row">
+                                <span>우편번호</span>
+                                <span th:text="${address.postal_code}"></span>
+                            </div>
+                            <div class="item_row">
+                                <span>도로명주소</span>
+                                <span th:text="${address.road_name_address}"></span>
+                            </div>
+                            <div class="item_row">
+                                <span>상세주소</span>
+                                <span th:text="${address.detail_address}"></span>
+                            </div>
+                        </td>
+                        <td th:text="${address.phone_number}"></td>
+                        <td>
+                            <a th:href="@{'/customer/address/edit/' + ${address.address_id}}" class="btn btn_edit">
+                                <span>수정</span>
+                            </a>
+                            <a th:href="@{'#'}" th:data-address-id="${address.address_id}"
+                                class="btn btn_edit set-default-btn">
+                                <span>기본설정</span>
+                            </a>
+                        </td>
+                    </tr>
+                    <!-- 추가적인 배송지 항목들을 여기에 추가할 수 있습니다. -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
