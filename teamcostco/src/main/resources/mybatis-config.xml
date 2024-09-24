@@ -20,5 +20,6 @@
         <typeAlias type="com.ezentwix.teamcostco.dto.inventory.DetailCategoryDTO" alias="detail" />
         <typeAlias type="com.ezentwix.teamcostco.dto.product.ProductBrandGroupDTO" alias="brandgroup" />
         <typeAlias type="com.ezentwix.teamcostco.dto.customer.CustomerDTO" alias="customer" />
+        <typeAlias type="com.ezentwix.teamcostco.dto.WishlistsDTO" alias="wishlist" />
     </typeAliases>
 </configuration>

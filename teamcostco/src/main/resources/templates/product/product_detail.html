@@ -12,6 +12,7 @@
         <div class="product_info">
             <h1 class="product_title" th:text="${product.product_name}"></h1>
             <div class="product_price_info">
+                <input type="hidden" id="product_code" th:value="${product.product_code}">
                 <input type="hidden" id="product_price" th:value="${product.discountedPrice}">
                 <input type="hidden" id="product_total_price" th:value="${product.discountedPrice}">
                 <th:block th:if="${product.discount > 0}">
@@ -56,7 +57,7 @@
                 </div>
             </div>
             <div class="button_group">
-                <button class="favorite_button">
+                <button class="wishListBtn favorite_button">
                     <span class="material-symbols-outlined">
                         Favorite
                     </span>
