@@ -6,12 +6,10 @@
     </settings>
     
     <typeAliases>
+        <typeAlias type="com.ezentwix.teamcostco.dto.WishlistsDTO" alias="wishlist" />
         <typeAlias type="com.ezentwix.teamcostco.dto.product.ProductDTO" alias="product" />
-<<<<<<< HEAD
         <typeAlias type="com.ezentwix.teamcostco.dto.cart.CartDTO" alias="cart" />
         <typeAlias type="com.ezentwix.teamcostco.dto.customer.ShippingAddressDTO" alias="shippingaddress" />
-=======
->>>>>>> origin/wishlist
         <!-- <typeAlias type="com.ezentwix.teamcostco.dto.category.CategoryDTO" alias="category" /> -->
         <!-- <typeAlias type="com.ezentwix.teamcostco.dto.product.OrderRequestDTO" alias="orderrequest" /> -->
         <!-- <typeAlias type="com.ezentwix.teamcostco.dto.product.ProductDefectiveDTO" alias="productdefective" /> -->
@@ -25,9 +23,5 @@
         <typeAlias type="com.ezentwix.teamcostco.dto.inventory.DetailCategoryDTO" alias="detail" />
         <typeAlias type="com.ezentwix.teamcostco.dto.product.ProductBrandGroupDTO" alias="brandgroup" />
         <typeAlias type="com.ezentwix.teamcostco.dto.customer.CustomerDTO" alias="customer" />
-<<<<<<< HEAD
-=======
-        <typeAlias type="com.ezentwix.teamcostco.dto.WishlistsDTO" alias="wishlist" />
->>>>>>> origin/wishlist
     </typeAliases>
 </configuration>
