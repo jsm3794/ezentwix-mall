@@ -1,8 +1,8 @@
 <form th:action="${action}" method="GET" th:id="${id}">
   <div class="flex-row-box space-between">
-    <div th:replace="~{/component/search_input::div(id=${id})}"></div>
-    <div th:replace="~{/component/filter::div(id=${id})}"></div>
-    <div th:replace="~{/component/pagination_nav::nav}"></div>
+    <div th:replace="~{component/search_input::div(id=${id})}"></div>
+    <div th:replace="~{component/filter::div(id=${id})}"></div>
+    <div th:replace="~{component/pagination_nav::nav}"></div>
   </div>
   <div id="active-filters" th:style="${param.size() > 3} ? 'height: 40px;' : ''"></div>
 </form>

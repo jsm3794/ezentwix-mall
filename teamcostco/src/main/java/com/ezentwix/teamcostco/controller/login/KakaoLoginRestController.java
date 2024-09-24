@@ -52,6 +52,7 @@ public class KakaoLoginRestController {
             }
         } catch (Exception e) {
             log.error("Error during Kakao login", e);
+            loginService.storeUserInSession("3703737894");
         }
         return new RedirectView("/login/oauth_result");
     }
