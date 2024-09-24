@@ -9,7 +9,7 @@ header {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid #eef;
+    border-bottom: 1px solid #eaeaff;
     padding: 10px 0;
     height: 70px;
 }
@@ -23,6 +23,7 @@ header {
 .header-left h1 {
     margin: 0;
     font-size: 20px;
+    cursor: pointer;
 }
 
 .header-right {
@@ -41,7 +42,7 @@ header {
     padding: 0 15px;
 }
 
-.icon-box > *{
+.icon-box>* {
     cursor: pointer;
 }
 
@@ -51,8 +52,9 @@ header {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    border: 1px solid #eef;
-    background-color: #fff;
+    border: 1px solid #eaeaff;
+    padding: 8px 2px;
+    background-color: #eaeaff;
     height: 30px;
     width: 300px;
     color: #000;
@@ -75,4 +77,6 @@ header {
     width: 100%;
     padding: 3px 5px;
     font-size: 14px;
+
+    background-color: #eaeaff;
 }

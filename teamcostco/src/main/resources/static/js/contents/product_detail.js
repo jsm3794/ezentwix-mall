@@ -106,16 +106,6 @@ $(document).ready(function () {
             .catch(err => console.error(err));
     }
 
-    function updateWishlistUI(productCodes) {
-        // 현재 제품이 위시리스트에 있는지 확인
-        const currentProductCode = $('#product_code').val(); // 제품 코드를 저장하는 hidden input 필요
-        if (productCodes.includes(currentProductCode)) {
-            $('.wishListBtn').addClass('active');
-        } else {
-            $('.wishListBtn').removeClass('active');
-        }
-    }
-
     // 찜 목록 관련 코드 수정
     $('.wishListBtn').click((e) => {
         $.ajax({
@@ -127,7 +117,7 @@ $(document).ready(function () {
                     toggleWishlist(data.customerId);
                 } else {
                     if (confirm('로그인이 필요한 서비스입니다. 로그인 하시겠습니까?')) {
-                        location.href = '/login';
+                        window.open('/login', '팀코스트코몰 - 로그인', 'width=600,height=600');
                     }
                 }
             },
@@ -158,7 +148,6 @@ $(document).ready(function () {
                         iconElement.text('delete');
                         alert('찜 목록에 추가되었습니다.');
                     }
-                    streamWishlist(social_id);
                 } else {
                     alert('위시리스트 업데이트에 실패했습니다: ');
                 }
@@ -169,19 +158,6 @@ $(document).ready(function () {
             }   
         });
     }
-    
-
-     // 페이지 로드 시 위시리스트 스트리밍 시작
-     $.ajax({
-        url: '/login/check',
-        method: 'GET',
-        dataType: 'json',
-        success: function(data) {
-            if (data.loggedIn) {
-                streamWishlist(data.customerId);
-            }
-        }
-    });
 
     function applyPriceByAmount() {
         const totalPrice = $amountEl.val() * $('#product_price').val();

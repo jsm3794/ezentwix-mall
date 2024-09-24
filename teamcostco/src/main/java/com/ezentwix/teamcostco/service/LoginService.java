@@ -20,8 +20,8 @@ public class LoginService  {
         httpSession.setAttribute("isLoggedIn", true);
     }
 
-    public Long getUserIdFromSession() {
-        return (Long) httpSession.getAttribute("userId");
+    public String getUserIdFromSession() {
+        return (String)httpSession.getAttribute("userId");
     }
 
     public void removeUserFromSession() {

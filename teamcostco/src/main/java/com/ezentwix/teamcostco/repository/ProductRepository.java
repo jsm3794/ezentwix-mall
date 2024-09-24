@@ -47,7 +47,7 @@ public class ProductRepository {
         return null;
     }
 
-    public ProductDTO getByProductCode(Integer productCode){
+    public ProductDTO getByProductCode(Long productCode){
         return sql.selectOne("Products.getByProductCode", productCode);
     }
 }

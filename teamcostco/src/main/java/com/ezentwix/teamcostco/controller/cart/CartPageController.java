@@ -15,7 +15,7 @@ import java.util.List;
 public class CartPageController {
     private final CartService cartService;
 
-    @GetMapping("/cart")
+    @GetMapping("/customer/cart")
     public String getMethodName(Model model) {
         cartService.configureModel(model);
         List<CartDTO> items = cartService.getAll();

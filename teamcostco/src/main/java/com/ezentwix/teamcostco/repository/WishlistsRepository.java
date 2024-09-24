@@ -27,7 +27,7 @@ public class WishlistsRepository {
         log.info("***** {} delete 완료 *****", wishlistsDTO);
     }
 
-    public List<Integer> getWishlist(String social_id) {
+    public List<WishlistsDTO> getWishlist(String social_id) {
         return sql.selectList("Wishlist.getWishlist", social_id);
     }
 

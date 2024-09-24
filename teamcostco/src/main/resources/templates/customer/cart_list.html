@@ -1,7 +1,8 @@
 <div class="main_wrap">
-    <div class="cart_main">
 
         <h3 class="content_title">장바구니</h3>
+
+        <div th:replace="~{/common/sidebar}"></div>
         <div class="cart_container">
 
             <div class="cart_list">
@@ -13,7 +14,9 @@
                             <input type="checkbox" class="item_checkbox" th:id="${item.cart_id}"
                                 th:data-product-code="${item.product_code}"
                                 th:checked="${item.checked != null and item.checked.toString().equals('Y')}">
-                            <button class="remove_btn" th:data-cart-id="${item.cart_id}">X</button>
+                            <button class="remove_btn" th:data-cart-id="${item.cart_id}">
+                                <span class="material-symbols-outlined delete">close</span>
+                            </button>
                         </div>
                         <div class="item_details">
                             <div class="item_image_area">
@@ -79,5 +82,5 @@
                 </div>
             </div>
         </div>
-    </div>
+
 </div>

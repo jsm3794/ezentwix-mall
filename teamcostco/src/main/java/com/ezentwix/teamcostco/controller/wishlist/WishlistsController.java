@@ -1,17 +1,23 @@
 package com.ezentwix.teamcostco.controller.wishlist;
 
 
-import com.ezentwix.teamcostco.dto.WishlistsDTO;
-import com.ezentwix.teamcostco.service.WishlistService;
-
 import java.util.HashMap;
 import java.util.Map;
 
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.method.annotation.StreamingResponseBody;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.ezentwix.teamcostco.dto.WishlistsDTO;
+import com.ezentwix.teamcostco.service.LoginService;
+import com.ezentwix.teamcostco.service.WishlistService;
+
+import java.util.List;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -22,15 +28,7 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping("/api/wishlist")
 public class WishlistsController {
     private final WishlistService wishlistService;
-    private static String social_id;
-
-    @GetMapping(value = "/stream/{social_id}", produces = MediaType.APPLICATION_NDJSON_VALUE)
-    public ResponseEntity<StreamingResponseBody> streamWishlist(@PathVariable String social_id) {
-        this.social_id = social_id;
-        return ResponseEntity.ok()
-                .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_NDJSON_VALUE)
-                .body(wishlistService.streamWishlist(social_id));
-    }
+    private final LoginService loginService;
 
     @PostMapping("/add")
     public ResponseEntity<Map<String, Object>> addWishlist(@RequestParam String product_code) {
@@ -38,7 +36,7 @@ public class WishlistsController {
         try {
             WishlistsDTO wishlistsDTO = new WishlistsDTO();
             wishlistsDTO.setProduct_code(product_code);
-            wishlistsDTO.setSocial_id(social_id);
+            wishlistsDTO.setSocial_id(loginService.getUserIdFromSession());
             wishlistService.addWishlist(wishlistsDTO);
             log.info("************** {}", wishlistsDTO);
             response.put("success", true);
@@ -57,7 +55,7 @@ public class WishlistsController {
         try {
             WishlistsDTO wishlistsDTO = new WishlistsDTO();
             wishlistsDTO.setProduct_code(product_code);
-            wishlistsDTO.setSocial_id(social_id);
+            wishlistsDTO.setSocial_id(loginService.getUserIdFromSession());
             wishlistService.addWishlist(wishlistsDTO);
             wishlistService.deleteWishlist(wishlistsDTO);
             response.put("success", true);

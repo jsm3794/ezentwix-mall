@@ -1,0 +1,79 @@
+.wishlist {
+    padding-left: 20px;
+    width: calc(100% - 200px);
+}
+
+.wishlist h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.wishlist-items {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    /* 4개의 동일한 열 */
+    gap: 20px;
+    /* 아이템 간 간격 */
+    justify-items: center;
+    /* 아이템을 그리드 셀 내에서 중앙 정렬 */
+}
+
+.wishlist-item {
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    border: 1px solid #eaeaff;
+    width: 100%;
+    /* 그리드 셀에 맞추기 위해 너비 100% 설정 */
+    padding: 20px;
+    text-align: center;
+    box-sizing: border-box;
+    /* 패딩과 보더를 포함한 전체 크기 계산 */
+}
+
+.wishlist-item img {
+    width: 100%;
+    height: 250px;
+    border: 1px solid #eaeaff;
+    margin-bottom: 10px;
+    object-fit: cover;
+}
+
+.wishlist-item h3 {
+    font-size: 0.9em;
+    margin: 10px 0;
+    color: #555;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.wishlist-item p {
+    font-size: 1em;
+    color: #777;
+    margin-bottom: 15px;
+}
+
+.wishlist-item a {
+    display: inline-block;
+    padding: 8px 12px;
+    background-color: #ff6f61;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.wishlist-item a:hover {
+    background-color: #ff3b2e;
+}
+
+.delete_btn {
+    background-color: #944a45;
+    color: #fff;
+    border: 1px solid #eaeaff;
+    padding: 5px;
+    margin-bottom: 10px;
+
+}

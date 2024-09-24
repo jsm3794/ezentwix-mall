@@ -53,7 +53,7 @@ public class ProductService {
         productRepository.updateProduct(productDTO);
     }
 
-    public ProductDTO getByProductCode(Integer productCode){
+    public ProductDTO getByProductCode(Long productCode){
         return productRepository.getByProductCode(productCode);
     }
 

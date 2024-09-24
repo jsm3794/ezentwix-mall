@@ -1,8 +1,9 @@
 .sidebar {
     width: 200px;
     padding: 20px;
-    border: 1px solid #e0e0e0;
+    border: 1px solid #eaeaff;
     background-color: white;
+    margin-bottom: auto;
 }
 
 /* 나머지 스타일 동일하게 유지 */
@@ -37,6 +38,6 @@
 }
 
 .divider {
-    border-bottom: 1px solid #e0e0e0;
+    border-bottom: 1px solid #eaeaff;
     margin-bottom: 20px;
 }

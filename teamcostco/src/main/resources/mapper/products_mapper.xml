@@ -117,7 +117,7 @@
         <include refid="getAll"/>
     </select>
 
-    <select id="findById" parameterType="Integer" resultType="product">
+    <select id="findById" parameterType="Long" resultType="product">
        <include refid="findById"/>
     </select>
 
@@ -125,7 +125,7 @@
         <include refid="getBrandGroupByProductName"></include>
     </select>
 
-    <select id="getByProductCode" parameterType="Integer" resultType="product">
+    <select id="getByProductCode" parameterType="Long" resultType="product">
         <include refid="getByProductCode"/>
     </select>
 

@@ -18,7 +18,7 @@ public class ProductDetailPageController {
     private final ProductService productService;
 
     @GetMapping("/product/product_detail")
-    public String showDefective(@RequestParam(value = "product_code", required = true) Integer product_code,
+    public String showDefective(@RequestParam(value = "product_code", required = true) Long product_code,
             Model model) {
 
         productDetailService.configureModel(model);

@@ -13,19 +13,16 @@
         </div>
         <div class="header-right">
             <div class="icon-box">
-                <span class="material-symbols-outlined">
+                <span id="favorite" class="material-symbols-outlined-fill" th:data-is-logged-in="${session.isLoggedIn ?: 'false'}">
                     favorite
                 </span>
-                <span id="person" class="material-symbols-outlined" th:data-is-logged-in="${session.isLoggedIn ?: 'false'}">
+                <span id="person" class="material-symbols-outlined-fill" th:data-is-logged-in="${session.isLoggedIn ?: 'false'}">
                     person
                 </span>
-                <span id="cart" class="material-symbols-outlined">
+                <span id="cart" class="material-symbols-outlined-fill" th:data-is-logged-in="${session.isLoggedIn ?: 'false'}">
                     shopping_cart
                 </span>
             </div>
         </div>
     </div>
-    <div class="bottom-header">
-        <div th:replace="~{/component/category_header_bar}">
-        </div>
 </header>

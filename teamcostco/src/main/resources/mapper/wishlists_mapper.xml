@@ -10,8 +10,12 @@
     </insert>
 
     <!--사용자에 따른 찜 목록-->
-    <select id="getWishlist" parameterType="String" resultType="Integer">
-        SELECT product_code FROM wishlists WHERE social_id = #{social_id}
+    <select id="getWishlist" parameterType="String" resultType="wishlist">
+        SELECT w.wishlist_id, w.social_id, p.product_name, w.product_code, p.selling_price,
+                p.brand, p.discount
+        FROM wishlists w
+        INNER JOIN products p ON w.product_code = p.product_code
+        WHERE w.social_id = #{social_id}
     </select>
 
     <!-- 찜 목록 삭제 -->

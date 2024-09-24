@@ -1,7 +1,11 @@
 .filter_wrap {
     width: 200px;
-    height: 500px;
-    padding-right: 20px;
+    height: 100%;
+    overflow-y: auto;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #eef;
+    margin-right: 20px;
 }
 
 .filter_main {

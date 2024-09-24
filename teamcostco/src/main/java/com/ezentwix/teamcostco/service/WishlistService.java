@@ -19,25 +19,9 @@ public class WishlistService implements PageMetadataProvider {
 
     private final WishlistsRepository wishlistsRepository;
 
-    @Transactional(readOnly = true)
-    public StreamingResponseBody streamWishlist(String social_id) {
-        return outputStream -> {
-            Writer writer = new java.io.OutputStreamWriter(outputStream);
-            try {
-                List<Integer> productCodes = wishlistsRepository.getWishlist(social_id);
-                writer.write("[");
-                for (int i = 0; i < productCodes.size(); i++) {
-                    if (i > 0) {
-                        writer.write(",");
-                    }
-                    writer.write(String.valueOf(productCodes.get(i)));
-                    writer.flush();
-                }
-                writer.write("]");
-            } finally {
-                writer.close();
-            }
-        };
+
+    public List<WishlistsDTO> getWiList(String social_id){
+        return wishlistsRepository.getWishlist(social_id);
     }
 
     public void addWishlist(WishlistsDTO wishlistsDTO) {
@@ -50,7 +34,7 @@ public class WishlistService implements PageMetadataProvider {
 
     @Override
     public String getUri() {
-        return "/wishlist/wishlist";
+        return "/customer/wishlist";
     }
 
     @Override

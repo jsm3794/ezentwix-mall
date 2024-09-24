@@ -13,7 +13,8 @@
 .product_image>.main_image {
     width: 400px;
     height: 400px;
-    border: 1px solid lightgray;
+    border: 1px solid #eaeaff;
+    background-color: #fff;
     margin-right: 20px;
 }
 
@@ -32,7 +33,7 @@
     align-items: flex-end;
     padding: 20px 0;
     gap: 10px;
-    border-bottom: 1px solid lightgray;
+    border-bottom: 1px solid #eaeaff;
 }
 
 .product_price_info>p {
@@ -40,9 +41,10 @@
 }
 
 .image_item {
-    border: 1px solid lightgray;
+    border: 1px solid #eaeaff;
     width: 80px;
     height: 80px;
+    background-color: #fff;
 }
 
 .product_info {
@@ -51,6 +53,9 @@
     margin-left: 20px;
     flex: 1;
     justify-content: space-between;
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #eaeaff;
 }
 
 .product_title {
@@ -118,7 +123,7 @@
 
 .favorite_button {
     background-color: #fff;
-    border: 1px solid lightgray;
+    border: 1px solid #eaeaff;
 }
 
 .favorite_button:hover {
@@ -140,6 +145,7 @@
     font-size: 16px;
     padding: 15px;
     background-color: #f7f7ff;
+    border: 1px solid #eaeaff;
     margin-bottom: 20px;
     gap: 15px;
 }
@@ -174,8 +180,8 @@
 
 #amount {
     width: 50px;
-    border-top: 1px solid lightgray;
-    border-bottom: 1px solid lightgray;
+    border-top: 1px solid #eaeaff;
+    border-bottom: 1px solid #eaeaff;
     text-align: center;
 
 }
@@ -183,7 +189,7 @@
 #amount_increase {
     border-top-right-radius: 3px;
     border-bottom-right-radius: 3px;
-    border: 1px solid lightgray;
+    border: 1px solid #eaeaff;
     background-color: #fff;
     width: 30px;
     cursor: pointer;
@@ -248,7 +254,7 @@
 }
 
 .review {
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid #eaeaff;
     padding-bottom: 10px;
     margin-bottom: 10px;
 }
@@ -269,7 +275,7 @@
     top: 0;
     border-top-left-radius: 3px;
     border-top-right-radius: 3px;
-    border: 1px solid lightgray;
+    border: 1px solid #eaeaff;
     border-bottom: none;
 }
 
@@ -280,9 +286,9 @@
 #reviews,
 #product_details {
     padding: 20px;
-    border-left: 1px solid lightgray;
-    border-right: 1px solid lightgray;
-    border-bottom: 1px solid lightgray;
+    border-left: 1px solid #eaeaff;
+    border-right: 1px solid #eaeaff;
+    border-bottom: 1px solid #eaeaff;
 }
 
 
@@ -290,7 +296,7 @@
     flex: 1;
     padding: 10px;
     text-align: center;
-    background-color: #f3f3f3;
+    background-color: #eaeaff;
     border: none;
     cursor: pointer;
 }
@@ -315,17 +321,6 @@
     width: 80px;
 }
 
-.side_menu>.go_top {
-    border: 1px solid lightgray;
-    padding: 5px;
-    font-weight: bold;
-    text-align: center;
-    width: 100%;
-    font-size: 20px;
-    user-select: none;
-    cursor: pointer;
-}
-
 /* 모달 창 배경 제거 및 위치 설정 */
 .cart_modal {
     position: absolute;
@@ -337,15 +332,18 @@
 .modal_content {
     background-color: #fff;
     padding: 20px;
-    border: 1px solid #ccc; /* 테두리 추가 */
+    border: 1px solid #eaeaff;
+    /* 테두리 추가 */
     border-radius: 10px;
     text-align: center;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* 그림자 효과 */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    /* 그림자 효과 */
 }
 
 .modal_content p {
     margin-bottom: 20px;
-    font-size: 1em; /* 폰트 크기를 조금 줄임 */
+    font-size: 1em;
+    /* 폰트 크기를 조금 줄임 */
 }
 
 .modal_content button {
