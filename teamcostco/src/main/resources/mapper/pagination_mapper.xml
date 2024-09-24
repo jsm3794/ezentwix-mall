@@ -6,17 +6,8 @@
     <!-- 페이지네이션을 사용할 쿼리 등록 -->
     <sql id="dynamicQuery">
         <choose>
-            <when test="queryId == 'Employees.getAll'">
-                <include refid="Employees.getAll"/>
-            </when>
             <when test="queryId == 'Products.getAll'">
                 <include refid="Products.getAll"/>
-            </when>
-            <when test="queryId == 'Notice.getAll'">
-                <include refid="Notice.getAll"></include>
-            </when>
-            <when test="queryId == 'OrderRequest.getAll'">
-                <include refid="OrderRequest.getAll"></include>
             </when>
         </choose>
     </sql>

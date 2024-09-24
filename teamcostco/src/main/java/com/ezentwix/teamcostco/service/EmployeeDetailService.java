@@ -3,7 +3,7 @@ package com.ezentwix.teamcostco.service;
 import org.springframework.stereotype.Service;
 
 import com.ezentwix.teamcostco.PageMetadataProvider;
-import com.ezentwix.teamcostco.dto.employee.EmployeeDTO;
+import com.ezentwix.teamcostco.dto.customer.CustomerDTO;
 import com.ezentwix.teamcostco.repository.EmployeeRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -14,7 +14,7 @@ public class EmployeeDetailService implements PageMetadataProvider {
 
     private final EmployeeRepository employeeRepository;
 
-    public EmployeeDTO getEmp(Integer emp_id) {
+    public CustomerDTO getEmp(Integer emp_id) {
         return employeeRepository.getEmp(emp_id);
     }
 

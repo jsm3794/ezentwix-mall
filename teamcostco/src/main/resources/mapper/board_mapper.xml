@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="Board">
 
-    <select id="get" resultType="board" >
+    <!-- <select id="get" resultType="board" >
       SELECT
         notice_id, title, content,
         job_title, create_date, update_date
@@ -14,5 +14,5 @@
        (emp_id)
       WHERE
        notice_id = #{notice_id}
-    </select>
+    </select> -->
 </mapper>

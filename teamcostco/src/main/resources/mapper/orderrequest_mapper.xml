@@ -48,13 +48,13 @@
         o.request_id DESC
     </sql>
 
-    <select id="getAll" resultType="orderrequest">
+    <!-- <select id="getAll" resultType="orderrequest">
         <include refid="getAll"/>
     </select>
 
     <insert id="insertOrderRequest" parameterType="orderrequest">
         <include refid="insertOrderRequest"/>
-     </insert>
+     </insert> -->
 
      <select id="getNextRequestId" resultType="int">
         <include refid="getNextRequestId"/>

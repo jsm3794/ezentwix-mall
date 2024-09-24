@@ -16,8 +16,8 @@
   </sql>
   
 
-  <select id="getAll" resultType="notice">
+  <!-- <select id="getAll" resultType="notice">
     <include refid="getAll"></include>
   </select>
-  
+   -->
 </mapper>

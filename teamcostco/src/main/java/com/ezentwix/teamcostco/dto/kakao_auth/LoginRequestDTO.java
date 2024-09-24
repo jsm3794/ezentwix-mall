@@ -1,4 +1,4 @@
-package com.ezentwix.teamcostco.dto.login;
+package com.ezentwix.teamcostco.dto.kakao_auth;
 
 import lombok.Data;
 
