@@ -17,7 +17,7 @@ public class IndexController {
 
     @GetMapping("/")
     public String showIndex(Model model) {
-        indexService.setCategoryModel(model);
+        //indexService.setCategoryModel(model);
         introService.configureModel(model);
         return "index";
     }

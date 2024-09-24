@@ -1,3 +1,8 @@
+* {
+    box-sizing: border-box;
+    font-family: "Noto Sans Korean", sans-serif;
+}
+
 @font-face {
     font-family: 'material-symbols-outlined';
     src: url('/fonts/Material_Symbols_Outlined.woff2') format('woff2');
@@ -5,17 +10,11 @@
     font-style: normal;
 }
 
-
-
 .material-symbols-outlined {
     font-family: 'material-symbols-outlined';
     font-weight: normal;
     font-style: normal;
     font-size: 18px;
-}
-
-* {
-    box-sizing: border-box;
 }
 
 html,
@@ -38,7 +37,8 @@ tbody {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    width: 1100px;
+    width: 100%;
+    max-width: 1100px;
     margin: auto;
     margin-bottom: 40px;
 }

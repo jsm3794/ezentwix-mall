@@ -1,7 +1,7 @@
 header {
     display: flex;
     flex-direction: column;
-    background-color: #5A464C;
+    background-color: #fff;
 }
 
 .top-header {
@@ -9,10 +9,9 @@ header {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid #745a62;
+    border-bottom: 1px solid #eef;
     padding: 10px 0;
     height: 70px;
-    color: white;
 }
 
 .bottom-header {
@@ -23,7 +22,7 @@ header {
 
 .header-left h1 {
     margin: 0;
-    font-size: 24px;
+    font-size: 20px;
 }
 
 .header-right {
@@ -52,11 +51,10 @@ header {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    border: 2px solid gray;
+    border: 1px solid #eef;
     background-color: #fff;
-    font-size: 18px;
-    height: 40px;
-    width: 400px;
+    height: 30px;
+    width: 300px;
     color: #000;
     border-radius: 5px;
 }
@@ -75,6 +73,6 @@ header {
     outline: none;
     border: none;
     width: 100%;
-    padding: 3px 10px;
-    font-size: 16px;
+    padding: 3px 5px;
+    font-size: 14px;
 }
