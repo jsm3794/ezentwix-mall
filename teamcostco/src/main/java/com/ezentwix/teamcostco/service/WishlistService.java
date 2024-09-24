@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.servlet.mvc.method.annotation.StreamingResponseBody;
 
+import com.ezentwix.teamcostco.PageMetadataProvider;
 import com.ezentwix.teamcostco.dto.WishlistsDTO;
 import com.ezentwix.teamcostco.repository.WishlistsRepository;
 
@@ -14,9 +15,8 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @Service
-public class WishlistService {
+public class WishlistService implements PageMetadataProvider {
 
-    
     private final WishlistsRepository wishlistsRepository;
 
     @Transactional(readOnly = true)
@@ -46,5 +46,20 @@ public class WishlistService {
 
     public void deleteWishlist(WishlistsDTO wishlistsDTO) {
         wishlistsRepository.deleteWishlist(wishlistsDTO);
+    }
+
+    @Override
+    public String getUri() {
+        return "/wishlist/wishlist";
+    }
+
+    @Override
+    public String getPageTitle() {
+        return "찜목록";
+    }
+
+    @Override
+    public List<String> getCssFiles() {
+        return List.of("/css/contents/wishlist.css");
     }
 }
