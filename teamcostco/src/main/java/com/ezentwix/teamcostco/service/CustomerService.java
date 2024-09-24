@@ -1,19 +1,27 @@
 package com.ezentwix.teamcostco.service;
 
 import org.springframework.stereotype.Service;
+<<<<<<< HEAD
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import com.ezentwix.teamcostco.PageMetadataProvider;
+=======
+
+>>>>>>> origin/wishlist
 import com.ezentwix.teamcostco.dto.customer.CustomerDTO;
 import com.ezentwix.teamcostco.dto.kakao_auth.KakaoUserDTO;
 import com.ezentwix.teamcostco.repository.CustomerRepository;
 
+<<<<<<< HEAD
 import jakarta.servlet.http.HttpServletRequest;
+=======
+>>>>>>> origin/wishlist
 import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
+<<<<<<< HEAD
 public class CustomerService implements PageMetadataProvider {
     private final CustomerRepository customerRepository;
 
@@ -33,12 +41,23 @@ public class CustomerService implements PageMetadataProvider {
     }
 
     public Boolean insertCustomer(KakaoUserDTO kakaoUserDTO) {
+=======
+public class CustomerService {
+    private final CustomerRepository customerRepository;
+
+    public CustomerDTO getBySocialId(String social_id){
+        return customerRepository.getBySocialId(social_id);
+    }
+
+    public Boolean insertCustomer(KakaoUserDTO kakaoUserDTO){
+>>>>>>> origin/wishlist
         CustomerDTO customerDTO = new CustomerDTO();
         customerDTO.setNickname(kakaoUserDTO.getProperties().getNickname());
         customerDTO.setSocial_id(kakaoUserDTO.getId());
         System.out.println(customerDTO);
         return customerRepository.insertCustomer(customerDTO);
     }
+<<<<<<< HEAD
 
     @Override
     public String getUri() {
@@ -49,4 +68,6 @@ public class CustomerService implements PageMetadataProvider {
     public String getPageTitle() {
         return "사용자 정보";
     }
+=======
+>>>>>>> origin/wishlist
 }

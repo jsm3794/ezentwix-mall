@@ -8,7 +8,11 @@
         function handleLoginResponse(response) {
             if (response.success) {
                 if (window.opener) {
+<<<<<<< HEAD
                     window.opener.reload();
+=======
+                    window.opener.location.href = '/';
+>>>>>>> origin/wishlist
                     window.close();
                 } else {
                     window.location.href = '/';

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <div class="main_wrap">
     <div class="cart_main">
 
@@ -80,4 +81,62 @@
             </div>
         </div>
     </div>
+=======
+<div class="content-box">
+    <form th:action="@{/detail/update}" th:object="${product}" method="post">
+        <input type="hidden" name="product_id" th:value="${product.product_id}" />
+        <table>
+            <tr>
+                <th>Product Name</th>
+                <td><input type="text" th:field="*{product_name}" class="editable" /></td>
+                <th>Product Code</th>
+                <td><input type="number" th:field="*{product_code}" class="readonly" readonly /></td>
+            </tr>
+            <tr>
+                <th>Category Large</th>
+                <td><input type="text" th:field="*{category_large}" class="editable" /></td>
+                <th>Category Medium</th>
+                <td><input type="text" th:field="*{category_medium}" class="editable" /></td>
+            </tr>
+            <tr>
+                <th>Category Small</th>
+                <td><input type="text" th:field="*{category_small}" class="editable" /></td>
+                <th>Category Detail</th>
+                <td><input type="text" th:field="*{category_detail}" class="editable" /></td>
+            </tr>
+            <tr>
+                <th>Purchase Price</th>
+                <td><input type="number" step="1" th:field="*{purchase_price}" class="editable" /></td>
+                <th>Selling Price</th>
+                <td><input type="number" step="1" th:field="*{selling_price}" class="editable" /></td>
+            </tr>
+            <tr>
+                <th>Brand</th>
+                <td><input type="text" th:field="*{brand}" class="editable" /></td>
+                <th>Min Required Qty</th>
+                <td><input type="number" th:field="*{min_required_qty}" class="readonly" readonly /></td>
+            </tr>
+            <tr>
+                <th>Display Qty</th>
+                <td><input type="number" th:field="*{display_qty}" class="readonly" readonly /></td>
+                <th>Storage Qty</th>
+                <td><input type="number" th:field="*{storage_qty}" class="readonly" readonly /></td>
+            </tr>
+            <tr>
+                <th>Create Date</th>
+                <td><span th:text="${#dates.format(product.create_date, 'yyyy-MM-dd')}"
+                        class="date-field readonly"></span>
+                </td>
+                <th>Update Date</th>
+                <td><span th:text="${#dates.format(product.update_date, 'yyyy-MM-dd')}"
+                        class="date-field  readonly"></span>
+                </td>
+            </tr>
+        </table>
+        <div class="btn-area">
+            <button type="submit" class="save-btn">저장하기</button>
+        </div>
+    </form>
+
+>>>>>>> origin/wishlist
 </div>

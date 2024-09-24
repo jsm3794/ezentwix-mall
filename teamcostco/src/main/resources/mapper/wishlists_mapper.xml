@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Wishlist">
+    <!--찜등록-->
+    <insert id="addWishlist" parameterType="wishlist">
+        INSERT INTO wishlists(wishlist_id, social_id, product_code) 
+        VALUES(wishlist_seq.nextval, #{social_id}, #{product_code})
+    </insert>
+
+    <!--사용자에 따른 찜 목록-->
+    <select id="getWishlist" parameterType="String" resultType="Integer">
+        SELECT product_code FROM wishlists WHERE social_id = #{social_id}
+    </select>
+
+    <!-- 찜 목록 삭제 -->
+    <delete id="deleteWishlist" parameterType="Wishlist">
+        DELETE FROM wishlists
+        WHERE social_id = #{social_id} AND product_code = #{product_code}
+    </delete>
+</mapper>
