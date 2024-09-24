@@ -1,4 +1,4 @@
-package com.ezentwix.teamcostco.controller;
+package com.ezentwix.teamcostco.controller.login;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,7 +8,7 @@ import lombok.RequiredArgsConstructor;
 
 @Controller
 @RequiredArgsConstructor
-public class LoginController {
+public class LoginPageController {
 
     @GetMapping("/login")
     public String showLogin(Model model) {

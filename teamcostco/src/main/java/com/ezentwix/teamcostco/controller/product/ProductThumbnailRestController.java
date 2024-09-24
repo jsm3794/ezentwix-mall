@@ -1,4 +1,4 @@
-package com.ezentwix.teamcostco.controller;
+package com.ezentwix.teamcostco.controller.product;
 
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
@@ -16,7 +16,7 @@ import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequiredArgsConstructor
-public class ProductThumbnailApiController {
+public class ProductThumbnailRestController {
 
     private final ProductThumbnailService productThumbnailService;
 

@@ -1,4 +1,4 @@
-package com.ezentwix.teamcostco.controller;
+package com.ezentwix.teamcostco.controller.search;
 
 import java.util.List;
 import java.util.Map;
@@ -18,7 +18,7 @@ import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequiredArgsConstructor
-public class SearchListApiController {
+public class SearchListRestController {
     private final SearchListService searchListService;
     private final ObjectMapper objectMapper;
 

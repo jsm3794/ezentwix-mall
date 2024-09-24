@@ -11,7 +11,7 @@ import lombok.RequiredArgsConstructor;
 
 @Controller
 @RequiredArgsConstructor
-public class CustomerInfoController {
+public class CustomerInfoPageController {
     private final CustomerService customerService;
 
 

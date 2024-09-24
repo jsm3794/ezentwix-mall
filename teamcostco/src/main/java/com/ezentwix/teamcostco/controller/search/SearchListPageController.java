@@ -1,4 +1,4 @@
-package com.ezentwix.teamcostco.controller;
+package com.ezentwix.teamcostco.controller.search;
 
 import java.util.List;
 
@@ -15,7 +15,7 @@ import lombok.RequiredArgsConstructor;
 
 @Controller
 @RequiredArgsConstructor
-public class SearchListController {
+public class SearchListPageController {
     private final SearchListService searchListService;
     private final ProductService productService;
 

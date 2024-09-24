@@ -1,4 +1,4 @@
-package com.ezentwix.teamcostco.controller;
+package com.ezentwix.teamcostco.controller.cart;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
