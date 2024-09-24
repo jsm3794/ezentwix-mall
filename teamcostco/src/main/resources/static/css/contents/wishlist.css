@@ -70,10 +70,9 @@
 }
 
 .delete_btn {
-    background-color: #944a45;
-    color: #fff;
+    background-color: #fff;
     border: 1px solid #eaeaff;
-    padding: 5px;
+    padding: 4px;
     margin-bottom: 10px;
-
+    cursor: pointer;
 }

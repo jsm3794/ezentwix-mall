@@ -14,7 +14,7 @@ $('#favorite').click(function (event) {
     }
 });
 
-$('#shopping_cart').click(function (event) {
+$('#cart').click(function (event) {
     if ($(this).attr('data-is-logged-in') == 'true') {
         window.location.href = '/customer/cart';
     } else {
@@ -24,8 +24,4 @@ $('#shopping_cart').click(function (event) {
 
 $('.header-left>h1').click(function (event){
     window.location.href = '/';
-});
-
-$('#cart').click(function (event) {
-    window.location.href = '/cart';
 });
