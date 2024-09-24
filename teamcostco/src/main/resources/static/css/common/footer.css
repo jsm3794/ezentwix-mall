@@ -16,3 +16,40 @@ footer {
     font-size: 14px;
     color: #777;
 }
+
+
+.column_wrap {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0;
+}
+
+.column {
+    width: 23%;
+}
+
+
+footer h3 {
+    font-size: 1.2em;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+footer ul {
+    list-style: none;
+    padding: 0;
+}
+
+footer ul li {
+    margin-bottom: 5px;
+}
+
+footer a {
+    text-decoration: none;
+    color: #333;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
