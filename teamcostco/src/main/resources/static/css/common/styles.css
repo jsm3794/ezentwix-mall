@@ -3,6 +3,10 @@
     font-family: "Noto Sans Korean", sans-serif;
 }
 
+span, p, a, ul, li, button, input{
+    font-weight: 400;
+}
+
 @font-face {
     font-family: 'material-symbols-outlined';
     src: url('/fonts/Material_Symbols_Outlined.woff2') format('woff2');
