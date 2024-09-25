@@ -28,6 +28,12 @@ public class CustomerService implements PageMetadataProvider {
         return userId;
     }
 
+    public CustomerDTO getCustomerFromSession(){
+        String userId = getUserIdFromSession();
+
+        return customerRepository.getBySocialId(userId);
+    }
+
     public CustomerDTO getBySocialId(String social_id) {
         return customerRepository.getBySocialId(social_id);
     }

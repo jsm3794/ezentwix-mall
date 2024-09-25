@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import com.ezentwix.teamcostco.PageMetadataProvider;
 
 @Service
-public class PurchaseService implements PageMetadataProvider{
+public class PurchaseService implements PageMetadataProvider {
 
     @Override
     public String getUri() {
@@ -23,6 +23,10 @@ public class PurchaseService implements PageMetadataProvider{
     public List<String> getCssFiles() {
         return List.of("/css/contents/purchase.css");
     }
-    
+
+    @Override
+    public List<String> getJsFiles() {
+        return List.of("/js/contents/purchase.js");
+    }
 
 }

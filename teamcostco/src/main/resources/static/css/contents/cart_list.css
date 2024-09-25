@@ -62,6 +62,13 @@ h4 {
     width: 250px;
 }
 
+.item_value.link {
+    color: #007bff;
+    text-decoration: underline;
+    cursor: pointer;
+
+}
+
 .item_image_area {
     display: flex;
     flex-direction: row;
@@ -257,4 +264,13 @@ h4 {
 .item_summary p {
     padding: 0;
     margin: 0;
+}
+
+.order_btn {
+    margin-top: 20px;
+    border: 1px solid #eef;
+    background-color: #007bff;
+    height: 50px;
+    color: #fff;
+    cursor: pointer;
 }

@@ -26,7 +26,7 @@
                             <div class="item_info_area">
                                 <div class="item_row">
                                     <p class="item_label">상품코드</p>
-                                    <p class="item_value" th:text="${item.product_code}"></p>
+                                    <p class="item_value link" th:text="${item.product_code}"></p>
                                 </div>
                                 <div class="item_row">
                                     <p class="item_label">상품명</p>
@@ -80,6 +80,7 @@
                     <p class="item_label">총 주문금액</p>
                     <p class="item_value" id="total_order_amount">0 원</p>
                 </div>
+                <button class="order_btn">주문하기</button>
             </div>
         </div>
 

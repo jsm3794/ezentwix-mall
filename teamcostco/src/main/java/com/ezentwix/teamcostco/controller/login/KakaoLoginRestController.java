@@ -1,8 +1,5 @@
 package com.ezentwix.teamcostco.controller.login;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -38,14 +35,14 @@ public class KakaoLoginRestController {
 
             if (customerDTO != null) {
                 // 사용자 정보가 존재하면
-                // 세션에 카카오 사용자 ID 저장
+                // 세션에 카카오 사용자 정보 추가
                 loginService.storeUserInSession(kakaoUserDTO.getId());
                 return new RedirectView("/login/oauth_result");
             } else {
                 // 사용자 정보가 없으면
                 // 신규 고객 정보 추가
                 if (customerService.insertCustomer(kakaoUserDTO)) {
-                    // 세션에 카카오 사용자 ID 저장
+                    // 세션에 카카오 사용자 정보 추가
                     loginService.storeUserInSession(kakaoUserDTO.getId());
                     return new RedirectView("/login/oauth_result");
                 }

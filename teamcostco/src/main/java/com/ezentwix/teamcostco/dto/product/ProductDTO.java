@@ -27,7 +27,7 @@ public class ProductDTO {
     private LocalDateTime update_date;
 
     public Integer getDiscountedPrice() {
-        return (int) Math.floor(this.selling_price * (1 - this.discount)) / 10 * 10;
+        return (int) Math.floor(this.selling_price * (1 - this.discount));
     }
 
     public Integer getTotal_qty() {

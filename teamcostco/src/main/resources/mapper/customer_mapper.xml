@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="Customer">
 
+  <!-- SELECT: 소셜 ID로 고객 정보 조회 -->
   <sql id="getBySocialId">
     SELECT customer_id, nickname, email, phone_number,
            date_of_birth, gender, status, created_at, updated_at,
@@ -11,42 +14,69 @@
     WHERE social_id = #{social_id}
   </sql>
 
+  <!-- INSERT: 고객 정보 삽입 -->
   <sql id="insertCustomer">
     INSERT INTO customer (
-            customer_id,
-            nickname,
-            email,
-            phone_number,
-            date_of_birth,
-            gender,
-            status,
-            created_at,
-            updated_at,
-            social_provider,
-            social_id,
-            default_address_id,
+            customer_id, nickname, email, phone_number, date_of_birth,
+            gender, status, created_at, updated_at, social_provider, social_id, default_address_id
         ) VALUES (
             customer_seq.NEXTVAL,
-            #{nickname},
-            #{email},
-            #{phone_number},
-            #{date_of_birth},
-            #{gender},
-            #{status},
-            #{created_at},
-            #{updated_at},
-            #{social_provider},
-            #{social_id},
-            #{default_address_id}
+            #{nickname}, #{email}, #{phone_number}, #{date_of_birth},
+            #{gender}, #{status}, #{created_at}, #{updated_at}, #{social_provider}, #{social_id}, #{default_address_id}
         )
   </sql>
 
+    <!-- UPDATE: 고객 정보 업데이트 -->
+    <sql id="updateCustomer">
+      UPDATE customer
+      SET
+          nickname = #{nickname},
+          email = #{email},
+          phone_number = #{phone_number},
+          date_of_birth = #{date_of_birth},
+          gender = #{gender},
+          status = #{status},
+          created_at = #{created_at},
+          updated_at = CURRENT_TIMESTAMP
+          default_address_id = #{default_address_id}
+      WHERE customer_id = #{customer_id}
+    </sql>
+  
+    
+    <!-- DELETE: 고객 정보 삭제 -->
+    <sql id="deleteCustomer">
+      DELETE FROM customer
+      WHERE customer_id = #{customer_id}
+    </sql>
+
+    <sql id="deleteCustomerBySocialId">
+      DELETE FROM customer
+      WHERE social_id = #{social_id}
+    </sql>
+  
+
+  <!-- INSERT: 고객 정보 삽입 실행 -->
   <insert id="insertCustomer" parameterType="customer">
     <include refid="insertCustomer"/>
   </insert>
 
+  <!-- SELECT: 소셜 ID로 고객 정보 조회 실행 -->
   <select id="getBySocialId" parameterType="String" resultType="customer">
     <include refid="getBySocialId"/>
   </select>
- 
+
+  <!-- UPDATE: 고객 정보 업데이트 실행 -->
+  <update id="updateCustomer" parameterType="customer">
+    <include refid="updateCustomer"/>
+  </update>
+
+  <!-- DELETE: 고객 정보 삭제 실행 -->
+  <delete id="deleteCustomer" parameterType="int">
+    <include refid="deleteCustomer"/>
+  </delete>
+
+  <delete id="deleteCustomerBySocialId" parameterType="String">
+    <include refid="deleteCustomerBySocialId"/>
+  </delete>
+
 </mapper>

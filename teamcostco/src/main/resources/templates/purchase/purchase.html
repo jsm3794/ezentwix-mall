@@ -1,70 +1,109 @@
-
 <div class="main_wrap">
-    <div class="order-container">
-        <div class="left">
-            <!-- 주문자 정보 -->
-            <div class="shipping-info">
-            <div class="section-title">주문자 정보</div>
-            <div class="input-box">
-                <label>황지영</label>
-            </div>
-            <div class="input-box">
-                <input type="text" placeholder="010-9448-9748">
-            </div>
-            </div>
-            <!-- 배송지 정보 -->
-            <div class="shipping-info">
-                <div class="section-title">배송지</div>
-                <div class="input-box">
-                <label>황지영</label>
-                </div>
-                <div class="input-box">
-                <input type="text" placeholder="서울특별시 노원구 동일로215길 48 (상계주공3단지아파트)">
-                </div>
-                <div class="input-box">
-                        <select>
-                        <option>배송시 요청사항을 선택해 주세요.</option>
-                        <option>직접 수령하겠습니다.</option>
-                        <option>배송 전 연락바랍니다.</option>
-                        <option>부재 시 경비실에 맡겨주세요.</option>
-                        <option>부재 시 문 앞에 놓아주세요.</option>
-                        <option>부재 시 택배함에 넣어주세요.</option>
-                        <option>직접 입력.</option>
-                        </select>
-                </div>
-                <div class="checkout-button">주소변경하기</div>
-            </div>
-        
-            <!-- 결제수단 -->
-            <div class="payment-method">
-            <div class="section-title">결제수단</div>
-            <div class="input-box">
-                <label>
-                <input type="radio" name="payment-method" checked> Pay 간편결제
-                </label>
-                <label>
-                    <input type="radio" name="payment-method" checked> 무통장입금
-                </label>
-            </div>
-        </div>
-    </div>
+    <div class="purchase-container">
+        <form action="/api/purchase" method="POST">
+            <div class="left">
 
-    <!-- 주문상품 -->
-    <div class="right">
-        <div class="order-summary">
-            <p>주문상품 1개</p>
-            <img src="https://via.placeholder.com/60" alt="product image">
-            <p>브리스트리(에코 유아 어린이 칫솔)</p>
-            <p>46,390원</p>
+                <!-- 주문자 정보 -->
+                <div class="shipping-info">
+                    <div class="section-title">보내시는분</div>
+                    <div class="input-box">
+                        <input type="text" id="sender_name" th:value="${user.nickname ?: ''}" placeholder="보내시는분 성함">
+                    </div>
+                    <div class="input-box">
+                        <input type="text" id="sender_phone_number" th:value="${user.phone_number ?: ''}"
+                            placeholder="연락처">
+                    </div>
+                </div>
+
+                <!-- 배송지 정보 -->
+                <div class="shipping-info">
+                    <div class="section-title">받으시는분
+                        <div class="change_address_btn">주소선택</div>
+                    </div>
+                    <div class="input-box">
+                        <input type="text" id="recipient_name" name="recipient_name"
+                            th:value="${default_shipping.recipient_name ?: ''}" placeholder="받으시는분 성함">
+                    </div>
+                    <div class="input-box">
+                        <input type="text" id="postal_code" name="postal_code"
+                            th:value="${default_shipping.postal_code ?: ''}" placeholder="우편번호" readonly>
+                        <input type="text" id="road_name_address" name="road_name_address"
+                            th:value="${default_shipping.road_name_address ?: ''}" placeholder="도로명주소" readonly>
+                        <span class="find_address">주소찾기</span>
+                    </div>
+                    <div class="input-box">
+                        <input type="text" id="detail_address" name="detail_address"
+                            th:value="${default_shipping.detail_address ?: ''}" placeholder="상세주소">
+                    </div>
+                    <div class="input-box">
+                        <input type="text" id="phone_number" name="phone_number" placeholder="연락처">
+                    </div>
+                </div>
+                <div class="section-title">배송 요청사항</div>
+
+                <div class="input-box">
+                    <select id="request_msg_list">
+                        <option value="직접 수령하겠습니다.">직접 수령하겠습니다.</option>
+                        <option value="배송 전 연락바랍니다.">배송 전 연락바랍니다.</option>
+                        <option vlaue="부재 시 경비실에 맡겨주세요.">부재 시 경비실에 맡겨주세요.</option>
+                        <option value="부재 시 문 앞에 놓아주세요.">부재 시 문 앞에 놓아주세요.</option>
+                        <option value="부재 시 택배함에 넣어주세요.">부재 시 택배함에 넣어주세요.</option>
+                        <option value="">직접 입력</option>
+                    </select>
+                    <input type="text" id="shipping_request_message" name="shipping_request_message"
+                        placeholder="배송 요청사항 입력" value="직접 수령하겠습니다.">
+                </div>
             </div>
-            <div class="price-details">
-            <p><span>상품금액</span><span>55,440원</span></p>
-            <p><span>할인금액</span><span>-9,050원</span></p>
-            <p class="total"><span>총 결제금액</span><span>46,390원</span></p>
+
+            <!-- 주문상품 -->
+            <div class="right">
+                <div class="order-summary" th:each="item : ${items}">
+                    <p th:id="${item.product.product_code}" class="product_name"
+                        th:text="${item.product.product_name + ' x ' + item.count}"></p>
+                    <div class="price_area">
+                        <th:block th:if="${item.product.discount > 0.0}">
+                            <p class="before_discount_price"
+                                th:text="${#numbers.formatInteger(item.product.selling_price * item.count, 0, 'COMMA')} + '원'">
+                            </p>
+                        </th:block>
+                        <p
+                            th:text="${#numbers.formatInteger(item.product.discountedPrice * item.count, 0, 'COMMA')} + '원'">
+                        </p>
+                    </div>
+                </div>
+                <div class="price-details">
+                    <p>
+                        <span>상품개수</span>
+                        <span th:text="${#numbers.formatInteger(totalQuantity, 0, 'COMMA')} + '개'"></span>
+                    </p>
+                    <p>
+                        <span>상품금액</span>
+                        <span th:text="${#numbers.formatInteger(totalPrice, 0, 'COMMA')} + '원'"></span>
+                    </p>
+                    <p>
+                        <span>할인금액</span>
+                        <span th:text="${#numbers.formatInteger(totalDiscount, 0, 'COMMA')} + '원'"></span>
+                    </p>
+                    <p class="total">
+                        <span>총 결제금액</span>
+                        <span th:text="${#numbers.formatInteger(finalPrice, 0,'COMMA')} + '원'"></span>
+                    </p>
+                </div>
+                <!-- 결제수단 -->
+                <div class="payment-method">
+                    <div class="section-title">결제수단</div>
+                    <div class="input-box">
+                        <div class="payment_method_item">
+                            <input type="radio" name="payment-method" checked>
+                            <label for="payment-method">무통장입금</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="checkout-button">결제하기</div>
             </div>
-            <div class="checkout-button">결제하기</div>
-            <div class="checkbox">
-            <input type="checkbox"> 개인정보 제공 동의
-        </div>
+        </form>
     </div>
 </div>
+
+<script src="http://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>

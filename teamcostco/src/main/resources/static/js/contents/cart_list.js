@@ -162,3 +162,33 @@ function updateCheckedStatusOnServer(productCode, checked) {
 $(document).ready(function() {
     updateTotalSummary();
 });
+
+
+$('.item_value.link').click(function(event){
+    let product_code = event.target.innerText;
+    window.open('/product/product_detail?product_code=' + product_code);
+});
+
+$('.order_btn').click(function(event){
+    event.preventDefault(); // 기본 동작 방지 (필요 시)
+    
+    var productList = [];
+
+    $('.item_checkbox:checked').each(function() {
+        var productCode = $(this).data('product-code');
+        var itemId = $(this).attr('id'); // Assuming the checkbox ID corresponds to itemId
+        var quantity = parseInt($('#product_count_' + itemId).text()) || 1;
+        
+        productList.push(productCode + ':' + quantity);
+    });
+
+    if(productList.length === 0){
+        alert('주문할 상품을 선택해주세요.');
+        return;
+    }
+
+    var productListParam = productList.join(',');
+
+    // 구매 페이지로 이동
+    window.location.href = '/purchase?product_list=' + encodeURIComponent(productListParam);
+});
