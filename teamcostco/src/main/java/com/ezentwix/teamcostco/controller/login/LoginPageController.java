@@ -15,10 +15,6 @@ public class LoginPageController {
 
     @GetMapping("/login")
     public String showLogin(Model model) {
-        if (loginService.getUserIdFromSession() == null) {
-            loginService.storeUserInSession("3703737894");
-        }
-
         return "/login";
     }
 }
