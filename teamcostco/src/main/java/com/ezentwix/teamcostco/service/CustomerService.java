@@ -1,5 +1,7 @@
 package com.ezentwix.teamcostco.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -48,5 +50,11 @@ public class CustomerService implements PageMetadataProvider {
     @Override
     public String getPageTitle() {
         return "사용자 정보";
+    }
+
+    @Override
+    public List<String> getCssFiles() {
+        return List.of("/css/contents/customer_info.css",
+        "https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0");
     }
 }

@@ -24,7 +24,7 @@
             updated_at,
             social_provider,
             social_id,
-            default_address_id,
+            default_address_id
         ) VALUES (
             customer_seq.NEXTVAL,
             #{nickname},
