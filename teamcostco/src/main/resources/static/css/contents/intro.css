@@ -71,7 +71,31 @@ img {
     background-color: #717171;
 }
 
-.best,
+.row {
+    display: flex;
+    justify-content: space-around;
+    margin: 10px 0;
+}
+
+.product {
+    flex: 1;
+    margin: 0 10px;
+    text-align: center;
+}
+
+.view-all {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.view-all-button {
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
 .sale {
     height: 50px;
     font-size: 20px;
