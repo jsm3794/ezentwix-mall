@@ -201,7 +201,7 @@ $(document).ready(function () {
 
     $(document).on('click', '#go_to_cart', function () {
         // 장바구니 페이지로 이동
-        window.location.href = '/cart';
+        window.location.href = '/customer/cart';
     });
 
     // 모달 창 표시 함수 수정
