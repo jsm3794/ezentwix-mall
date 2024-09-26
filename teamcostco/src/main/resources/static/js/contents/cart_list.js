@@ -81,7 +81,7 @@ function updateTotalSummary() {
     });
 
     $('#total_quantity').text(totalQuantity + ' 개');
-    $('#total_product_amount').text(formatPrice(totalProductAmount));
+    $('#total_product_amount').text(formatPrice(totalProductAmount + totalDiscountAmount));
     $('#total_discount').text(formatPrice(totalDiscountAmount)); // 총 할인금액 표시
 
     var shippingFee = calculateShippingFee(totalProductAmount);

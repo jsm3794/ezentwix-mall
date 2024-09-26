@@ -46,7 +46,7 @@ function fetchProduct() {
                 const productDiv = $('<div>', {
                     class: 'product_item',
                     html: `<div class='thumbnail_wrap'>
-                    <img class='product_thumbnail' src='https://sitem.ssgcdn.com/23/84/49/item/1000060498423_i1_290.jpg'></div>
+                    <img class='product_thumbnail' src='/api/product_thumbnail/${item.product_code}'></div>
                     <span class='product_name'><b>${item.brand + ' '}</b>${item.product_name}</span>
                     ${item.discount > 0.00 ? `<span class='before_discount_price'>${item.selling_price.toLocaleString()}원</span>` : ''}
                     <div class='product_price'>

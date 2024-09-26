@@ -1,6 +1,7 @@
 package com.ezentwix.teamcostco.repository;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
@@ -17,18 +18,25 @@ public class WishlistsRepository {
 
     private final SqlSessionTemplate sql;
 
-    public void addWishlist(WishlistsDTO wishlistsDTO) {
-        sql.insert("Wishlist.addWishlist", wishlistsDTO);
-        log.info("***** {} insert 완료 *****", wishlistsDTO);
+    public boolean addWishlist(WishlistsDTO wishlistsDTO) {
+        int result = sql.insert("Wishlist.addWishlist", wishlistsDTO);
+        return result > 0;
     }
 
-    public void deleteWishlist(WishlistsDTO wishlistsDTO) {
-        sql.delete("Wishlist.deleteWishlist", wishlistsDTO);
-        log.info("***** {} delete 완료 *****", wishlistsDTO);
+    public boolean deleteWishlist(WishlistsDTO wishlistsDTO) {
+        int result = sql.delete("Wishlist.deleteWishlist", wishlistsDTO);
+       return result > 0;
     }
 
     public List<WishlistsDTO> getWishlist(String social_id) {
         return sql.selectList("Wishlist.getWishlist", social_id);
     }
 
+    public boolean isWishProduct(Map<String, Object> data){
+        WishlistsDTO wishlistsDTO = sql.selectOne("Wishlist.isWishProduct", data);
+        if(wishlistsDTO != null){
+            return true;
+        }
+        return false;
+    }
 }

@@ -23,4 +23,9 @@
         DELETE FROM wishlists
         WHERE social_id = #{social_id} AND product_code = #{product_code}
     </delete>
+
+    <select id="isWishProduct" parameterType="map" resultType="wishlist">
+        SELECT * FROM wishlists
+        WHERE product_code = #{product_code} AND social_id = #{social_id}
+    </select>
 </mapper>

@@ -1,13 +1,9 @@
 <div class="main_wrap">
     <div class="product_main">
         <div class="product_image">
-            <div class="main_image"></div>
-            <div class="image_list">
-                <div class="image_item"></div>
-                <div class="image_item"></div>
-                <div class="image_item"></div>
-                <div class="image_item"></div>
-            </div>
+            <div class="main_image" th:data-thumbnail-id="${product.product_code}">
+                <img th:src="${'/api/product_thumbnail/' +  product.product_code}" th:alt="${product.product_name}">
+            </div>            
         </div>
         <div class="product_info">
             <h1 class="product_title" th:text="${product.product_name}"></h1>
@@ -58,10 +54,10 @@
             </div>
             <div class="button_group">
                 <button class="wishListBtn favorite_button">
-                    <span class="material-symbols-outlined">
+                    <span th:class="${isWishProduct} ? 'material-symbols-outlined-fill' : 'material-symbols-outlined'">
                         Favorite
                     </span>
-                </button>
+                </button>                
                 <button class="buy_button" th:data-product-code="${product.product_code}">구매하기</button>
                 <button class="cart_button">장바구니에 추가</button>
             </div>

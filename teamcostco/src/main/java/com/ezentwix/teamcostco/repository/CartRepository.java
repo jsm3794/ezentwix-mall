@@ -32,7 +32,7 @@ public class CartRepository {
     public CartDTO getByProductCode(Long productCode, String customerId) {
         Map<String, Object> params = new HashMap<>();
         params.put("product_code", productCode);
-        params.put("customer_id", customerId);
+        params.put("social_id", customerId);
         return sql.selectOne("Cart.getByProductCode", params);
     }
 

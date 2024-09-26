@@ -1,11 +1,9 @@
 package com.ezentwix.teamcostco.service;
 
-import java.io.Writer;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.servlet.mvc.method.annotation.StreamingResponseBody;
 
 import com.ezentwix.teamcostco.PageMetadataProvider;
 import com.ezentwix.teamcostco.dto.WishlistsDTO;
@@ -16,20 +14,32 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @Service
 public class WishlistService implements PageMetadataProvider {
-
+    private final CustomerService customerService;
     private final WishlistsRepository wishlistsRepository;
 
+    public boolean isWishProduct(Long product_code) {
+        String socialId = customerService.getSocialIdFromSession();
+        Map<String, Object> data = Map.of("product_code", product_code, "social_id", socialId);
+        return wishlistsRepository.isWishProduct(data);
+    }
 
-    public List<WishlistsDTO> getWiList(String social_id){
+    public List<WishlistsDTO> getWiList(String social_id) {
         return wishlistsRepository.getWishlist(social_id);
     }
 
-    public void addWishlist(WishlistsDTO wishlistsDTO) {
-        wishlistsRepository.addWishlist(wishlistsDTO);
+    public boolean addWishlist(WishlistsDTO wishlistsDTO) {
+        if (!isWishProduct(wishlistsDTO.getProduct_code())) {
+            return wishlistsRepository.addWishlist(wishlistsDTO);
+        }
+        return false;
     }
 
-    public void deleteWishlist(WishlistsDTO wishlistsDTO) {
-        wishlistsRepository.deleteWishlist(wishlistsDTO);
+    public boolean deleteWishlist(WishlistsDTO wishlistsDTO) {
+        if (isWishProduct(wishlistsDTO.getProduct_code())) {
+            return wishlistsRepository.deleteWishlist(wishlistsDTO);
+        }
+        return false;
+
     }
 
     @Override
@@ -45,5 +55,10 @@ public class WishlistService implements PageMetadataProvider {
     @Override
     public List<String> getCssFiles() {
         return List.of("/css/contents/wishlist.css");
+    }
+
+    @Override
+    public List<String> getJsFiles() {
+        return List.of("/js/contents/wishlist.js");
     }
 }

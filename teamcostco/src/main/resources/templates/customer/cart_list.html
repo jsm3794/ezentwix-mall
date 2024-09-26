@@ -8,7 +8,7 @@
         <div class="cart_list">
             <!-- 아이템이 있을 때만 표시 -->
             <div th:if="${items != null and !items.isEmpty()}">
-                <div class="cart_item" th:each="item : ${items}" th:id="${'cart_item_' + item.cart_id}"
+                <div class="cart_item" th:each="item : ${items}" th:id="${'cart_item_' + item.cart_id}" th:data-item-id="${item.cart_id}"
                     th:data-item-price="${item.discountedPrice}" th:data-item-original-price="${item.selling_price}"
                     th:data-product-code="${item.product_code}">
                     <div class="checkbox_area">
@@ -21,8 +21,7 @@
                     </div>
                     <div class="item_details">
                         <div class="item_image_area">
-                            <img src="https://thumbnail6.coupangcdn.com/thumbnails/remote/120x120ex/image/vendor_inventory/950f/929963fd3bae624770c68b8d3409c92f0230409893437fedea143fb86a4b.png"
-                                alt="상품1">
+                            <img th:src="${'/api/product_thumbnail/' + item.product_code}"  th:alt="${item.product_name}">
                         </div>
                         <div class="item_info_area">
                             <div class="item_row">
@@ -47,7 +46,7 @@
 
                             </div>
                         </div>
-                        <div class="quantity_controls" t`h:data-item-id="${item.cart_id}">
+                        <div class="quantity_controls" th:data-item-id="${item.cart_id}">
                             <button class="decrease_btn">-</button>
                             <input type="text" th:value="${item.product_count}" min="1" class="quantity_input">
                             <button class="increase_btn">+</button>

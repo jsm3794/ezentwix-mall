@@ -1,78 +1,145 @@
-.wishlist {
-    padding-left: 20px;
-    width: calc(100% - 200px);
+.main_wrap {
+    display: flex;
+    padding: 20px;
 }
 
-.wishlist h2 {
-    text-align: center;
+.wishlist {
+    flex-grow: 1;
+    margin-left: 20px;
+    width: calc(100% - 220px);
+}
+
+.wishlist-actions {
     margin-bottom: 20px;
-    color: #333;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.select-all-label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.select-all-label input {
+    margin-right: 5px;
+}
+
+.wishlist-actions button {
+    padding: 10px 15px;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    cursor: pointer;
 }
 
 .wishlist-items {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    /* 4개의 동일한 열 */
     gap: 20px;
-    /* 아이템 간 간격 */
-    justify-items: center;
-    /* 아이템을 그리드 셀 내에서 중앙 정렬 */
 }
 
 .wishlist-item {
+    background-color: white;
+    border: 1px solid #eef;
+    padding: 20px;
     display: flex;
     flex-direction: column;
-    background-color: #fff;
-    border: 1px solid #eaeaff;
-    width: 100%;
-    /* 그리드 셀에 맞추기 위해 너비 100% 설정 */
-    padding: 20px;
+    position: relative;
+}
+
+.item-checkbox-wrapper {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 10;
+}
+
+.item-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     text-align: center;
-    box-sizing: border-box;
-    /* 패딩과 보더를 포함한 전체 크기 계산 */
 }
 
-.wishlist-item img {
+.item-content img {
     width: 100%;
-    height: 250px;
-    border: 1px solid #eaeaff;
-    margin-bottom: 10px;
+    height: 200px;
     object-fit: cover;
-}
-
-.wishlist-item h3 {
-    font-size: 0.9em;
-    margin: 10px 0;
-    color: #555;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-.wishlist-item p {
-    font-size: 1em;
-    color: #777;
-    margin-bottom: 15px;
-}
-
-.wishlist-item a {
-    display: inline-block;
-    padding: 8px 12px;
-    background-color: #ff6f61;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 4px;
-    transition: background-color 0.3s;
-}
-
-.wishlist-item a:hover {
-    background-color: #ff3b2e;
-}
-
-.delete_btn {
-    background-color: #fff;
-    border: 1px solid #eaeaff;
-    padding: 4px;
     margin-bottom: 10px;
+}
+
+.item-details {
+    width: 100%;
+}
+
+.product-link {
+    color: #333;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 14px;
+    width: 258px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
     cursor: pointer;
+}
+
+.product-link:hover {
+    text-decoration: underline;
+}
+
+.btn-group {
+    display: flex;
+    justify-content: space-between;
+    margin-top: auto;
+}
+
+.action-btn {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    flex-grow: 1;
+    margin: 0 5px;
+    background-color: white;
+    color: #333;
+    border: 1px solid #ddd;
+    transition: all 0.3s ease;
+}
+
+.action-btn:hover {
+    background-color: #eaeaff;
+    ;
+}
+
+.cart_modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+.modal_content button {
+    padding: 8px 12px;
+    margin: 0 5px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#go_to_cart {
+    background-color: #4CAF50;
+    color: white;
+}
+
+#continue_shopping {
+    background-color: #808080;
+    color: white;
 }

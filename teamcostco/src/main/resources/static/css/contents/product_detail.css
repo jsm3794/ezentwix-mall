@@ -5,14 +5,34 @@
     width: 100%;
 }
 
+.favorite_button>.material-symbols-outlined-fill {
+    color: #ff5555;
+}
+
+
 .product_image {
     display: flex;
     flex-direction: row;
 }
 
+
+.main_image img {
+    width: 100%;
+    height: 100%;
+    transition: transform 0.5s ease;
+}
+
+
+.main_image:hover img {
+    transform: scale(1.5); /* 이미지 확대 (1.5배) */
+}
+
+
 .product_image>.main_image {
-    width: 400px;
-    height: 400px;
+    overflow: hidden;
+    position: relative;
+    width: 500px;
+    height: 500px;
     border: 1px solid #eaeaff;
     background-color: #fff;
     margin-right: 20px;
@@ -172,7 +192,7 @@
 #amount_decrease {
     border-top-left-radius: 3px;
     border-bottom-left-radius: 3px;
-    border: 1px solid lightgray;
+    border: 1px solid #eef;
     background-color: #fff;
     width: 30px;
     cursor: pointer;
@@ -362,4 +382,27 @@
 #continue_shopping {
     background-color: #6c757d;
     color: #fff;
+}
+
+/* 모달 배경 스타일 */
+#cart_modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* 반투명 배경 */
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 모달 내용 스타일 */
+.modal_content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    position: relative;
 }

@@ -15,7 +15,6 @@ public class AuthService  {
     private final HttpSession httpSession;
     private final EmployeeRepository employeeRepository;
     private final CustomerRepository customerRepository;
-    private final CustomerService customerService;
 
 
     public void storeCusomterInSession(String socialId) {

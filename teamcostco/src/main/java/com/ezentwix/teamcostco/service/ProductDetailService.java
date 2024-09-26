@@ -5,17 +5,12 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.ezentwix.teamcostco.PageMetadataProvider;
-import com.ezentwix.teamcostco.dto.product.ProductDefectiveDTO;
-import com.ezentwix.teamcostco.repository.ProductDefectiveRepository;
 
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @Service
 public class ProductDetailService implements PageMetadataProvider {
-
-    private final ProductDefectiveRepository productDefectiveRepository;
-
 
     @Override
     public List<String> getCssFiles() {

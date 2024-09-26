@@ -7,7 +7,7 @@ import lombok.Data;
 public class WishlistsDTO {
     private Integer wishlist_id;
     private String social_id;
-    private String product_code;
+    private Long product_code;
     private String product_name;
 
     private Integer selling_price;

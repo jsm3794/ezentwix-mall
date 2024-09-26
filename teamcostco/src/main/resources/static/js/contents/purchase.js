@@ -69,14 +69,14 @@ $('.checkout-button').click(function (event) {
         shipping_request_message: $('#shipping_request_message').val(),
         payment_method: $('input[name="payment-method"]:checked').val(),
 
-        items: productList.map(function(item) {
+        items: productList.map(function (item) {
             return {
                 product_code: item.product.product_code,
                 qty: item.count
             };
         })
     };
-    
+
     var payload = {
         shipping_address: {
             sender_name: formData.sender_name,
@@ -99,6 +99,7 @@ $('.checkout-button').click(function (event) {
         data: JSON.stringify(payload),
         success: function (response) {
             alert("주문이 성공적으로 완료되었습니다!");
+            location.href = '/customer/customer_info';
         },
         error: function (xhr, status, error) {
             alert("주문 처리 중 오류가 발생했습니다: " + xhr.responseText);
