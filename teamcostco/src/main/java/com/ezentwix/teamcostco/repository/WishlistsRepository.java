@@ -17,14 +17,14 @@ public class WishlistsRepository {
 
     private final SqlSessionTemplate sql;
 
-    public void addWishlist(WishlistsDTO wishlistsDTO) {
-        sql.insert("Wishlist.addWishlist", wishlistsDTO);
-        log.info("***** {} insert 완료 *****", wishlistsDTO);
+    public boolean addWishlist(WishlistsDTO wishlistsDTO) {
+        int result = sql.insert("Wishlist.addWishlist", wishlistsDTO);
+        return result > 0;
     }
 
-    public void deleteWishlist(WishlistsDTO wishlistsDTO) {
-        sql.delete("Wishlist.deleteWishlist", wishlistsDTO);
-        log.info("***** {} delete 완료 *****", wishlistsDTO);
+    public boolean deleteWishlist(WishlistsDTO wishlistsDTO) {
+        int result = sql.delete("Wishlist.deleteWishlist", wishlistsDTO);
+       return result > 0;
     }
 
     public List<WishlistsDTO> getWishlist(String social_id) {

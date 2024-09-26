@@ -33,13 +33,13 @@ public class WishlistsController {
     @PostMapping("/add")
     public ResponseEntity<Map<String, Object>> addWishlist(@RequestParam String product_code) {
         Map<String, Object> response = new HashMap<>();
+        boolean result;
         try {
             WishlistsDTO wishlistsDTO = new WishlistsDTO();
             wishlistsDTO.setProduct_code(product_code);
             wishlistsDTO.setSocial_id(loginService.getUserIdFromSession());
-            wishlistService.addWishlist(wishlistsDTO);
-            log.info("************** {}", wishlistsDTO);
-            response.put("success", true);
+            result = wishlistService.addWishlist(wishlistsDTO);
+            response.put("success", result);
             response.put("message", "위시리스트 성공적으로 추가되었습니다.");
             return ResponseEntity.ok(response);
         } catch (Exception e) {
@@ -52,13 +52,13 @@ public class WishlistsController {
     @PostMapping("/delete")
     public ResponseEntity<Map<String, Object>> deleteWishlist(@RequestParam String product_code) {
         Map<String, Object> response = new HashMap<>();
+        boolean result;
         try {
             WishlistsDTO wishlistsDTO = new WishlistsDTO();
             wishlistsDTO.setProduct_code(product_code);
             wishlistsDTO.setSocial_id(loginService.getUserIdFromSession());
-            wishlistService.addWishlist(wishlistsDTO);
-            wishlistService.deleteWishlist(wishlistsDTO);
-            response.put("success", true);
+            result = wishlistService.deleteWishlist(wishlistsDTO);
+            response.put("success", result);
             response.put("message", "위시리스트에서 성공적으로 삭제되었습니다.");
             return ResponseEntity.ok(response);
         } catch (Exception e) {

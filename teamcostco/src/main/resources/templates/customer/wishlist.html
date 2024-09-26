@@ -7,7 +7,7 @@
         <div class="wishlist-items">
             <!-- 위시리스트 아이템 반복 -->
             <div class="wishlist-item" th:each="item : ${wishlist}">
-                <button class="delete_btn" th:id="${'delete_' + item.product_code}">X</button>
+                <button class="delete_btn" th:id="${'delete_' + item.product_code}"  th:data-product-code="${item.product_code}">X</button>
                 <img th:src="${'/api/product_thumbnail/' + item.product_code}" th:alt="${item.product_code}" />
                 <h3 th:text="${item.product_name}">상품명</h3>
                 <p th:text="${#numbers.formatDecimal(item.discountedPrice, 0, 'POINT', 3, 'COMMA')} + ' 원'">가격</p>

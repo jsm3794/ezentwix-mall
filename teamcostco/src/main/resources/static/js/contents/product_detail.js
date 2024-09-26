@@ -130,11 +130,18 @@ $(document).ready(function () {
     function toggleWishlist(social_id) {
         const product_code = $('#product_code').val();
         const wishListBtn = $('.wishListBtn');
-        const iconElement = wishListBtn.find('.material-symbols-outlined');
-        
-        const isInWishlist = iconElement.text().trim() === 'delete';
+        let iconElement = wishListBtn.find('.material-symbols-outlined, .material-symbols-outlined-fill'); // 두 가지 클래스를 모두 탐색
+    
+        // 아이콘 요소가 없을 경우를 대비한 확인 (실제로 존재하는지 확인만 함)
+        if (iconElement.length === 0) {
+            console.error('아이콘 요소를 찾을 수 없습니다.');
+            return;
+        }
+    
+        // 위시리스트에 이미 있는지 확인 (filled 클래스가 있는지 확인)
+        const isInWishlist = iconElement.hasClass('material-symbols-outlined-fill');
         const url = isInWishlist ? '/api/wishlist/delete' : '/api/wishlist/add';
-        
+    
         $.ajax({
             url: url,
             method: 'POST',
@@ -142,22 +149,25 @@ $(document).ready(function () {
             success: function(response) {
                 if (response.success) {
                     if (isInWishlist) {
-                        iconElement.text('favorite');
+                        // filled 클래스 제거하고 outlined 클래스로 변경
+                        iconElement.removeClass('material-symbols-outlined-fill').addClass('material-symbols-outlined');
                         alert('찜 목록에서 제거되었습니다.');
                     } else {
-                        iconElement.text('delete');
+                        // outlined 클래스 제거하고 filled 클래스로 변경
+                        iconElement.removeClass('material-symbols-outlined').addClass('material-symbols-outlined-fill');
                         alert('찜 목록에 추가되었습니다.');
                     }
                 } else {
-                    alert('위시리스트 업데이트에 실패했습니다: ');
+                    alert('위시리스트 업데이트에 실패했습니다.');
                 }
             },
             error: function(jqXHR, textStatus, errorThrown) {
                 console.error('위시리스트 업데이트 중 오류 발생:', textStatus, errorThrown);
                 alert('위시리스트 업데이트에 실패했습니다. 다시 시도해주세요.');
-            }   
+            }
         });
     }
+    
 
     function applyPriceByAmount() {
         const totalPrice = $amountEl.val() * $('#product_price').val();

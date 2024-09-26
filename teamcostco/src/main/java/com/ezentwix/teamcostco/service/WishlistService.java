@@ -24,12 +24,12 @@ public class WishlistService implements PageMetadataProvider {
         return wishlistsRepository.getWishlist(social_id);
     }
 
-    public void addWishlist(WishlistsDTO wishlistsDTO) {
-        wishlistsRepository.addWishlist(wishlistsDTO);
+    public boolean addWishlist(WishlistsDTO wishlistsDTO) {
+        return wishlistsRepository.addWishlist(wishlistsDTO);
     }
 
-    public void deleteWishlist(WishlistsDTO wishlistsDTO) {
-        wishlistsRepository.deleteWishlist(wishlistsDTO);
+    public boolean deleteWishlist(WishlistsDTO wishlistsDTO) {
+        return wishlistsRepository.deleteWishlist(wishlistsDTO);
     }
 
     @Override
@@ -45,5 +45,10 @@ public class WishlistService implements PageMetadataProvider {
     @Override
     public List<String> getCssFiles() {
         return List.of("/css/contents/wishlist.css");
+    }
+
+    @Override
+    public List<String> getJsFiles() {
+        return List.of("/js/contents/wishlist.js");
     }
 }
