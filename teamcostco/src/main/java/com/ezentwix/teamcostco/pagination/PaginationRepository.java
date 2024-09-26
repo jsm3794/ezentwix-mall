@@ -64,7 +64,7 @@ public class PaginationRepository {
 
         query = query.trim();
 
-        if (pageable == null || pageable.getPageSize() <= 0 || query.isEmpty()) {
+        if (pageable == null || pageable.getPageSize() <= 0) {
             return new PaginationResult<>(List.of(), 0, 1, 1, 1, 1);
         }
 
