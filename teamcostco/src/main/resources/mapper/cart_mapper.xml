@@ -63,6 +63,15 @@
     WHERE cart_id = #{cart_id}
 </sql>
 
+<sql id="deleteCartByProductCode">
+    DELETE FROM cart
+    WHERE product_code = #{product_code} AND customer_id = #{customer_id}
+</sql>
+
+<delete id="deleteCartByProductCode" parameterType="map">
+    <include refid="deleteCartByProductCode"></include>
+</delete>
+
 <select id="getCartItemById" parameterType="long" resultType="cart">
     <include refid="getCartItemById"/>
 </select>

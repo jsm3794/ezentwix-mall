@@ -1,6 +1,7 @@
 package com.ezentwix.teamcostco.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
@@ -86,6 +87,16 @@ public class CartService implements PageMetadataProvider {
         }
 
         return false; // userId가 없으면 실패 처리
+    }
+
+    public boolean deleteCartByProductCode(Long product_code){
+        String userId = customerService.getUserIdFromSession();
+
+        if (userId != null) {
+            cartRepository.deleteCartByProductCode(
+                Map.of("product_code", product_code, "customer_id", userId));
+        }
+        return false;
     }
 
     public boolean deleteCartItem(Long cartId) {

@@ -19,6 +19,7 @@ import com.ezentwix.teamcostco.dto.sales.SalesDTO;
 import com.ezentwix.teamcostco.dto.sales.SalesItemsDTO;
 import com.ezentwix.teamcostco.dto.sales.SalesRequestDTO;
 import com.ezentwix.teamcostco.dto.sales.SalesRequestDTO.ItemDto;
+import com.ezentwix.teamcostco.service.CartService;
 import com.ezentwix.teamcostco.service.ProductService;
 import com.ezentwix.teamcostco.service.SalesService;
 
@@ -30,6 +31,7 @@ import lombok.RequiredArgsConstructor;
 public class PurchaseRestController {
     private final SalesService salesService;
     private final ProductService productService;
+    private final CartService cartService;
 
     /**
      * 판매 등록
@@ -38,9 +40,14 @@ public class PurchaseRestController {
     public ResponseEntity<String> createSales(@RequestBody SalesRequestDTO salesRequestDTO) {
         // Sales creation logic
         if (salesService.createSales(salesRequestDTO)) {
-            return new ResponseEntity<>("주문 생성 성공", HttpStatus.OK);
+            
+            salesRequestDTO.getItems().forEach((item) ->{
+                cartService.deleteCartByProductCode(item.getProduct_code());
+            });
+            
+            return new ResponseEntity<>("주문 성공", HttpStatus.OK);
         } else {
-            return new ResponseEntity<>("주문 생성 실패", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("주문 실패", HttpStatus.BAD_REQUEST);
         }
     }
     /**
