@@ -15,12 +15,12 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class WishlistPageController {
     private final WishlistService wishlistService;
-    private final AuthService loginService;
+    private final AuthService authService;
 
     @GetMapping("/customer/wishlist")
     public String wishlistpage(Model model) {
         wishlistService.configureModel(model);
-        List<WishlistsDTO> items = wishlistService.getWiList(loginService.getSocialIdFromSession());
+        List<WishlistsDTO> items = wishlistService.getWiList(authService.getSocialIdFromSession());
         model.addAttribute("wishlist", items);
         return "index";
     }
