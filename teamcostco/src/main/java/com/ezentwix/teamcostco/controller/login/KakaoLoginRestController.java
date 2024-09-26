@@ -10,7 +10,7 @@ import com.ezentwix.teamcostco.dto.kakao_auth.KakaoTokenResponseDTO;
 import com.ezentwix.teamcostco.dto.kakao_auth.KakaoUserDTO;
 import com.ezentwix.teamcostco.service.CustomerService;
 import com.ezentwix.teamcostco.service.KakaoAuthService;
-import com.ezentwix.teamcostco.service.LoginService;
+import com.ezentwix.teamcostco.service.AuthService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -20,7 +20,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class KakaoLoginRestController {
     private final KakaoAuthService kakaoAuthService;
-    private final LoginService loginService;
+    private final AuthService loginService;
     private final CustomerService customerService;
 
     @GetMapping("/login/oauth")
@@ -36,14 +36,14 @@ public class KakaoLoginRestController {
             if (customerDTO != null) {
                 // 사용자 정보가 존재하면
                 // 세션에 카카오 사용자 정보 추가
-                loginService.storeUserInSession(kakaoUserDTO.getId());
+                loginService.storeCusomterInSession(kakaoUserDTO.getId());
                 return new RedirectView("/login/oauth_result");
             } else {
                 // 사용자 정보가 없으면
                 // 신규 고객 정보 추가
                 if (customerService.insertCustomer(kakaoUserDTO)) {
                     // 세션에 카카오 사용자 정보 추가
-                    loginService.storeUserInSession(kakaoUserDTO.getId());
+                    loginService.storeCusomterInSession(kakaoUserDTO.getId());
                     return new RedirectView("/login/oauth_result");
                 }
             }

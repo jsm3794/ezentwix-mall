@@ -7,7 +7,7 @@ import lombok.Data;
 @Data
 public class CartDTO {
     private Long cart_id; // cart_id
-    private String customer_id; // customer_id
+    private String social_id; // customer_id
     private Long product_count; // product_count
     private Long product_code; // product_count
     private Character checked;

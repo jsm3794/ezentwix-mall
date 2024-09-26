@@ -1,87 +1,99 @@
 <div class="main_wrap">
 
-        <h3 class="content_title">장바구니</h3>
+    <h3 class="content_title">장바구니</h3>
 
-        <div th:replace="~{common/sidebar}"></div>
-        <div class="cart_container">
+    <div th:replace="~{common/sidebar}"></div>
+    <div class="cart_container">
 
-            <div class="cart_list">
-                <!-- 아이템이 있을 때만 표시 -->
-                <div th:if="${items != null and !items.isEmpty()}">
-                    <div class="cart_item" th:each="item : ${items}" th:id="${'cart_item_' + item.cart_id}"
-                        th:data-item-price="${item.discountedPrice}" th:data-product-code="${item.product_code}">
-                        <div class="checkbox_area">
-                            <input type="checkbox" class="item_checkbox" th:id="${item.cart_id}"
-                                th:data-product-code="${item.product_code}"
-                                th:checked="${item.checked != null and item.checked.toString().equals('Y')}">
-                            <button class="remove_btn" th:data-cart-id="${item.cart_id}">
-                                <span class="material-symbols-outlined delete">close</span>
-                            </button>
+        <div class="cart_list">
+            <!-- 아이템이 있을 때만 표시 -->
+            <div th:if="${items != null and !items.isEmpty()}">
+                <div class="cart_item" th:each="item : ${items}" th:id="${'cart_item_' + item.cart_id}"
+                    th:data-item-price="${item.discountedPrice}" th:data-item-original-price="${item.selling_price}"
+                    th:data-product-code="${item.product_code}">
+                    <div class="checkbox_area">
+                        <input type="checkbox" class="item_checkbox" th:id="${item.cart_id}"
+                            th:data-product-code="${item.product_code}"
+                            th:checked="${item.checked != null and item.checked.toString().equals('Y')}">
+                        <button class="remove_btn" th:data-cart-id="${item.cart_id}">
+                            <span class="material-symbols-outlined delete">close</span>
+                        </button>
+                    </div>
+                    <div class="item_details">
+                        <div class="item_image_area">
+                            <img src="https://thumbnail6.coupangcdn.com/thumbnails/remote/120x120ex/image/vendor_inventory/950f/929963fd3bae624770c68b8d3409c92f0230409893437fedea143fb86a4b.png"
+                                alt="상품1">
                         </div>
-                        <div class="item_details">
-                            <div class="item_image_area">
-                                <img src="https://thumbnail6.coupangcdn.com/thumbnails/remote/120x120ex/image/vendor_inventory/950f/929963fd3bae624770c68b8d3409c92f0230409893437fedea143fb86a4b.png"
-                                    alt="상품1">
+                        <div class="item_info_area">
+                            <div class="item_row">
+                                <p class="item_label">상품코드</p>
+                                <p class="item_value link" th:text="${item.product_code}"></p>
                             </div>
-                            <div class="item_info_area">
-                                <div class="item_row">
-                                    <p class="item_label">상품코드</p>
-                                    <p class="item_value link" th:text="${item.product_code}"></p>
-                                </div>
-                                <div class="item_row">
-                                    <p class="item_label">상품명</p>
-                                    <p class="item_value" th:text="${item.product_name}"></p>
-                                </div>
-                                <div class="item_row">
-                                    <p class="item_label">상품가격</p>
-                                    <p class="item_value"
-                                        th:text="${#numbers.formatInteger(item.discountedPrice, 0, 'COMMA')} + ' 원'">
+                            <div class="item_row">
+                                <p class="item_label">상품명</p>
+                                <p class="item_value" th:text="${item.product_name}"></p>
+                            </div>
+                            <div class="item_row">
+                                <p class="item_label">상품가격</p>
+
+                                <th:block th:if="${item.discount > 0.0}">
+                                    <p class="item_value discount"
+                                        th:text="${#numbers.formatInteger(item.selling_price, 0, 'COMMA')} + ' 원'">
                                     </p>
-                                </div>
-                            </div>
-                            <div class="quantity_controls" th:data-item-id="${item.cart_id}">
-                                <button class="decrease_btn">-</button>
-                                <input type="text" th:value="${item.product_count}" min="1" class="quantity_input">
-                                <button class="increase_btn">+</button>
+                                </th:block>
+                                <p class="item_value"
+                                    th:text="${#numbers.formatInteger(item.discountedPrice, 0, 'COMMA')} + ' 원'">
+                                </p>
+
                             </div>
                         </div>
-                        <div class="item_summary">
-                            <div class="item_quantity">
-                                <p>수량:</p>
-                                <p class="quantity" th:id="${'product_count_' + item.cart_id}"
-                                    th:text="${item.product_count}"></p>
-                            </div>
-                            <p class="item_total_price" th:id="${'product_total_price_' + item.cart_id}"
-                                th:text="${#numbers.formatInteger(item.product_count * item.discountedPrice, 0, 'COMMA')} + ' 원'">
-                            </p>
+                        <div class="quantity_controls" t`h:data-item-id="${item.cart_id}">
+                            <button class="decrease_btn">-</button>
+                            <input type="text" th:value="${item.product_count}" min="1" class="quantity_input">
+                            <button class="increase_btn">+</button>
                         </div>
                     </div>
-                </div>
-                <div th:if="${items == null or items.isEmpty()}">
-                    <h1>장바구니가 비어있습니다</h1>
+                    <div class="item_summary">
+                        <div class="item_quantity">
+                            <p>수량:</p>
+                            <p class="quantity" th:id="${'product_count_' + item.cart_id}"
+                                th:text="${item.product_count}"></p>
+                        </div>
+                        <p class="item_total_price" th:id="${'product_total_price_' + item.cart_id}"
+                            th:text="${#numbers.formatInteger(item.product_count * item.discountedPrice, 0, 'COMMA')} + ' 원'">
+                        </p>
+                    </div>
                 </div>
             </div>
-
-            <div class="total_summary">
-                <h4>주문 정보</h4>
-                <div class="item_row">
-                    <p class="item_label">총 수량</p>
-                    <p class="item_value" id="total_quantity">0 개</p>
-                </div>
-                <div class="item_row">
-                    <p class="item_label">총 상품금액</p>
-                    <p class="item_value" id="total_product_amount">0 원</p>
-                </div>
-                <div class="item_row">
-                    <p class="item_label">배송비</p>
-                    <p class="item_value" id="total_shipping_fee">0 원</p>
-                </div>
-                <div class="item_row">
-                    <p class="item_label">총 주문금액</p>
-                    <p class="item_value" id="total_order_amount">0 원</p>
-                </div>
-                <button class="order_btn">주문하기</button>
+            <div th:if="${items == null or items.isEmpty()}">
+                <h1>장바구니가 비어있습니다</h1>
             </div>
         </div>
+
+        <div class="total_summary">
+            <h4>주문 정보</h4>
+            <div class="item_row">
+                <p class="item_label">총 수량</p>
+                <p class="item_value" id="total_quantity">0 개</p>
+            </div>
+            <div class="item_row">
+                <p class="item_label">총 상품금액</p>
+                <p class="item_value" id="total_product_amount">0 원</p>
+            </div>
+            <div class="item_row">
+                <p class="item_label">총 할인금액</p>
+                <p class="item_value" id="total_discount">0 원</p>
+            </div>
+            <div class="item_row">
+                <p class="item_label">배송비</p>
+                <p class="item_value" id="total_shipping_fee">0 원</p>
+            </div>
+            <div class="item_row">
+                <p class="item_label">총 주문금액</p>
+                <p class="item_value" id="total_order_amount">0 원</p>
+            </div>
+            <button class="order_btn">주문하기</button>
+        </div>
+    </div>
 
 </div>

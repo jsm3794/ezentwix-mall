@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ezentwix.teamcostco.dto.WishlistsDTO;
-import com.ezentwix.teamcostco.service.LoginService;
+import com.ezentwix.teamcostco.service.AuthService;
 import com.ezentwix.teamcostco.service.WishlistService;
 
 import java.util.List;
@@ -28,7 +28,7 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping("/api/wishlist")
 public class WishlistsController {
     private final WishlistService wishlistService;
-    private final LoginService loginService;
+    private final AuthService loginService;
 
     @PostMapping("/add")
     public ResponseEntity<Map<String, Object>> addWishlist(@RequestParam String product_code) {

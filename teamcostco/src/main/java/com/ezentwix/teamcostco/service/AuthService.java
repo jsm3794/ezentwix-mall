@@ -11,15 +11,17 @@ import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
-public class LoginService  {
+public class AuthService  {
     private final HttpSession httpSession;
     private final EmployeeRepository employeeRepository;
     private final CustomerRepository customerRepository;
     private final CustomerService customerService;
 
 
-    public void storeUserInSession(String userId) {
-        httpSession.setAttribute("userId", userId);
+    public void storeCusomterInSession(String socialId) {
+        CustomerDTO customerDTO = customerRepository.getBySocialId(socialId);
+        httpSession.setAttribute("customerId", customerDTO.getCustomer_id());
+        httpSession.setAttribute("socialId", customerDTO.getSocial_id());
         httpSession.setAttribute("isLoggedIn", true);
     }
 
@@ -32,7 +34,9 @@ public class LoginService  {
     }
 
     public void removeUserFromSession() {
-        httpSession.removeAttribute("userId");
+        httpSession.removeAttribute("customerId");
+        httpSession.removeAttribute("socialId");
+        httpSession.removeAttribute("isLoggedIn");
     }
 
     public CustomerDTO login(String id, String pw) {

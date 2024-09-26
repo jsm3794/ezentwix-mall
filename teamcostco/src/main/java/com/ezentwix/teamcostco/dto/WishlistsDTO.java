@@ -6,7 +6,7 @@ import lombok.Data;
 @Data
 public class WishlistsDTO {
     private Integer wishlist_id;
-    private String social_id; // 임시
+    private String social_id;
     private String product_code;
     private String product_name;
 

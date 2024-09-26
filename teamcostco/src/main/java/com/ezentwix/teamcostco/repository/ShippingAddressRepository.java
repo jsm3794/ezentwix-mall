@@ -14,12 +14,12 @@ import lombok.RequiredArgsConstructor;
 public class ShippingAddressRepository {
     private final SqlSessionTemplate sql;
 
-    public ShippingAddressDTO getDefaultAddressByCustomerId(String customerId){
-        return sql.selectOne("ShippingAddresses.getDefaultAddressByCustomerId", customerId);
+    public ShippingAddressDTO getDefaultAddressBySocialId(String socialId){
+        return sql.selectOne("ShippingAddresses.getDefaultAddressBySocialId", socialId);
     }
 
-    public List<ShippingAddressDTO> getByCustomerId(String customerId){
-        return sql.selectList("ShippingAddresses.getByCustomerId", customerId);
+    public List<ShippingAddressDTO> getBySocialId(String socialId){
+        return sql.selectList("ShippingAddresses.getBySocialId", socialId);
     }
     
 }

@@ -18,19 +18,19 @@ public class CartService implements PageMetadataProvider {
     private final CartRepository cartRepository;
 
     public List<CartDTO> getAll() {
-        return cartRepository.getCartsWithProducts(customerService.getUserIdFromSession());
+        return cartRepository.getCartsWithProducts(customerService.getSocialIdFromSession());
     }
 
     public boolean addToCart(CartDTO cartDTO) {
 
-        String userId = customerService.getUserIdFromSession();
+        String socialId = customerService.getSocialIdFromSession();
 
-        if (userId != null) {
+        if (socialId != null) {
             // DTO에 userId 설정 (customer_id에 매핑)
-            cartDTO.setCustomer_id(userId);
+            cartDTO.setSocial_id(socialId);
 
             // 기존 상품을 찾기
-            CartDTO existingCartItem = cartRepository.getByProductCode(cartDTO.getProduct_code(), userId);
+            CartDTO existingCartItem = cartRepository.getByProductCode(cartDTO.getProduct_code(), socialId);
 
             if (existingCartItem != null) {
                 // 수량 업데이트
@@ -47,11 +47,11 @@ public class CartService implements PageMetadataProvider {
     }
 
     public boolean updateProductCount(Long productCode, Long productCount) {
-        String userId = customerService.getUserIdFromSession();
+        String socialId = customerService.getSocialIdFromSession();
 
-        if (userId != null) {
+        if (socialId != null) {
             // 해당 사용자와 상품 코드로 장바구니 아이템 조회
-            CartDTO cartItem = cartRepository.getByProductCode(productCode, userId);
+            CartDTO cartItem = cartRepository.getByProductCode(productCode, socialId);
             if (cartItem != null) {
                 // 수량 업데이트
                 return cartRepository.updateProductCount(cartItem.getCart_id(), productCount);
@@ -65,16 +65,16 @@ public class CartService implements PageMetadataProvider {
     }
 
     public boolean updateCheckedStatus(Long productCode, String checked) {
-        String userId = customerService.getUserIdFromSession();
+        String socialId = customerService.getSocialIdFromSession();
 
-        if (userId != null) {
+        if (socialId != null) {
             // 입력된 checked 값 검증 ('Y' 또는 'N'인지 확인)
             if (!"Y".equalsIgnoreCase(checked) && !"N".equalsIgnoreCase(checked)) {
                 return false; // 유효하지 않은 값이면 실패 처리
             }
 
             // 해당 사용자와 상품 코드로 장바구니 아이템 조회
-            CartDTO cartItem = cartRepository.getByProductCode(productCode, userId);
+            CartDTO cartItem = cartRepository.getByProductCode(productCode, socialId);
 
             if (cartItem != null) {
                 // checked 상태 업데이트
@@ -90,23 +90,23 @@ public class CartService implements PageMetadataProvider {
     }
 
     public boolean deleteCartByProductCode(Long product_code){
-        String userId = customerService.getUserIdFromSession();
+        String socialId = customerService.getSocialIdFromSession();
 
-        if (userId != null) {
+        if (socialId != null) {
             cartRepository.deleteCartByProductCode(
-                Map.of("product_code", product_code, "customer_id", userId));
+                Map.of("product_code", product_code, "social_id", socialId));
         }
         return false;
     }
 
     public boolean deleteCartItem(Long cartId) {
-        String userId = customerService.getUserIdFromSession();
+        String socialId = customerService.getSocialIdFromSession();
 
-        if (userId != null) {
+        if (socialId != null) {
             // 해당 cartId와 userId로 장바구니 아이템을 조회하여 확인
             CartDTO cartItem = cartRepository.getCartItemById(cartId);
 
-            if (cartItem != null && cartItem.getCustomer_id().equals(userId)) {
+            if (cartItem != null && cartItem.getSocial_id().equals(socialId)) {
                 // 아이템 삭제
                 return cartRepository.deleteCartItem(cartId);
             }

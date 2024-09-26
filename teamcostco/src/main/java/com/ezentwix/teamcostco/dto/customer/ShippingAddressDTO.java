@@ -7,7 +7,7 @@ import lombok.Data;
 @Data
 public class ShippingAddressDTO {
     Long address_id;
-    Long customer_id;
+    String social_id;
     String recipient_name;
     String road_name_address;
     String lot_number_address;

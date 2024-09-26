@@ -33,7 +33,7 @@ public class SalesService {
 
             // Sales 객체 생성 및 초기화
             SalesDTO sales = new SalesDTO();
-            sales.setCustomer_id(customer.getCustomer_id());
+            sales.setSocial_id(customer.getSocial_id());
             sales.setPayments_type(salesRequest.getPayment_method());
             sales.setSales_status("ordered");
 
@@ -68,7 +68,7 @@ public class SalesService {
 
             // 배송 주소 정보 처리
             OrderShippingAddressDTO orderShippingAddressDTO = new OrderShippingAddressDTO();
-            orderShippingAddressDTO.setCustomer_id(customer.getCustomer_id());
+            orderShippingAddressDTO.setSocial_id(customer.getSocial_id());
             orderShippingAddressDTO.setSales_id(sales_id);
             orderShippingAddressDTO.setAddress_alias(salesRequest.getShipping_address().getAddress_alias());
             orderShippingAddressDTO.setDetail_address(salesRequest.getShipping_address().getDetail_address());

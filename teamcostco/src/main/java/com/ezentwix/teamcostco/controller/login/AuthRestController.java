@@ -1,15 +1,22 @@
 package com.ezentwix.teamcostco.controller.login;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.http.ResponseEntity;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.view.RedirectView;
+
+import com.ezentwix.teamcostco.service.AuthService;
+
 import jakarta.servlet.http.HttpSession;
+import lombok.RequiredArgsConstructor;
 
 @RestController
-public class LoginRestController {
+@RequiredArgsConstructor
+public class AuthRestController {
+    private final AuthService authService;
 
     @GetMapping("/login/check")
     public ResponseEntity<Map<String, Object>> checkLogin(HttpSession session) {
@@ -25,4 +32,11 @@ public class LoginRestController {
         
         return ResponseEntity.ok(response);
     }
+
+    @GetMapping("/logout")
+    public RedirectView logout() {
+        authService.removeUserFromSession();
+        return new RedirectView("/");
+    }
+    
 }

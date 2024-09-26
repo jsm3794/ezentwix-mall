@@ -60,6 +60,7 @@ function formatPrice(value) {
 function updateTotalSummary() {
     var totalQuantity = 0;
     var totalProductAmount = 0;
+    var totalDiscountAmount = 0; // 총 할인금액을 저장할 변수 추가
 
     $('.item_checkbox:checked').each(function () {
         var itemId = $(this).attr('id');
@@ -71,10 +72,17 @@ function updateTotalSummary() {
 
         totalQuantity += quantity;
         totalProductAmount += totalPrice;
+
+        // 원래 가격과 할인된 가격을 가져와 할인금액 계산
+        var originalPrice = parseInt($('#cart_item_' + itemId).data('item-original-price')) || 0;
+        var discountedPrice = parseInt($('#cart_item_' + itemId).data('item-price')) || 0;
+        var discountPerItem = (originalPrice - discountedPrice) * quantity;
+        totalDiscountAmount += discountPerItem;
     });
 
     $('#total_quantity').text(totalQuantity + ' 개');
     $('#total_product_amount').text(formatPrice(totalProductAmount));
+    $('#total_discount').text(formatPrice(totalDiscountAmount)); // 총 할인금액 표시
 
     var shippingFee = calculateShippingFee(totalProductAmount);
 
@@ -84,6 +92,8 @@ function updateTotalSummary() {
 
     $('#total_order_amount').text(formatPrice(totalOrderAmount));
 }
+
+
 
 // 삭제 버튼 이벤트 리스너
 $('.remove_btn').on('click', function () {

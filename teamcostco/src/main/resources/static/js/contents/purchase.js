@@ -4,7 +4,7 @@ $('.product_name').click(function (event) {
 });
 
 $('#request_msg_list').change(function (event) {
-    $('#request_msg').val(event.target.value);
+    $('#shipping_request_message').val(event.target.value);
 });
 
 $('.find_address').click(function (event) {
@@ -65,7 +65,7 @@ $('.checkout-button').click(function (event) {
         postal_code: $('#postal_code').val(),
         road_name_address: $('#road_name_address').val(),
         detail_address: $('#detail_address').val(),
-        phone_number: $('#phone_number').val(),
+        recipient_phone_number: $('#recipient_phone_number').val(),
         shipping_request_message: $('#shipping_request_message').val(),
         payment_method: $('input[name="payment-method"]:checked').val(),
 
@@ -85,7 +85,7 @@ $('.checkout-button').click(function (event) {
             postal_code: formData.postal_code,
             road_name_address: formData.road_name_address,
             detail_address: formData.detail_address,
-            phone_number: formData.phone_number,
+            recipient_phone_number: formData.recipient_phone_number,
             shipping_request_message: formData.shipping_request_message
         },
         payment_method: formData.payment_method,

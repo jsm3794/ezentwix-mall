@@ -17,21 +17,31 @@ import lombok.RequiredArgsConstructor;
 public class CustomerService implements PageMetadataProvider {
     private final CustomerRepository customerRepository;
 
-    public String getUserIdFromSession() {
+    public String getCustomerIdFromSession() {
         // 현재 세션에서 HttpServletRequest 가져오기
         ServletRequestAttributes attrs = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         HttpServletRequest request = attrs.getRequest();
 
         // 세션에서 userId 가져오기
-        String userId = (String) request.getSession().getAttribute("userId");
+        String userId = (String) request.getSession().getAttribute("customerId");
+
+        return userId;
+    }
+
+    public String getSocialIdFromSession() {
+        // 현재 세션에서 HttpServletRequest 가져오기
+        ServletRequestAttributes attrs = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
+        HttpServletRequest request = attrs.getRequest();
+
+        // 세션에서 userId 가져오기
+        String userId = (String) request.getSession().getAttribute("socialId");
 
         return userId;
     }
 
     public CustomerDTO getCustomerFromSession(){
-        String userId = getUserIdFromSession();
-
-        return customerRepository.getBySocialId(userId);
+        String socialId = getSocialIdFromSession();
+        return customerRepository.getBySocialId(socialId);
     }
 
     public CustomerDTO getBySocialId(String social_id) {

@@ -11,14 +11,14 @@
 
         INSERT INTO sales (
             sales_id, 
-            customer_id, 
+            social_id, 
             sale_date, 
             create_date, 
             payments_type, 
             sales_status
         ) VALUES (
             #{sales_id}, 
-            #{customer_id}, 
+            #{social_id}, 
             CURRENT_TIMESTAMP, 
             CURRENT_TIMESTAMP, 
             #{payments_type}, 
@@ -50,7 +50,7 @@
     <select id="selectSalesById" resultMap="SalesResultMap">
         SELECT 
             sales_id, 
-            customer_id, 
+            social_id, 
             sale_date, 
             create_date, 
             update_date,
@@ -64,7 +64,7 @@
     <select id="selectAllSales" resultMap="SalesResultMap">
         SELECT 
             sales_id, 
-            customer_id, 
+            social_id, 
             sale_date, 
             create_date, 
             update_date,
@@ -76,7 +76,7 @@
     <!-- SalesResultMap with SalesItems -->
     <resultMap id="SalesResultMap" type="sales">
         <id property="salesId" column="sales_id" />
-        <result property="customerId" column="customer_id" />
+        <result property="socialId" column="social_id" />
         <result property="saleDate" column="sale_date" />
         <result property="createDate" column="create_date" />
         <result property="updateDate" column="update_date" />

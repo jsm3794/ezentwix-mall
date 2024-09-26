@@ -5,36 +5,36 @@
 
 <mapper namespace="ShippingAddresses">
 
-    <sql id="getByCustomerId">
+    <sql id="getBySocialId">
         SELECT
-            address_id, customer_id, recipient_name, road_name_address, lot_number_address, detail_address, postal_code,
+            address_id, social_id, recipient_name, road_name_address, lot_number_address, detail_address, postal_code,
             phone_number, created_at, updated_at
         FROM
             shipping_addresses
         <where>
-            customer_id = #{customer_id}
+            social_id = #{social_id}
         </where>
     </sql>
 
-    <sql id="getDefaultAddressByCustomerId">
+    <sql id="getDefaultAddressBySocialId">
         SELECT
-            a.address_id, a.customer_id, a.recipient_name, a.road_name_address, a.lot_number_address, a.detail_address, a.postal_code,
+            a.address_id, a.social_id, a.recipient_name, a.road_name_address, a.lot_number_address, a.detail_address, a.postal_code,
             a.phone_number, a.created_at, a.updated_at
         FROM
             shipping_addresses a
         INNER JOIN
             customer c ON c.default_address_id = a.address_id
         <where>
-            a.customer_id = #{customer_id}
+            a.social_id = #{social_id}
         </where>
     </sql>
 
-    <select id="getByCustomerId" parameterType="Long" resultType="shippingaddress">
-        <include refid="getByCustomerId"/>
+    <select id="getBySocialId" parameterType="Long" resultType="shippingaddress">
+        <include refid="getBySocialId"/>
     </select>
 
-    <select id="getDefaultAddressByCustomerId" parameterType="Long" resultType="shippingaddress">
-        <include refid="getDefaultAddressByCustomerId"/>
+    <select id="getDefaultAddressBySocialId" parameterType="Long" resultType="shippingaddress">
+        <include refid="getDefaultAddressBySocialId"/>
     </select>
 
 </mapper>

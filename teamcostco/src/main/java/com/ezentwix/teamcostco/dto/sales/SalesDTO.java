@@ -8,7 +8,7 @@ import lombok.Data;
 @Data
 public class SalesDTO {
     private Long sales_id;
-    private String customer_id;
+    private String social_id;
     private LocalDateTime sale_date;
     private LocalDateTime create_date;
     private String payments_type;    // 결제 유형 (예: 신용카드, 페이팔 등)

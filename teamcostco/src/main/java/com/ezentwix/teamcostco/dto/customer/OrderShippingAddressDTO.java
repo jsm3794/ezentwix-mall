@@ -7,7 +7,7 @@ import lombok.Data;
 @Data
 public class OrderShippingAddressDTO {
     private Long address_id;
-    private String customer_id;
+    private String social_id;
     private Long sales_id;
     private String recipient_name;
     private String road_name_address;

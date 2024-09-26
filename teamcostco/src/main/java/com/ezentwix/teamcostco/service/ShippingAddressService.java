@@ -16,12 +16,12 @@ public class ShippingAddressService implements PageMetadataProvider {
     private final ShippingAddressRepository shippingAddressRepository;
     private final CustomerService customerService;
 
-    public ShippingAddressDTO getDefaultAddressByCustomerId(){
-        return shippingAddressRepository.getDefaultAddressByCustomerId(customerService.getUserIdFromSession());
+    public ShippingAddressDTO getDefaultAddressBySocialId(){
+        return shippingAddressRepository.getDefaultAddressBySocialId(customerService.getSocialIdFromSession());
     }
 
-    public List<ShippingAddressDTO> getByCustomerId(){
-        return shippingAddressRepository.getByCustomerId(customerService.getUserIdFromSession());
+    public List<ShippingAddressDTO> getBySocialId(){
+        return shippingAddressRepository.getBySocialId(customerService.getSocialIdFromSession());
     }
 
     @Override

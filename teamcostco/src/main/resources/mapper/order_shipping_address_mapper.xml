@@ -9,7 +9,7 @@
     <insert id="insertOrderShippingAddress" parameterType="ordershippingaddress">
         INSERT INTO order_shipping_addresses (
             address_id, 
-            customer_id, 
+            social_id, 
             sales_id, 
             recipient_name, 
             road_name_address, 
@@ -27,7 +27,7 @@
             updated_at
         ) VALUES (
             order_shipping_addresses_seq.nextval, 
-            #{customer_id}, 
+            #{social_id}, 
             #{sales_id}, 
             #{recipient_name}, 
             #{road_name_address}, 
@@ -56,7 +56,7 @@
     <update id="updateOrderShippingAddress" parameterType="ordershippingaddress">
         UPDATE order_shipping_addresses
         SET 
-            customer_id = #{customer_id}, 
+            social_id = #{social_id}, 
             sales_id = #{sales_id}, 
             recipient_name = #{recipient_name}, 
             road_name_address = #{road_name_address}, 

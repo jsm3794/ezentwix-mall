@@ -30,8 +30,6 @@ public class PurchasePageController {
             @RequestParam(value = "product_list", required = true) String product_list) {
         purchaseService.configureModel(model);
 
-        System.out.println(product_list);
-
         List<ProductPurchaseDTO> productList = new ArrayList<>();
 
         if (product_list == null || product_list.trim().isEmpty()) {
@@ -79,15 +77,6 @@ public class PurchasePageController {
                         - (p.getProduct().getDiscountedPrice()) * p.getCount())
                 .sum();
 
-        for (ProductPurchaseDTO item : productList) {
-            System.out.println("@@@@");
-            System.out.println(item.getProduct().getSelling_price());
-            System.out.println(item.getProduct().getDiscountedPrice());
-            System.out.println("@@@@");
-        }
-
-        System.out.println();
-
         int finalPrice = totalPrice - totalDiscount;
 
         model.addAttribute("totalPrice", totalPrice);
@@ -96,7 +85,7 @@ public class PurchasePageController {
         
         model.addAttribute("finalPrice", finalPrice);
 
-        model.addAttribute("default_shipping", shippingAddressService.getDefaultAddressByCustomerId());
+        model.addAttribute("default_shipping", shippingAddressService.getDefaultAddressBySocialId());
         model.addAttribute("user", customerService.getCustomerFromSession());
         model.addAttribute("items", productList);
         return "index";

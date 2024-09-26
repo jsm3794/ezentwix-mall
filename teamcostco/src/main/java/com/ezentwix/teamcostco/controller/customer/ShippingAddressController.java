@@ -23,8 +23,8 @@ public class ShippingAddressController {
         shippingAddressService.configureModel(model);
 
 
-        List<ShippingAddressDTO> shippingAddresses = shippingAddressService.getByCustomerId();
-        ShippingAddressDTO defaultShippingAddress = shippingAddressService.getDefaultAddressByCustomerId();
+        List<ShippingAddressDTO> shippingAddresses = shippingAddressService.getBySocialId();
+        ShippingAddressDTO defaultShippingAddress = shippingAddressService.getDefaultAddressBySocialId();
         
         // 모델에 데이터 추가
         model.addAttribute("shippingAddresses", shippingAddresses);
