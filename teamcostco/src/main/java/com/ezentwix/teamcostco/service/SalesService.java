@@ -79,6 +79,8 @@ public class SalesService {
             orderShippingAddressDTO.setRecipient_phone_number(salesRequest.getShipping_address().getRecipient_phone_number());
             orderShippingAddressDTO.setSender_name(salesRequest.getShipping_address().getSender_name());
             orderShippingAddressDTO.setSender_phone_number(salesRequest.getShipping_address().getSender_phone_number());
+            orderShippingAddressDTO.setShipping_status("pending");
+            orderShippingAddressDTO.setShipping_request_message(salesRequest.getShipping_address().getShipping_request_message());
 
             // OrderShippingAddress 테이블에 삽입
             if (!orderShippingAddressService.insertOrderShippingAddress(orderShippingAddressDTO)) {
