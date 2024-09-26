@@ -24,7 +24,7 @@
                     <img th:src="${'/api/product_thumbnail/' + item.product_code}" th:alt="${item.product_code}" />
                     <div class="item-details">
                         <h3 th:text="${item.product_name}" class="product-link">상품명</h3>
-                        <p th:text="${#numbers.formatDecimal(item.discountedPrice, 0, 'POINT', 3, 'COMMA')} + ' 원'">가격</p>
+                        <p th:text="${#numbers.formatInteger(item.discountedPrice, 0, 'COMMA')} + ' 원'">가격</p>
                     </div>
                 </div>
                 <div class="btn-group">
