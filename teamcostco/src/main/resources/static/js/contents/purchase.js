@@ -54,3 +54,54 @@ function execDaumPostcode() {
         }
     }).open();
 }
+
+$('.checkout-button').click(function (event) {
+    event.preventDefault(); // 기본 폼 제출 방지
+
+    var formData = {
+        sender_name: $('#sender_name').val(),
+        sender_phone_number: $('#sender_phone_number').val(),
+        recipient_name: $('#recipient_name').val(),
+        postal_code: $('#postal_code').val(),
+        road_name_address: $('#road_name_address').val(),
+        detail_address: $('#detail_address').val(),
+        phone_number: $('#phone_number').val(),
+        shipping_request_message: $('#shipping_request_message').val(),
+        payment_method: $('input[name="payment-method"]:checked').val(),
+
+        items: productList.map(function(item) {
+            return {
+                product_code: item.product.product_code,
+                qty: item.count
+            };
+        })
+    };
+    
+    var payload = {
+        shipping_address: {
+            sender_name: formData.sender_name,
+            sender_phone_number: formData.sender_phone_number,
+            recipient_name: formData.recipient_name,
+            postal_code: formData.postal_code,
+            road_name_address: formData.road_name_address,
+            detail_address: formData.detail_address,
+            phone_number: formData.phone_number,
+            shipping_request_message: formData.shipping_request_message
+        },
+        payment_method: formData.payment_method,
+        items: formData.items
+    };
+
+    $.ajax({
+        url: '/api/sales', // 백엔드 엔드포인트
+        type: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify(payload),
+        success: function (response) {
+            alert("주문이 성공적으로 완료되었습니다!");
+        },
+        error: function (xhr, status, error) {
+            alert("주문 처리 중 오류가 발생했습니다: " + xhr.responseText);
+        }
+    });
+});

@@ -3,6 +3,13 @@ $(document).ready(function () {
     var $tabButtons = $('.tab_button');
     var $sections = $('.tab_content');
     var $amountEl = $('#amount');
+    var $buyButton = $('.buy_button');
+
+    $buyButton.click(function (event) {
+        var product_code = $buyButton.data('productCode');
+        var amount = $amountEl.val();
+        window.location.href = '/purchase?product_list=' + encodeURIComponent(product_code + ':' + amount);
+    })
 
     function activateTabBasedOnScroll() {
         var scrollTop = $(window).scrollTop();
@@ -54,11 +61,11 @@ $(document).ready(function () {
 
     var previousValue = $amountEl.val();
 
-    $amountEl.on('focus', function() {
+    $amountEl.on('focus', function () {
         previousValue = $amountEl.val();
     });
 
-    $amountEl.on('change', function() {
+    $amountEl.on('change', function () {
         var currentValue = $amountEl.val();
         var numericValue = currentValue.replace(/[^0-9]/g, '');
 
@@ -71,10 +78,10 @@ $(document).ready(function () {
     });
 
     // 찜 목록
-     // 위시리스트 스트리밍 기능 추가
-     function streamWishlist(social_id) {
+    // 위시리스트 스트리밍 기능 추가
+    function streamWishlist(social_id) {
         const url = `/api/wishlist/stream/${social_id}`;
-        
+
         fetch(url)
             .then(response => {
                 if (!response.ok) {
@@ -109,10 +116,10 @@ $(document).ready(function () {
     // 찜 목록 관련 코드 수정
     $('.wishListBtn').click((e) => {
         $.ajax({
-            url: '/login/check',  
+            url: '/login/check',
             method: 'GET',
             dataType: 'json',
-            success: function(data) {
+            success: function (data) {
                 if (data.loggedIn) {
                     toggleWishlist(data.customerId);
                 } else {
@@ -121,7 +128,7 @@ $(document).ready(function () {
                     }
                 }
             },
-            error: function(jqXHR, textStatus, errorThrown) {
+            error: function (jqXHR, textStatus, errorThrown) {
                 console.error('로그인 상태 확인 중 오류 발생:', textStatus, errorThrown);
             }
         });
@@ -131,15 +138,15 @@ $(document).ready(function () {
         const product_code = $('#product_code').val();
         const wishListBtn = $('.wishListBtn');
         const iconElement = wishListBtn.find('.material-symbols-outlined');
-        
+
         const isInWishlist = iconElement.text().trim() === 'delete';
         const url = isInWishlist ? '/api/wishlist/delete' : '/api/wishlist/add';
-        
+
         $.ajax({
             url: url,
             method: 'POST',
             data: { product_code: product_code },
-            success: function(response) {
+            success: function (response) {
                 if (response.success) {
                     if (isInWishlist) {
                         iconElement.text('favorite');
@@ -152,10 +159,10 @@ $(document).ready(function () {
                     alert('위시리스트 업데이트에 실패했습니다: ');
                 }
             },
-            error: function(jqXHR, textStatus, errorThrown) {
+            error: function (jqXHR, textStatus, errorThrown) {
                 console.error('위시리스트 업데이트 중 오류 발생:', textStatus, errorThrown);
                 alert('위시리스트 업데이트에 실패했습니다. 다시 시도해주세요.');
-            }   
+            }
         });
     }
 
@@ -165,8 +172,8 @@ $(document).ready(function () {
         $('.total_price').text(totalPrice.toLocaleString());
     }
 
-      // 장바구니에 추가 버튼 클릭 이벤트 리스너
-      $('.cart_button').click(function () {
+    // 장바구니에 추가 버튼 클릭 이벤트 리스너
+    $('.cart_button').click(function () {
         var productCode = $('#product_code').val(); // 상품 코드를 가져옵니다.
         var productCount = $('#amount').val(); // 구매 수량을 가져옵니다.
 

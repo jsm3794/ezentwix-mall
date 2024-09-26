@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Sales">
+
+    <!-- Sales Insert -->
+    <insert id="insertSales" parameterType="sales" useGeneratedKeys="true" keyProperty="sales_id">
+        <selectKey keyProperty="sales_id" resultType="long" order="BEFORE">
+            SELECT sales_seq.nextval FROM dual
+        </selectKey>
+
+        INSERT INTO sales (
+            sales_id, 
+            customer_id, 
+            sale_date, 
+            create_date, 
+            payments_type, 
+            sales_status
+        ) VALUES (
+            #{sales_id}, 
+            #{customer_id}, 
+            CURRENT_TIMESTAMP, 
+            CURRENT_TIMESTAMP, 
+            #{payments_type}, 
+            #{sales_status}
+        )
+    </insert>
+
+
+    <!-- 소프트 딜리트: 판매 상태 업데이트 -->
+    <update id="updateSalesStatus">
+        UPDATE sales
+        SET 
+            sales_status = #{sales_status},
+            update_date = CURRENT_TIMESTAMP
+        WHERE sales_id = #{sales_id}
+    </update>
+
+    <!-- Sales Delete (실제 삭제 대신 소프트 딜리트) -->
+    <!-- 기존 deleteSales 메소드를 소프트 딜리트로 대체 -->
+    <update id="deleteSales">
+        UPDATE sales
+        SET 
+            sales_status = 'CANCELED',
+            update_date = CURRENT_TIMESTAMP
+        WHERE sales_id = #{sales_id}
+    </update>
+
+    <!-- Sales Select by ID -->
+    <select id="selectSalesById" resultMap="SalesResultMap">
+        SELECT 
+            sales_id, 
+            customer_id, 
+            sale_date, 
+            create_date, 
+            update_date,
+            payments_type, 
+            sales_status
+        FROM sales 
+        WHERE sales_id = #{salesId}
+    </select>
+
+    <!-- Sales Select All -->
+    <select id="selectAllSales" resultMap="SalesResultMap">
+        SELECT 
+            sales_id, 
+            customer_id, 
+            sale_date, 
+            create_date, 
+            update_date,
+            payments_type, 
+            sales_status
+        FROM sales
+    </select>
+
+    <!-- SalesResultMap with SalesItems -->
+    <resultMap id="SalesResultMap" type="sales">
+        <id property="salesId" column="sales_id" />
+        <result property="customerId" column="customer_id" />
+        <result property="saleDate" column="sale_date" />
+        <result property="createDate" column="create_date" />
+        <result property="updateDate" column="update_date" />
+        <result property="paymentsType" column="payments_type" />
+        <result property="salesStatus" column="sales_status" />
+        <collection property="salesItems" ofType="salesItems" select="selectSalesItemsBySalesId" column="sales_id"/>
+    </resultMap>
+
+    <!-- SalesItem Insert -->
+    <insert id="insertSalesItem" parameterType="salesItems" useGeneratedKeys="true" keyProperty="sales_item_id">
+        <selectKey keyProperty="sales_item_id" resultType="long" order="BEFORE">
+            SELECT sales_items_seq.nextval FROM dual
+        </selectKey>
+
+        INSERT INTO sales_items (
+            sales_item_id, 
+            sales_id, 
+            product_code, 
+            qty, 
+            unit_price, 
+            total_price
+        ) VALUES (
+            #{sales_item_id}, 
+            #{sales_id}, 
+            #{product_code}, 
+            #{qty}, 
+            #{unit_price}, 
+            #{total_price}
+        )
+    </insert>
+
+    <!-- SalesItem Select by ID -->
+    <select id="selectSalesItemById" resultType="salesItems">
+        SELECT 
+            sales_item_id, 
+            sales_id, 
+            product_code, 
+            qty, 
+            unit_price, 
+            total_price
+        FROM sales_items 
+        WHERE sales_item_id = #{sales_item_id}
+    </select>
+
+    <!-- SalesItem Select by Sales ID -->
+    <select id="selectSalesItemsBySalesId" resultType="salesItems">
+        SELECT 
+            sales_item_id, 
+            sales_id, 
+            product_code, 
+            qty, 
+            unit_price, 
+            total_price
+        FROM sales_items 
+        WHERE sales_id = #{sales_id}
+    </select>
+
+    <!-- SalesItem Select All -->
+    <select id="selectAllSalesItems" resultType="salesItems">
+        SELECT 
+            sales_item_id, 
+            sales_id, 
+            product_code, 
+            qty, 
+            unit_price, 
+            total_price
+        FROM sales_items
+    </select>
+
+</mapper>

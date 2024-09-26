@@ -61,7 +61,7 @@ function updateTotalSummary() {
     var totalQuantity = 0;
     var totalProductAmount = 0;
 
-    $('.item_checkbox:checked').each(function() {
+    $('.item_checkbox:checked').each(function () {
         var itemId = $(this).attr('id');
 
         var quantity = parseInt($('#product_count_' + itemId).text()) || 0;
@@ -86,25 +86,24 @@ function updateTotalSummary() {
 }
 
 // 삭제 버튼 이벤트 리스너
-$('.remove_btn').on('click', function() {
+$('.remove_btn').on('click', function () {
     var cartId = $(this).data('cart-id');
 
-    if (confirm('해당 상품을 장바구니에서 삭제하시겠습니까?')) {
-        // 서버로 AJAX 요청 보내기
-        $.ajax({
-            url: '/api/cart/delete/' + cartId,
-            type: 'DELETE',
-            success: function(response) {
-                console.log('삭제 성공:', response);
-                // 아이템을 화면에서 제거
-                $('#cart_item_' + cartId).remove();
-                updateTotalSummary();
-            },
-            error: function(xhr, status, error) {
-                console.error('삭제 실패:', error);
-            }
-        });
-    }
+    // 서버로 AJAX 요청 보내기
+    $.ajax({
+        url: '/api/cart/delete/' + cartId,
+        type: 'DELETE',
+        success: function (response) {
+            console.log('삭제 성공:', response);
+            // 아이템을 화면에서 제거
+            $('#cart_item_' + cartId).remove();
+            updateTotalSummary();
+        },
+        error: function (xhr, status, error) {
+            console.error('삭제 실패:', error);
+        }
+    });
+
 });
 
 
@@ -120,7 +119,7 @@ function calculateShippingFee(totalProductAmount) {
 }
 
 // 체크박스 변경 이벤트 리스너
-$('.item_checkbox').on('change', function() {
+$('.item_checkbox').on('change', function () {
     var productCode = $(this).data('product-code');
     var checked = $(this).is(':checked') ? 'Y' : 'N';
 
@@ -135,10 +134,10 @@ function updateProductCountOnServer(productCode, productCount) {
     $.ajax({
         url: '/api/cart/quantity/' + productCode + '/' + productCount,
         type: 'GET',
-        success: function(response) {
+        success: function (response) {
             console.log('수량 업데이트 성공:', response);
         },
-        error: function(xhr, status, error) {
+        error: function (xhr, status, error) {
             console.error('수량 업데이트 실패:', error);
         }
     });
@@ -149,40 +148,40 @@ function updateCheckedStatusOnServer(productCode, checked) {
     $.ajax({
         url: '/api/cart/checked/' + productCode + '/' + checked,
         type: 'GET',
-        success: function(response) {
+        success: function (response) {
             console.log('체크 상태 업데이트 성공:', response);
         },
-        error: function(xhr, status, error) {
+        error: function (xhr, status, error) {
             console.error('체크 상태 업데이트 실패:', error);
         }
     });
 }
 
 // 페이지 로드 시 총합 초기화
-$(document).ready(function() {
+$(document).ready(function () {
     updateTotalSummary();
 });
 
 
-$('.item_value.link').click(function(event){
+$('.item_value.link').click(function (event) {
     let product_code = event.target.innerText;
     window.open('/product/product_detail?product_code=' + product_code);
 });
 
-$('.order_btn').click(function(event){
+$('.order_btn').click(function (event) {
     event.preventDefault(); // 기본 동작 방지 (필요 시)
-    
+
     var productList = [];
 
-    $('.item_checkbox:checked').each(function() {
+    $('.item_checkbox:checked').each(function () {
         var productCode = $(this).data('product-code');
         var itemId = $(this).attr('id'); // Assuming the checkbox ID corresponds to itemId
         var quantity = parseInt($('#product_count_' + itemId).text()) || 1;
-        
+
         productList.push(productCode + ':' + quantity);
     });
 
-    if(productList.length === 0){
+    if (productList.length === 0) {
         alert('주문할 상품을 선택해주세요.');
         return;
     }

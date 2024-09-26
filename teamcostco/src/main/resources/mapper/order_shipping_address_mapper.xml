@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="OrderShippingAddress">
+
+    <!-- Insert Order Shipping Address -->
+    <insert id="insertOrderShippingAddress" parameterType="ordershippingaddress">
+        INSERT INTO order_shipping_addresses (
+            address_id, 
+            customer_id, 
+            sales_id, 
+            recipient_name, 
+            road_name_address, 
+            lot_number_address, 
+            detail_address, 
+            postal_code, 
+            address_alias, 
+            recipient_phone_number, 
+            sender_name, 
+            sender_phone_number, 
+            invoice_number, 
+            shipping_status, 
+            shipping_request_message, 
+            created_at, 
+            updated_at
+        ) VALUES (
+            order_shipping_addresses_seq.nextval, 
+            #{customer_id}, 
+            #{sales_id}, 
+            #{recipient_name}, 
+            #{road_name_address}, 
+            #{lot_number_address}, 
+            #{detail_address}, 
+            #{postal_code}, 
+            #{address_alias}, 
+            #{recipient_phone_number}, 
+            #{sender_name}, 
+            #{sender_phone_number}, 
+            #{invoice_number}, 
+            #{shipping_status}, 
+            #{shipping_request_message}, 
+            CURRENT_TIMESTAMP, 
+            CURRENT_TIMESTAMP
+        )
+    </insert>
+
+    <!-- Select Order Shipping Address by ID -->
+    <select id="selectOrderShippingAddressById" parameterType="long" resultType="ordershippingaddress">
+        SELECT * FROM order_shipping_addresses
+        WHERE address_id = #{address_id}
+    </select>
+
+    <!-- Update Order Shipping Address -->
+    <update id="updateOrderShippingAddress" parameterType="ordershippingaddress">
+        UPDATE order_shipping_addresses
+        SET 
+            customer_id = #{customer_id}, 
+            sales_id = #{sales_id}, 
+            recipient_name = #{recipient_name}, 
+            road_name_address = #{road_name_address}, 
+            lot_number_address = #{lot_number_address}, 
+            detail_address = #{detail_address}, 
+            postal_code = #{postal_code}, 
+            address_alias = #{address_alias}, 
+            recipient_phone_number = #{recipient_phone_number}, 
+            sender_name = #{sender_name}, 
+            sender_phone_number = #{sender_phone_number}, 
+            invoice_number = #{invoice_number}, 
+            shipping_status = #{shipping_status}, 
+            shipping_request_message = #{shipping_request_message}, 
+            updated_at = CURRENT_TIMESTAMP
+        WHERE address_id = #{address_id}
+    </update>
+
+    <!-- Delete Order Shipping Address -->
+    <delete id="deleteOrderShippingAddress" parameterType="long">
+        DELETE FROM order_shipping_addresses
+        WHERE address_id = #{address_id}
+    </delete>
+
+</mapper>
