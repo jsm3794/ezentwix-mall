@@ -1,0 +1,25 @@
+<div class="main_wrap">
+
+    <h3 class="content_title" th:text="${pageTitle}"></h3>
+
+    <div th:replace="~{common/sidebar}"></div>
+
+    <div class="content_section">
+        <div class="faq_search_box">
+            <input type="text" placeholder="무엇을 도와드릴까요?">
+        </div>
+        <div class="faq_nav">
+            <a class="active">전체</a>
+            <a>배송</a>
+            <a>서비스</a>
+            <a>회원정보</a>
+        </div>
+        <div class="faq_list">
+            <li>[배송] 주문이 이상해요</li>
+            <li>[회원정보] 멤버쉽 해지는 어떻게 하나요?</li>
+            <li>[서비스] 전화 연결이 안되요</li>
+            <li>[배송] 배송 조회는 어떻게 하나요?</li>
+            <li>[회원정보] 회원 탈퇴는 어떻게 하나요?</li>
+        </div>
+    </div>
+</div>
