@@ -23,7 +23,7 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping("/api/wishlist")
 public class WishlistsController {
     private final WishlistService wishlistService;
-    private final AuthService loginService;
+    private final AuthService authService;
 
     @PostMapping("/add")
     public ResponseEntity<Map<String, Object>> addWishlist(@RequestParam Long product_code) {
@@ -32,7 +32,7 @@ public class WishlistsController {
         try {
             WishlistsDTO wishlistsDTO = new WishlistsDTO();
             wishlistsDTO.setProduct_code(product_code);
-            wishlistsDTO.setSocial_id(loginService.getUserIdFromSession());
+            wishlistsDTO.setSocial_id(authService.getSocialIdFromSession());
             result = wishlistService.addWishlist(wishlistsDTO);
             response.put("success", result);
             response.put("message", "위시리스트 성공적으로 추가되었습니다.");
@@ -51,7 +51,7 @@ public class WishlistsController {
         try {
             WishlistsDTO wishlistsDTO = new WishlistsDTO();
             wishlistsDTO.setProduct_code(product_code);
-            wishlistsDTO.setSocial_id(loginService.getUserIdFromSession());
+            wishlistsDTO.setSocial_id(authService.getSocialIdFromSession());
             result = wishlistService.deleteWishlist(wishlistsDTO);
             response.put("success", result);
             response.put("message", "위시리스트에서 성공적으로 삭제되었습니다.");

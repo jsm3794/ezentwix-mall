@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.view.RedirectView;
 
 import com.ezentwix.teamcostco.service.AuthService;
+import com.ezentwix.teamcostco.service.CustomerService;
 
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -17,15 +18,16 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class AuthRestController {
     private final AuthService authService;
+    private final CustomerService customerService;
 
     @GetMapping("/login/check")
     public ResponseEntity<Map<String, Object>> checkLogin(HttpSession session) {
         Map<String, Object> response = new HashMap<>();
-        String userId = (String) session.getAttribute("userId");
-        
-        if (userId != null) {
+       
+        String social_id = customerService.getSocialIdFromSession();
+        if (social_id != null) {
             response.put("loggedIn", true);
-            response.put("customerId", userId); // 실제 구현에서는 고객 ID를 적절히 가져와야 합니다.
+            response.put("social_id", social_id);
         } else {
             response.put("loggedIn", false);
         }

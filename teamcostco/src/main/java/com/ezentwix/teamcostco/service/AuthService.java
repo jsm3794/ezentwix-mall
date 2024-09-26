@@ -22,20 +22,22 @@ public class AuthService  {
         httpSession.setAttribute("customerId", customerDTO.getCustomer_id());
         httpSession.setAttribute("socialId", customerDTO.getSocial_id());
         httpSession.setAttribute("isLoggedIn", true);
+        httpSession.setAttribute("nickname", customerDTO.getNickname());
     }
 
-    public String getUserIdFromSession() {
-        return (String)httpSession.getAttribute("userId");
+    public String getSocialIdFromSession() {
+        return (String)httpSession.getAttribute("socialId");
     }
 
-    public String getUserNickNameFromSession() {
-        return (String)httpSession.getAttribute("user.nickname");
+    public String getNickNameFromSession() {
+        return (String)httpSession.getAttribute("nickname");
     }
 
     public void removeUserFromSession() {
         httpSession.removeAttribute("customerId");
         httpSession.removeAttribute("socialId");
         httpSession.removeAttribute("isLoggedIn");
+        httpSession.removeAttribute("nickname");
     }
 
     public CustomerDTO login(String id, String pw) {

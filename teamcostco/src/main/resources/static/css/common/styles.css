@@ -74,8 +74,7 @@ tbody {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    width: 100%;
-    max-width: 1200px;
+    width: 1200px;
     margin: auto;
     margin-bottom: 40px;
 }
@@ -96,6 +95,7 @@ tbody {
 
 main {
     background-color: rgb(250, 250, 255);
+    min-width: 1200px;
 }
 
 .page-title {

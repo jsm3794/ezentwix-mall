@@ -12,17 +12,18 @@
             </div>
         </div>
         <div class="header-right">
-            <div class="icon-box">
-                <span id="favorite" class="material-symbols-outlined-fill" th:data-is-logged-in="${session.isLoggedIn ?: 'false'}">
+            <div class="icon-box" th:data-is-logged-in="${session.isLoggedIn ?: 'false'}">
+                <span id="favorite" class="material-symbols-outlined-fill">
                     favorite
                 </span>
-                <span id="person" class="material-symbols-outlined-fill" th:data-is-logged-in="${session.isLoggedIn ?: 'false'}">
+                <span id="person" class="material-symbols-outlined-fill">
                     person
                 </span>
-                <span id="cart" class="material-symbols-outlined-fill" th:data-is-logged-in="${session.isLoggedIn ?: 'false'}">
+                <span id="cart" class="material-symbols-outlined-fill">
                     shopping_cart
                 </span>
             </div>
+
         </div>
     </div>
 </header>

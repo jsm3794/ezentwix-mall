@@ -19,7 +19,12 @@ public class WishlistService implements PageMetadataProvider {
 
     public boolean isWishProduct(Long product_code) {
         String socialId = customerService.getSocialIdFromSession();
+        if (socialId == null) {
+            return false;
+        }
+
         Map<String, Object> data = Map.of("product_code", product_code, "social_id", socialId);
+
         return wishlistsRepository.isWishProduct(data);
     }
 

@@ -1,27 +1,26 @@
-$('#person').click(function (event) {
-    if ($(this).attr('data-is-logged-in') == 'true') {
-        window.location.href = '/customer';
+function checkLoginAndNavigate(element, loggedInUrl) { 
+
+    console.log($(element).closest('.icon-box').data('is-logged-in'));
+    var isLoggedIn = $(element).closest('.icon-box').data('is-logged-in') == true; 
+    if (isLoggedIn) {
+        window.location.href = loggedInUrl;
     } else {
         window.open('/login', '팀코스트코몰 - 로그인', 'width=600,height=600');
     }
+}
+
+$('#person').click(function (event) {
+    checkLoginAndNavigate(this, '/customer');
 });
 
 $('#favorite').click(function (event) {
-    if ($(this).attr('data-is-logged-in') == 'true') {
-        window.location.href = '/customer/wishlist';
-    } else {
-        window.open('/login', '팀코스트코몰 - 로그인', 'width=600,height=600');
-    }
+    checkLoginAndNavigate(this, '/customer/wishlist');
 });
 
 $('#cart').click(function (event) {
-    if ($(this).attr('data-is-logged-in') == 'true') {
-        window.location.href = '/customer/cart';
-    } else {
-        window.open('/login', '팀코스트코몰 - 로그인', 'width=600,height=600');
-    }
+    checkLoginAndNavigate(this, '/customer/cart');
 });
 
-$('.header-left>h1').click(function (event){
+$('.header-left > h1').click(function (event){
     window.location.href = '/';
 });

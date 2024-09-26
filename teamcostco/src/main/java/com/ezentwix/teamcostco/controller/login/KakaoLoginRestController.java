@@ -26,6 +26,7 @@ public class KakaoLoginRestController {
     @GetMapping("/login/oauth")
     public RedirectView getKakaoTokenResponse(@RequestParam String code) {
         try {
+
             // 카카오 토큰 요청
             KakaoTokenResponseDTO kakaoTokenResponseDTO = kakaoAuthService.requestToken(code);
             // 카카오 사용자 정보 요청

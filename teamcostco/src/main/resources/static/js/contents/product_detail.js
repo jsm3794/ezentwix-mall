@@ -8,11 +8,6 @@ $(document).ready(function () {
     const mainImage = document.querySelector('.main_image');
     const img = mainImage.querySelector('img');
 
-    $buyButton.click(function (event) {
-        var product_code = $buyButton.data('productCode');
-        var amount = $amountEl.val();
-        window.location.href = '/purchase?product_list=' + encodeURIComponent(product_code + ':' + amount);
-    })
 
     function activateTabBasedOnScroll() {
         var scrollTop = $(window).scrollTop();
@@ -42,6 +37,7 @@ $(document).ready(function () {
             scrollTop: $section.offset().top - 30
         }, 300);
     });
+
 
     // Scroll to top button
     $('.go_top').click(function () {
@@ -117,25 +113,24 @@ $(document).ready(function () {
     }
 
     // 찜 목록 관련 코드 수정
-    $('.wishListBtn').click((e) => {
-        $.ajax({
-            url: '/login/check',
-            method: 'GET',
-            dataType: 'json',
-            success: function (data) {
-                if (data.loggedIn) {
-                    toggleWishlist(data.customerId);
-                } else {
-                    if (confirm('로그인이 필요한 서비스입니다. 로그인 하시겠습니까?')) {
-                        window.open('/login', '팀코스트코몰 - 로그인', 'width=600,height=600');
-                    }
-                }
-            },
-            error: function (jqXHR, textStatus, errorThrown) {
-                console.error('로그인 상태 확인 중 오류 발생:', textStatus, errorThrown);
-            }
+    $('.wishListBtn').click(function (e) {
+        checkLoginAndExecute(function (data) {
+            toggleWishlist(data.customerId);
         });
     });
+
+
+    $buyButton.click(function (event) {
+        event.preventDefault(); // 기본 동작 방지
+
+        checkLoginAndExecute(function (data) {
+            var product_code = $buyButton.data('productCode');
+            var amount = $amountEl.val();
+            window.location.href = '/purchase?product_list=' + encodeURIComponent(product_code + ':' + amount);
+        });
+    });
+
+
 
     function toggleWishlist(social_id) {
         const product_code = $('#product_code').val();
@@ -187,29 +182,30 @@ $(document).ready(function () {
 
     // 장바구니에 추가 버튼 클릭 이벤트 리스너
     $('.cart_button').click(function () {
-        var productCode = $('#product_code').val(); // 상품 코드를 가져옵니다.
-        var productCount = $('#amount').val(); // 구매 수량을 가져옵니다.
+        var productCode = $('#product_code').val();
+        var productCount = $('#amount').val();
+        var $thisButton = $(this);
 
-        var $thisButton = $(this); // 현재 클릭된 버튼을 참조
-
-        // 서버로 AJAX 요청 보내기
-        $.ajax({
-            url: '/api/cart/add',
-            type: 'POST',
-            contentType: 'application/json',
-            data: JSON.stringify({
-                product_code: productCode,
-                product_count: productCount
-            }),
-            success: function (response) {
-                console.log('장바구니에 상품이 추가되었습니다:', response);
-                // 모달 창 표시
-                showCartModal($thisButton);
-            },
-            error: function (xhr, status, error) {
-                console.error('장바구니 추가 실패:', error);
-                alert('장바구니 추가에 실패했습니다. 다시 시도해주세요.');
-            }
+        checkLoginAndExecute(function (data) {
+            // 서버로 AJAX 요청 보내기
+            $.ajax({
+                url: '/api/cart/add',
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify({
+                    product_code: productCode,
+                    product_count: productCount
+                }),
+                success: function (response) {
+                    console.log('장바구니에 상품이 추가되었습니다:', response);
+                    // 모달 창 표시
+                    showCartModal($thisButton);
+                },
+                error: function (xhr, status, error) {
+                    console.error('장바구니 추가 실패:', error);
+                    alert('장바구니 추가에 실패했습니다. 다시 시도해주세요.');
+                }
+            });
         });
     });
 
@@ -224,10 +220,10 @@ $(document).ready(function () {
         window.location.href = '/customer/cart';
     });
 
-// 모달 창 표시 함수 수정
-function showCartModal($button) {
-    // 모달 창 HTML 생성
-    var modalHtml = `
+    // 모달 창 표시 함수 수정
+    function showCartModal($button) {
+        // 모달 창 HTML 생성
+        var modalHtml = `
         <div id="cart_modal" class="cart_modal">
             <div class="modal_content">
                 <p>상품이 장바구니에 추가되었습니다.</p>
@@ -237,52 +233,52 @@ function showCartModal($button) {
         </div>
     `;
 
-    // 모달 창을 body에 추가
-    $('body').append(modalHtml);
+        // 모달 창을 body에 추가
+        $('body').append(modalHtml);
 
-    // 모달 창 요소 선택
-    var $modal = $('#cart_modal');
-    var $modalContent = $modal.find('.modal_content');
+        // 모달 창 요소 선택
+        var $modal = $('#cart_modal');
+        var $modalContent = $modal.find('.modal_content');
 
-    // 모달 창 스타일 설정
-    $modal.css({
-        'position': 'fixed',
-        'top': 0,
-        'left': 0,
-        'width': '100%',
-        'height': '100%',
-        'background': 'rgba(0, 0, 0, 0.5)', // 반투명 검은색 배경
-        'z-index': 1000,
-        'display': 'flex',
-        'justify-content': 'center',
-        'align-items': 'center'
-    });
+        // 모달 창 스타일 설정
+        $modal.css({
+            'position': 'fixed',
+            'top': 0,
+            'left': 0,
+            'width': '100%',
+            'height': '100%',
+            'background': 'rgba(0, 0, 0, 0.5)', // 반투명 검은색 배경
+            'z-index': 1000,
+            'display': 'flex',
+            'justify-content': 'center',
+            'align-items': 'center'
+        });
 
-    $modalContent.css({
-        'background-color': '#fff',
-        'padding': '20px',
-        'border-radius': '8px',
-        'text-align': 'center',
-        'position': 'relative'
-    });
+        $modalContent.css({
+            'background-color': '#fff',
+            'padding': '20px',
+            'border-radius': '8px',
+            'text-align': 'center',
+            'position': 'relative'
+        });
 
-    // 모달 창 외부를 클릭하면 모달 창 닫기
-    $modal.on('click', function(e) {
-        if ($(e.target).is('#cart_modal')) {
+        // 모달 창 외부를 클릭하면 모달 창 닫기
+        $modal.on('click', function (e) {
+            if ($(e.target).is('#cart_modal')) {
+                $modal.remove();
+            }
+        });
+
+        // "쇼핑 계속하기" 버튼 클릭 시 모달 창 닫기
+        $('#continue_shopping').on('click', function () {
             $modal.remove();
-        }
-    });
+        });
 
-    // "쇼핑 계속하기" 버튼 클릭 시 모달 창 닫기
-    $('#continue_shopping').on('click', function() {
-        $modal.remove();
-    });
-
-    // "장바구니로 이동" 버튼 클릭 시 장바구니 페이지로 이동
-    $('#go_to_cart').on('click', function() {
-        window.location.href = '/cart'; // 장바구니 페이지의 URL로 변경하세요.
-    });
-}
+        // "장바구니로 이동" 버튼 클릭 시 장바구니 페이지로 이동
+        $('#go_to_cart').on('click', function () {
+            window.location.href = '/cart'; // 장바구니 페이지의 URL로 변경하세요.
+        });
+    }
 
 
     mainImage.addEventListener('mousemove', function (e) {
@@ -301,9 +297,9 @@ function showCartModal($button) {
         img.style.transform = 'scale(1.5)';
     });
 
-    mainImage.addEventListener('mouseleave', function() {
+    mainImage.addEventListener('mouseleave', function () {
         img.style.transform = 'scale(1)';
     });
-    
+
 
 });

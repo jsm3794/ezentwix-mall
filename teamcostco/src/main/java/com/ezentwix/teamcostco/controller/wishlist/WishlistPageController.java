@@ -20,7 +20,7 @@ public class WishlistPageController {
     @GetMapping("/customer/wishlist")
     public String wishlistpage(Model model) {
         wishlistService.configureModel(model);
-        List<WishlistsDTO> items = wishlistService.getWiList(loginService.getUserIdFromSession());
+        List<WishlistsDTO> items = wishlistService.getWiList(loginService.getSocialIdFromSession());
         model.addAttribute("wishlist", items);
         return "index";
     }

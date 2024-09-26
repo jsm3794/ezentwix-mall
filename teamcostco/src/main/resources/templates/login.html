@@ -48,7 +48,7 @@
 
             // 자식 팝업 열기
             const kakaoPopup = window.open(
-                'https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=d9a272ca39a1df6f8279e3d899764d6e&redirect_uri=http://localhost:9999/login/oauth',
+                'https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=d9a272ca39a1df6f8279e3d899764d6e&redirect_uri=http://222.111.18.182:9999/login/oauth',
                 '카카오 로그인',
                 `width=${width},height=${height},top=${top},left=${left}`
             );
@@ -63,7 +63,7 @@
                         method: 'GET',
                         success: function (response) {
                             if (response) {
-                                window.opener.location.href = '/';
+                                window.opener.location.reload();
                                 window.close();
                             } else {
                                 alert('로그인 실패. 다시 시도해 주세요.');
