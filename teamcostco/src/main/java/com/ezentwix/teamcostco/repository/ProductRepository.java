@@ -41,13 +41,10 @@ public class ProductRepository {
     }
 
     public List<ProductBrandGroupDTO> getBrandGroup(String product_name) {
-        if (!product_name.trim().isEmpty()) {
-            return sql.selectList("Products.getBrandGroupByProductName", product_name);
-        }
-        return null;
+        return sql.selectList("Products.getBrandGroupByProductName", product_name);
     }
 
-    public ProductDTO getByProductCode(Long productCode){
+    public ProductDTO getByProductCode(Long productCode) {
         return sql.selectOne("Products.getByProductCode", productCode);
     }
 }
