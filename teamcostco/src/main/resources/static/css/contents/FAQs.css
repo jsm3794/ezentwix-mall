@@ -27,14 +27,19 @@
     display: flex;
 }
 
-.faq_nav > button {
-    margin: 20px;
-    padding: 10px 20px;
+.faq_nav > a {
+    padding: 30px 30px;
     border: none;
     font-weight: bold;
+    cursor: pointer;
+    border-bottom: 2px solid #eaeaff;
+}
+
+.faq_nav > a.active {
+    border-bottom: 3px solid black;
 }
 
 .faq_list > li {
     padding: 20px;
-    border-bottom: 1px solid #eef;
+    border-bottom: 1px solid #eaeaff;
 }

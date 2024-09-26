@@ -26,4 +26,9 @@ public class FAQsService implements PageMetadataProvider {
         return List.of("/css/contents/FAQs.css");
     }
 
+    @Override
+    public List<String> getJsFiles() {
+        return List.of("/js/contents/FAQs.js");
+    }
+
 }
