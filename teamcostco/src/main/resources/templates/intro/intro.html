@@ -27,10 +27,19 @@
     </div>
 
     <!--인기 상품-->
-
-    <div class="view-all">
-        <a href="#" class="view-all-button">카탈로그 보기</a>
+    <h3>추천 상품</h3>
+    <div class="recommend-products-mapper">
+        <div class="carousel-wrapper">
+            <div class="product-carousel">
+                <div th:each="product : ${recommend_products}" class="product-item">
+                    <img th:src="@{|/api/placeholder/200/200|}" alt="제품 이미지">
+                    <h4 th:text="${product.product_name}"></h4>
+                    <p th:text="'￦' + ${product.selling_price}"></p>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-button prev">&lt;</button>
+        <button class="carousel-button next">&gt;</button>
     </div>
-
 
 </div>
