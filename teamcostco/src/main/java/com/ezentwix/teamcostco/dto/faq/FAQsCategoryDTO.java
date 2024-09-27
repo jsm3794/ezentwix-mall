@@ -5,5 +5,5 @@ import lombok.Data;
 @Data
 public class FAQsCategoryDTO {
     private Long id;
-    private String question;
+    private String name;
 }

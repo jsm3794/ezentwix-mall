@@ -9,17 +9,17 @@
             <input type="text" placeholder="무엇을 도와드릴까요?">
         </div>
         <div class="faq_nav">
-            <a class="active">전체</a>
-            <a>배송</a>
-            <a>서비스</a>
-            <a>회원정보</a>
-        </div>
-        <div class="faq_list">
-            <li>[배송] 주문이 이상해요</li>
-            <li>[회원정보] 멤버쉽 해지는 어떻게 하나요?</li>
-            <li>[서비스] 전화 연결이 안되요</li>
-            <li>[배송] 배송 조회는 어떻게 하나요?</li>
-            <li>[회원정보] 회원 탈퇴는 어떻게 하나요?</li>
+            <div class="faq_nav">
+                <div class="faq_category" th:each="category : ${categories}">
+                    <a th:text="${category.name}" 
+                       th:class="${category.id == selectedCategoryId} ? 'active' : ''"
+                       th:href="@{/customer/FAQs(categoryId=${category.id})}">
+                    </a>
+                </div>
+            </div>
+            <div class="faq_list" th:each="faq : ${faqList}">
+                <li th:text="${faq.question}"></li>
+            </div>
         </div>
     </div>
 </div>
