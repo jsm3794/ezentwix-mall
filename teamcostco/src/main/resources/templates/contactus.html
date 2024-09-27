@@ -17,13 +17,17 @@
             <h3>질문이 있으신가요?</h3>
             <li>궁금한 사항을 찾아보세요</li>
             <li>여기에서 배송, 서비스, 회원정보에 대한 FAQ를 찾을 수 있습니다</li>
+            <li>찾으시는 정보가 없다면 
+                <a href="" style="font-weight: bold;">문의</a>
+                를 클릭하세요
+            </li>
             <p>* 제품정보는 페이지 상단의 검색 창을 사용하세요</p>
             <div class="faq_list">
-                <div th:each="faq : ${faqList}" class="faq_item">
+                <div th:each="faq : ${faqList}" class="faq_item" onclick="">
                     <h3 th:text="${faq.question}" class="faq_question">질문 제목</h3>
                     <p th:utext="${faq.answer}" class="faq_answer">답변 내용</p>
                 </div>
-        </div>
+            </div>
         </div>
     </div>
 </div>
