@@ -17,7 +17,7 @@ $(document).ready(function() {
     $('.delete_btn').on('click', function(e) {
         e.stopPropagation();
         const product_code = $(this).closest('.wishlist-item').find('.product_code').val();
-        deleteWishlistItem(product_code);
+        deleteWishlistItems([product_code]);
     });
 
     // 장바구니에 추가 버튼 클릭 이벤트
@@ -42,9 +42,10 @@ $(document).ready(function() {
             return;
         }
         if (confirm('선택한 항목을 위시리스트에서 삭제하시겠습니까?')) {
-            selectedItems.each(function() {
-                deleteWishlistItem($(this).val());
-            });
+            const productCodes = selectedItems.map(function() {
+                return $(this).val();
+            }).get();
+            deleteWishlistItems(productCodes);
         }
     });
 
@@ -61,24 +62,35 @@ $(document).ready(function() {
     });
 
     // 위시리스트 아이템 삭제 함수
-    function deleteWishlistItem(product_code) {
-        $.ajax({
-            url: '/api/wishlist/delete',
-            type: 'POST',
-            data: { product_code: product_code },
-            success: function(response) {
-                console.log('삭제 성공:', response);
-                if (response.success) {
-                    $('#delete_' + product_code).closest('.wishlist-item').remove();
-                    alert(response.message);
-                } else {
-                    alert('위시리스트 삭제에 실패했습니다.');
+    function deleteWishlistItems(productCodes) {
+        let successCount = 0;
+        let totalCount = productCodes.length;
+
+        productCodes.forEach(function(product_code) {
+            $.ajax({
+                url: '/api/wishlist/delete',
+                type: 'POST',
+                data: { product_code: product_code },
+                success: function(response) {
+                    console.log('삭제 성공:', response);
+                    if (response.success) {
+                        $('#delete_' + product_code).closest('.wishlist-item').remove();
+                        successCount++;
+                        if (successCount === totalCount) {
+                            alert(successCount + '개의 상품이 위시리스트에서 삭제되었습니다.');
+                        }
+                    } else {
+                        console.error('위시리스트 삭제 실패:', response);
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error('삭제 실패:', error);
+                    totalCount--;
+                    if (successCount === totalCount && successCount > 0) {
+                        alert(successCount + '개의 상품이 위시리스트에서 삭제되었습니다.');
+                    }
                 }
-            },
-            error: function(xhr, status, error) {
-                console.error('삭제 실패:', error);
-                alert('삭제 중 오류가 발생했습니다. 다시 시도해주세요.');
-            }
+            });
         });
     }
 

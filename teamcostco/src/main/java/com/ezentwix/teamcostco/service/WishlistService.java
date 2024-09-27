@@ -1,6 +1,7 @@
 package com.ezentwix.teamcostco.service;
 
 import java.io.Writer;
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -18,6 +19,7 @@ import lombok.RequiredArgsConstructor;
 public class WishlistService implements PageMetadataProvider {
 
     private final WishlistsRepository wishlistsRepository;
+    private final CustomerService customerService;
 
 
     public List<WishlistsDTO> getWiList(String social_id){
@@ -30,6 +32,17 @@ public class WishlistService implements PageMetadataProvider {
 
     public boolean deleteWishlist(WishlistsDTO wishlistsDTO) {
         return wishlistsRepository.deleteWishlist(wishlistsDTO);
+    }
+
+    public Integer checkWishlist(WishlistsDTO wishlistsDTO) {
+        String userId = customerService.getUserIdFromSession();
+
+        if (userId != null) {
+            wishlistsDTO.setSocial_id(userId);
+            return wishlistsRepository.checkWishlist(wishlistsDTO);
+        } else {
+            return 0;
+        }
     }
 
     @Override

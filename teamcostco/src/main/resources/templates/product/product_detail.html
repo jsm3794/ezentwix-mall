@@ -58,7 +58,7 @@
             </div>
             <div class="button_group">
                 <button class="wishListBtn favorite_button">
-                    <span class="material-symbols-outlined">
+                    <span th:class="${isWishlisted ? 'material-symbols-outlined-fill' : 'material-symbols-outlined'}">
                         Favorite
                     </span>
                 </button>

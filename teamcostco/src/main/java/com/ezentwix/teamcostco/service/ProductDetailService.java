@@ -16,7 +16,6 @@ public class ProductDetailService implements PageMetadataProvider {
 
     private final ProductDefectiveRepository productDefectiveRepository;
 
-
     @Override
     public List<String> getCssFiles() {
         return List.of("/css/contents/product_detail.css");

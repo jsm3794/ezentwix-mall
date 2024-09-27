@@ -31,4 +31,8 @@ public class WishlistsRepository {
         return sql.selectList("Wishlist.getWishlist", social_id);
     }
 
+    public Integer checkWishlist(WishlistsDTO wishlistsDTO) {
+        return sql.selectOne("Wishlist.checkWishlist", wishlistsDTO);
+    }
+
 }

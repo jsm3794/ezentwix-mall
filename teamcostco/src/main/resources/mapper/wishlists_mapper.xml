@@ -18,6 +18,13 @@
         WHERE w.social_id = #{social_id}
     </select>
 
+    <!-- 사용자의 특정 상품 찜 여부 확인 -->
+    <select id="checkWishlist" parameterType="wishlist" resultType="Integer">
+        SELECT COUNT(*)
+        FROM wishlists
+        WHERE social_id = #{social_id} AND product_code = #{product_code}
+    </select>
+
     <!-- 찜 목록 삭제 -->
     <delete id="deleteWishlist" parameterType="Wishlist">
         DELETE FROM wishlists
