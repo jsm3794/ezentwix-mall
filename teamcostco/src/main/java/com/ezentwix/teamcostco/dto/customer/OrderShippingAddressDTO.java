@@ -23,5 +23,4 @@ public class OrderShippingAddressDTO {
     private String shipping_request_message;
     private LocalDateTime created_at;
     private LocalDateTime updated_at;
-    
 }

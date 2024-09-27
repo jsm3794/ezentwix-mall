@@ -15,6 +15,7 @@ public class FAQsController {
 
     @GetMapping("/customer/FAQs")
     public String showCustomerMain(Model model) {
+        model.addAttribute("faqList", faqsService.getAllFAQList());
         faqsService.configureModel(model);
         return "index";
     }

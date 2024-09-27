@@ -11,6 +11,8 @@
         <typeAlias type="com.ezentwix.teamcostco.dto.sales.SalesDTO" alias="sales" />
         <typeAlias type="com.ezentwix.teamcostco.dto.sales.SalesItemsDTO" alias="salesItems" />
         <typeAlias type="com.ezentwix.teamcostco.dto.cart.CartDTO" alias="cart" />
+        <typeAlias type="com.ezentwix.teamcostco.dto.faq.FAQsDTO" alias="faqs" />
+        <typeAlias type="com.ezentwix.teamcostco.dto.faq.FAQsCategoryDTO" alias="category" />
         <typeAlias type="com.ezentwix.teamcostco.dto.customer.ShippingAddressDTO" alias="shippingaddress" />
         <typeAlias type="com.ezentwix.teamcostco.dto.customer.OrderShippingAddressDTO" alias="ordershippingaddress" />
         <typeAlias type="com.ezentwix.teamcostco.dto.inventory.LargeCategoryDTO" alias="large" />
