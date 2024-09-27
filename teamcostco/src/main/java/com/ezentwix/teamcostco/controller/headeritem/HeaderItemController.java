@@ -13,11 +13,14 @@ import lombok.RequiredArgsConstructor;
 public class HeaderItemController {
 
     private final AboutService aboutService;
+    private final ContatUsService contactUsService;
 
     @GetMapping("/about-us")
     public String showAboutUs(Model model) {
         aboutService.configureModel(model);
         return "index";
     }
+
+    
 
 }
