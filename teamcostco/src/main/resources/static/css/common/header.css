@@ -6,6 +6,8 @@ header {
 
 .top-header {
     display: flex;
+    position: sticky;
+    top: 0;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
@@ -79,4 +81,28 @@ header {
     font-size: 14px;
 
     background-color: #eaeaff;
+}
+
+.nav-components {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 50px;
+    margin-left: 50px; 
+}
+
+.nav-link {
+    font-family: 'Arial', sans-serif;
+    font-weight: bold;
+    text-decoration: none;
+    color: #333;
+    font-size: 20px;
+}
+
+.nav-link:hover {
+    color: #007BFF;
+}
+
+.nav-link:last-child {
+    margin-right: 0;
 }

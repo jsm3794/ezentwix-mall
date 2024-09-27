@@ -1,5 +1,7 @@
 package com.ezentwix.teamcostco.controller.cart;
 
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,7 +10,6 @@ import com.ezentwix.teamcostco.dto.cart.CartDTO;
 import com.ezentwix.teamcostco.service.CartService;
 
 import lombok.RequiredArgsConstructor;
-import java.util.List;
 
 @Controller
 @RequiredArgsConstructor

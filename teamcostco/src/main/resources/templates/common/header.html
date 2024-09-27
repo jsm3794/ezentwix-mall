@@ -3,12 +3,18 @@
         <div class="header-left">
             <h1>TeamCostco Mall</h1>
             <nav class="breadcrumb">
+
             </nav>
             <div class="search_box">
                 <input type="text" id="query" name="query" placeholder="상품검색" th:value="${param.query ?: ''}">
                 <span id="search_btn" class="material-symbols-outlined">
                     search
                 </span>
+            </div>
+            <div class="nav-components">
+            <a href="/catalog" class="nav-link">Catalog</a>
+            <a href="/about-us" class="nav-link">About Us</a>
+            <a href="/contact-us" class="nav-link">Contact Us</a>
             </div>
         </div>
         <div class="header-right">
