@@ -27,7 +27,7 @@
                                     <span th:text="${#numbers.formatInteger(item.qty, 0, 'COMMA') + ' 개'}"></span>
                                 </div>
                             </div>
-                            <button class="add_cart" th:data-sales-id="${item.product_code}">장바구니추가</button>
+                            <button class="cart_button" th:data-product-code="${item.product_code}">장바구니추가</button>
                         </div>
                     </div>
                 </div>
