@@ -276,7 +276,7 @@ $(document).ready(function () {
 
         // "장바구니로 이동" 버튼 클릭 시 장바구니 페이지로 이동
         $('#go_to_cart').on('click', function () {
-            window.location.href = '/cart'; // 장바구니 페이지의 URL로 변경하세요.
+            window.location.href = '/customer/cart'; // 장바구니 페이지의 URL로 변경하세요.
         });
     }
 

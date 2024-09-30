@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.ezentwix.teamcostco.PageMetadataProvider;
 import com.ezentwix.teamcostco.dto.customer.CustomerDTO;
 import com.ezentwix.teamcostco.dto.customer.OrderShippingAddressDTO;
 import com.ezentwix.teamcostco.dto.product.ProductDTO;
@@ -17,7 +18,7 @@ import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
-public class SalesService {
+public class SalesService implements PageMetadataProvider {
     private final SalesRepository salesRepository;
     private final CustomerService customerService;
     private final ProductService productService;
@@ -97,6 +98,11 @@ public class SalesService {
      */
     public SalesDTO getSalesById(Long salesId) {
         return salesRepository.selectSalesById(salesId);
+    }
+
+    public List<SalesDTO> getSalesBySocialId(){
+        String social_id = customerService.getSocialIdFromSession();
+        return salesRepository.selectSalesBySocialId(social_id);
     }
 
     /**
@@ -193,5 +199,24 @@ public class SalesService {
      */
     public void deleteSalesItem(Long salesItemId) {
         salesRepository.deleteSalesItem(salesItemId);
+    }
+
+    @Override
+    public String getUri() {
+        return "/customer/sales_list";
+    }
+    @Override
+    public String getPageTitle() {
+        return "주문내역";
+    }
+
+    @Override
+    public List<String> getCssFiles() {
+        return List.of("/css/contents/sales_list.css");
+    }
+
+    @Override
+    public List<String> getJsFiles() {
+        return List.of("/js/contents/sales_list.js");
     }
 }

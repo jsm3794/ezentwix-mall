@@ -1,0 +1,102 @@
+<div class="main_wrap">
+    <h3 class="content_title" th:text="${pageTitle}"></h3>
+
+    <div th:replace="~{common/sidebar}"></div>
+
+    <div class="content">
+        <h3>주문상세</h3>
+        <div class="sales">
+            <div class="sales_main">
+                <h3 th:text="${'주문번호: ' + item.sales_id}"></h3>
+                <div class="sales_item_header">
+                    <h4>주문완료</h4>
+                </div>
+                <div class="sales_items">
+                    <div class="sales_item" th:each="salesItem: ${item.sales_items}">
+                        <div class="sales_item_content">
+                            <div class="image_area">
+                                <img class="product_image"
+                                    th:src="${'/api/product_thumbnail/' + salesItem.product_code}" alt="">
+                            </div>
+                            <div class="description_area" th:data-product-code="${salesItem.product_code}">
+                                <span th:text="${salesItem.product_name}"></span>
+                                <div class="price_qty">
+                                    <span
+                                        th:text="${#numbers.formatInteger(salesItem.unit_price, 0, 'COMMA') + ' 원'}"></span>
+                                    <span>·</span>
+                                    <span th:text="${#numbers.formatInteger(salesItem.qty, 0, 'COMMA') + ' 개'}"></span>
+                                </div>
+                            </div>
+                            <button class="cart_button" th:data-product-code="${salesItem.product_code}">장바구니추가</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="sales_menu">
+                <button class="shipping_trace" th:data-sales-id="${item.sales_id}">배송추적</button>
+            </div>
+        </div>
+
+        <div class="recipient">
+            <h4 class="title">받는사람 정보</h4>
+            <div class="recipient_row">
+                <span class="label">받는사람</span>
+                <span class="value" th:text="${shipping_data.recipient_name}"></span>
+            </div>
+            <div class="recipient_row">
+                <span class="label">연락처</span>
+                <span class="value" th:text="${shipping_data.recipient_phone_number}"></span>
+            </div>
+            <div class="recipient_row">
+                <span class="label">받는주소</span>
+                <span class="value" th:text="${shipping_data.road_name_address + ', ' + shipping_data.detail_address}"></span>
+            </div>
+            <div class="recipient_row">
+                <span class="label">배송요청사항</span>
+                <span class="value" th:text="${shipping_data.shipping_request_message}"></span>
+            </div>
+        </div>
+
+        <div class="sales_info">
+            <h4 class="title">결제 정보</h4>
+            <div class="sales_wrap">
+                <div class="payment_method" th:switch="${item.payments_type}">
+                    <span th:case="'bank_transfer'">무통장입금</span>
+                    <span th:case="*">[[${item.payments_type}]]</span>
+                </div>
+                <div class="payment_data">
+                    <span>우리은행 1002-055-650393 전상민</span>
+                </div>
+                <div class="sales_price_info">
+                    <div class="price_info">
+                        <span class="label">총 상품가격</span>
+                        <span class="value"
+                            th:text="${#numbers.formatInteger(item.total_price, 0, 'COMMA') + ' 원'}"></span>
+                    </div>
+                    <div class="price_info">
+                        <span class="label">배송비</span>
+                        <span class="value"
+                            th:text="${#numbers.formatInteger(item.delivery_fee, 0, 'COMMA') + ' 원'}"></span>
+                    </div>
+                    <div class="price_summary">
+                        <div class="payment_summary">
+                            <div class="label" th:switch="${item.payments_type}">
+                                <span th:case="'bank_transfer'">무통장입금</span>
+                                <span th:case="*">[[${item.payments_type}]]</span>
+                            </div>
+                            <span class="value" th:text="${#numbers.formatInteger(item.total_price + item.delivery_fee, 0, 'COMMA') + ' 원'}"></span>
+                        </div>
+
+                        <div class="total_purchase">
+                            <span class="label">총 결제금액</span>
+                            <span class="value"
+                                th:text="${#numbers.formatInteger(item.total_price + item.delivery_fee, 0, 'COMMA') + ' 원'}"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>

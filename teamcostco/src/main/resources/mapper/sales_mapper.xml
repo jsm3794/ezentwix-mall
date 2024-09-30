@@ -4,8 +4,8 @@
 <mapper namespace="Sales">
 
     <!-- Sales Insert -->
-    <insert id="insertSales" parameterType="sales" useGeneratedKeys="true" keyProperty="sales_id">
-        <selectKey keyProperty="sales_id" resultType="long" order="BEFORE">
+    <insert id="insertSales" parameterType="sales" useGeneratedKeys="true" keyProperty="salesId">
+        <selectKey keyProperty="salesId" resultType="long" order="BEFORE">
             SELECT sales_seq.nextval FROM dual
         </selectKey>
 
@@ -28,7 +28,7 @@
 
 
     <!-- 소프트 딜리트: 판매 상태 업데이트 -->
-    <update id="updateSalesStatus">
+    <update id="updateSalesStatus" parameterType="sales">
         UPDATE sales
         SET 
             sales_status = #{sales_status},
@@ -38,7 +38,7 @@
 
     <!-- Sales Delete (실제 삭제 대신 소프트 딜리트) -->
     <!-- 기존 deleteSales 메소드를 소프트 딜리트로 대체 -->
-    <update id="deleteSales">
+    <update id="deleteSales" parameterType="long">
         UPDATE sales
         SET 
             sales_status = 'CANCELED',
@@ -47,7 +47,7 @@
     </update>
 
     <!-- Sales Select by ID -->
-    <select id="selectSalesById" resultMap="SalesResultMap">
+    <select id="selectSalesById" parameterType="long" resultMap="SalesResultMap">
         SELECT 
             sales_id, 
             social_id, 
@@ -55,9 +55,26 @@
             create_date, 
             update_date,
             payments_type, 
-            sales_status
+            sales_status,
+            delivery_fee
         FROM sales 
-        WHERE sales_id = #{salesId}
+        WHERE sales_id = #{sales_id}
+    </select>
+
+    <!-- Sales Select by Social ID -->
+    <select id="selectSalesBySocialId" parameterType="String" resultMap="SalesResultMap">
+        SELECT 
+            sales_id, 
+            social_id, 
+            sale_date, 
+            create_date, 
+            update_date,
+            payments_type, 
+            sales_status,
+            delivery_fee
+        FROM sales
+        WHERE social_id = #{social_id}
+        ORDER BY sales_id DESC
     </select>
 
     <!-- Sales Select All -->
@@ -69,32 +86,34 @@
             create_date, 
             update_date,
             payments_type, 
-            sales_status
+            sales_status,
+            delivery_fee
         FROM sales
     </select>
 
     <!-- SalesResultMap with SalesItems -->
     <resultMap id="SalesResultMap" type="sales">
-        <id property="salesId" column="sales_id" />
-        <result property="socialId" column="social_id" />
-        <result property="saleDate" column="sale_date" />
-        <result property="createDate" column="create_date" />
-        <result property="updateDate" column="update_date" />
-        <result property="paymentsType" column="payments_type" />
-        <result property="salesStatus" column="sales_status" />
-        <collection property="salesItems" ofType="salesItems" select="selectSalesItemsBySalesId" column="sales_id"/>
+        <id property="sales_id" column="sales_id" />
+        <result property="social_id" column="social_id" />
+        <result property="sale_date" column="sale_date" />
+        <result property="create_date" column="create_date" />
+        <result property="update_date" column="update_date" />
+        <result property="payments_type" column="payments_type" />
+        <result property="sales_status" column="sales_status" />
+        <result property="delivery_fee" column="delivery_fee" />
+        <collection property="sales_items" ofType="salesItems" select="selectSalesItemsBySalesId" column="sales_id"/>
     </resultMap>
 
     <!-- SalesItem Insert -->
-    <insert id="insertSalesItem" parameterType="salesItems" useGeneratedKeys="true" keyProperty="sales_item_id">
-        <selectKey keyProperty="sales_item_id" resultType="long" order="BEFORE">
+    <insert id="insertSalesItem" parameterType="salesItems" useGeneratedKeys="true" keyProperty="salesItemId">
+        <selectKey keyProperty="salesItemId" resultType="long" order="BEFORE">
             SELECT sales_items_seq.nextval FROM dual
         </selectKey>
 
         INSERT INTO sales_items (
             sales_item_id, 
             sales_id, 
-            product_code, 
+            product_code,
             qty, 
             unit_price, 
             total_price
@@ -109,41 +128,44 @@
     </insert>
 
     <!-- SalesItem Select by ID -->
-    <select id="selectSalesItemById" resultType="salesItems">
+    <select id="selectSalesItemById" parameterType="long" resultType="salesItems">
         SELECT 
-            sales_item_id, 
-            sales_id, 
-            product_code, 
-            qty, 
-            unit_price, 
-            total_price
-        FROM sales_items 
+            s.sales_item_id, 
+            s.sales_id, 
+            s.product_code,
+            p.product_name,
+            s.qty, 
+            s.unit_price, 
+            s.total_price
+        FROM sales_items s INNER JOIN products p ON s.product_code = p.product_code
         WHERE sales_item_id = #{sales_item_id}
     </select>
 
     <!-- SalesItem Select by Sales ID -->
-    <select id="selectSalesItemsBySalesId" resultType="salesItems">
+    <select id="selectSalesItemsBySalesId" parameterType="long" resultType="salesItems">
         SELECT 
-            sales_item_id, 
-            sales_id, 
-            product_code, 
-            qty, 
-            unit_price, 
-            total_price
-        FROM sales_items 
+            s.sales_item_id, 
+            s.sales_id, 
+            s.product_code, 
+            p.product_name,
+            s.qty, 
+            s.unit_price, 
+            s.total_price
+            FROM sales_items s INNER JOIN products p ON s.product_code = p.product_code
         WHERE sales_id = #{sales_id}
     </select>
 
     <!-- SalesItem Select All -->
     <select id="selectAllSalesItems" resultType="salesItems">
         SELECT 
-            sales_item_id, 
-            sales_id, 
-            product_code, 
-            qty, 
-            unit_price, 
-            total_price
-        FROM sales_items
+            s.sales_item_id, 
+            s.sales_id, 
+            s.product_code, 
+            p.product_name,
+            s.qty, 
+            s.unit_price, 
+            s.total_price
+            FROM sales_items s INNER JOIN products p ON s.product_code = p.product_code
     </select>
 
 </mapper>

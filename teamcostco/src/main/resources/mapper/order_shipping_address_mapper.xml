@@ -47,9 +47,9 @@
     </insert>
 
     <!-- Select Order Shipping Address by ID -->
-    <select id="selectOrderShippingAddressById" parameterType="long" resultType="ordershippingaddress">
+    <select id="selectOrderShippingAddressBySalesId" parameterType="map" resultType="ordershippingaddress">
         SELECT * FROM order_shipping_addresses
-        WHERE address_id = #{address_id}
+        WHERE sales_id = #{sales_id} AND social_id = #{social_id}
     </select>
 
     <!-- Update Order Shipping Address -->

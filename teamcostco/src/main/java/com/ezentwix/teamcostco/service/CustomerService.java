@@ -63,6 +63,6 @@ public class CustomerService implements PageMetadataProvider {
 
     @Override
     public String getPageTitle() {
-        return "사용자 정보";
+        return "내 정보";
     }
 }

@@ -11,9 +11,15 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class OrderShippingAddressService {
     private final OrderShippingAddressRepository orderShippingAddressRepository;
+    private final CustomerService customerService;
 
     public boolean insertOrderShippingAddress(OrderShippingAddressDTO orderShippingAddressDTO) {
         return orderShippingAddressRepository.insertOrderShippingAddress(orderShippingAddressDTO);
+    }
+
+    public OrderShippingAddressDTO selectOrderShippingAddressBySalesId(Long sales_id){
+        String social_id = customerService.getSocialIdFromSession();
+        return orderShippingAddressRepository.selectOrderShippingAddressBySalesId(sales_id, social_id);
     }
 
 }

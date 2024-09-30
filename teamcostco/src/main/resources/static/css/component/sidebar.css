@@ -6,6 +6,10 @@
     margin-bottom: auto;
 }
 
+.sidebar h3 {
+    margin: 0;
+}
+
 /* 나머지 스타일 동일하게 유지 */
 .section-header {
     font-weight: bold;

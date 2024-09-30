@@ -1,0 +1,41 @@
+<div class="main_wrap">
+    <h3 class="content_title" th:text="${pageTitle}"></h3>
+
+    <div th:replace="~{common/sidebar}"></div>
+
+
+    <div class="content">
+        <div class="sales" th:each="sale: ${items}">
+            <div class="sales_main">
+                <h3 th:text="${'주문번호: ' + sale.sales_id}"></h3>
+                <div class="sales_item_header">
+                    <h4>배송완료</h4>
+                </div>
+                <div class="sales_items">
+                    <div class="sales_item" th:each="item: ${sale.sales_items}">
+                        <div class="sales_item_content">
+                            <div class="image_area">
+                                <img class="product_image" th:src="${'/api/product_thumbnail/' + item.product_code}"
+                                    alt="">
+                            </div>
+                            <div class="description_area" th:data-product-code="${item.product_code}">
+                                <span th:text="${item.product_name}"></span>
+                                <div class="price_qty">
+                                    <span
+                                        th:text="${#numbers.formatInteger(item.unit_price, 0, 'COMMA') + ' 원'}"></span>
+                                    <span>·</span>
+                                    <span th:text="${#numbers.formatInteger(item.qty, 0, 'COMMA') + ' 개'}"></span>
+                                </div>
+                            </div>
+                            <button class="add_cart" th:data-sales-id="${item.product_code}">장바구니추가</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="sales_menu">
+                <button class="view_detail" th:data-sales-id="${sale.sales_id}">상세보기</button>
+                <button class="shipping_trace" th:data-sales-id="${sale.sales_id}">배송추적</button>
+            </div>
+        </div>
+    </div>
+</div>
