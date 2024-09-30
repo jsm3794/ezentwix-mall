@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.ezentwix.teamcostco.dto.product.ProductBrandGroupDTO;
 import com.ezentwix.teamcostco.dto.product.ProductDTO;
 import com.ezentwix.teamcostco.dto.product.ProductSummaryDTO;
+import com.ezentwix.teamcostco.dto.product.RecommendProductDTO;
 import com.ezentwix.teamcostco.pagination.PaginationRepository;
 import com.ezentwix.teamcostco.pagination.PaginationResult;
 import com.ezentwix.teamcostco.repository.ProductRepository;
@@ -60,5 +61,9 @@ public class ProductService {
     
     public List<ProductBrandGroupDTO> getBrandGroup(String product_name) {
         return productRepository.getBrandGroup(product_name);
+    }
+
+    public List<RecommendProductDTO> getRecommendProducts() {
+        return productRepository.getRecommendProducts();
     }
 }

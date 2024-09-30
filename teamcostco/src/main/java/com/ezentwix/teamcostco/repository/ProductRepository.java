@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import com.ezentwix.teamcostco.dto.product.ProductBrandGroupDTO;
 import com.ezentwix.teamcostco.dto.product.ProductDTO;
+import com.ezentwix.teamcostco.dto.product.RecommendProductDTO;
 
 import lombok.RequiredArgsConstructor;
 
@@ -46,5 +47,10 @@ public class ProductRepository {
 
     public ProductDTO getByProductCode(Long productCode) {
         return sql.selectOne("Products.getByProductCode", productCode);
+    }
+
+    // 추천상품
+    public List<RecommendProductDTO> getRecommendProducts() {
+        return sql.selectList("Products.getRecommendProducts");
     }
 }

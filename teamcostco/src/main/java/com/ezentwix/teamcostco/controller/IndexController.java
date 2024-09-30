@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import com.ezentwix.teamcostco.dto.product.ProductDTO;
+import com.ezentwix.teamcostco.dto.product.RecommendProductDTO;
 import com.ezentwix.teamcostco.service.IndexService;
 import com.ezentwix.teamcostco.service.IntroService;
 import com.ezentwix.teamcostco.service.ProductService;
@@ -27,7 +28,7 @@ public class IndexController {
         //indexService.setCategoryModel(model);
         introService.configureModel(model);
         // 추천상품
-        List<ProductDTO> productList = productService.list();
+        List<RecommendProductDTO> productList = productService.getRecommendProducts();
         model.addAttribute("recommend_products", productList);
         return "index";
     }

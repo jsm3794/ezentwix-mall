@@ -97,6 +97,11 @@
             product_id = #{product_id}
     </sql>
 
+    <sql id="getRecommendProducts">
+      SELECT product_name, thumbnail_url, p.product_id AS product_id, p.product_code AS product_code, selling_price FROM products p
+      INNER JOIN product_thumbnails thumbnail ON p.product_code = thumbnail.product_code
+    </sql>
+
     <update id="updateProduct" parameterType="product">
         <include refid="updateProduct"></include>
     </update>
@@ -127,6 +132,10 @@
 
     <select id="getByProductCode" parameterType="Long" resultType="product">
         <include refid="getByProductCode"/>
+    </select>
+
+    <select id="getRecommendProducts" resultType="recommendProduct">
+        <include refid="getRecommendProducts"/>
     </select>
 
 </mapper>
