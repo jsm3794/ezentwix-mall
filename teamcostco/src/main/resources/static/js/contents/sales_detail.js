@@ -83,4 +83,9 @@ document.addEventListener('DOMContentLoaded', function (event) {
             window.location.href = '/customer/cart'; // 장바구니 페이지의 URL로 변경하세요.
         });
     }
+
+    $('.description_area').click(function (event) {
+        var pCode = $(event.target.parentElement).data('product-code');
+        window.open('/product/product_detail?product_code=' + pCode);
+    });
 });

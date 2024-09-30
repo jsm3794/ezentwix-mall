@@ -90,7 +90,7 @@
                     </p>
                     <p class="total">
                         <span>총 결제금액</span>
-                        <span th:text="${#numbers.formatInteger(finalPrice, 0,'COMMA')} + '원'"></span>
+                        <span th:text="${#numbers.formatInteger(finalPrice + (totalPrice >= 50000 ? 0 : 3000), 0,'COMMA')} + '원'"></span>
                     </p>
                 </div>
                 <!-- 결제수단 -->

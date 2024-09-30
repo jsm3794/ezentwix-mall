@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Thumbnails">
+
+    <insert id="insertProductThumbnail" parameterType="productThumbnail" useGeneratedKeys="true" keyProperty="thumbnail_id">
+        <selectKey keyProperty="thumbnail_id" resultType="long" order="BEFORE">
+            SELECT thumbnails_seq.nextval FROM dual
+        </selectKey>
+        
+        INSERT INTO product_thumbnails(
+            thumbnail_id, 
+            product_code, 
+            thumbnail_url, 
+            create_date, 
+            update_date
+        )
+        VALUES(
+            #{thumbnail_id}, 
+            #{product_code}, 
+            #{thumbnail_url}, 
+            CURRENT_TIMESTAMP, 
+            CURRENT_TIMESTAMP
+        )
+    </insert>
+    
+
+    <update id="updateProductThumbnail" parameterType="Long">
+        UPDATE product_thumbnails SET updateDate = sysdate WHERE thumbnails_id = #{thumbnails_id}
+    </update>
+
+    <delete id="deleteProductThumbnail" parameterType="Long">
+        DELETE FROM product_thumbnails WHERE thumbnail_id = #{thumbnail_id}
+    </delete>
+
+    <select id="selectProductThumbnail" parameterType="Long" resultType="productThumbnail">
+        SELECT * FROM product_thumbnails WHERE product_code = #{product_code}
+    </select>
+
+</mapper>

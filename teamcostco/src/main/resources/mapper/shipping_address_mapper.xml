@@ -18,16 +18,25 @@
 
     <sql id="getDefaultAddressBySocialId">
         SELECT
-            a.address_id, a.social_id, a.recipient_name, a.road_name_address, a.lot_number_address, a.detail_address, a.postal_code,
-            a.phone_number, a.created_at, a.updated_at
+            a.address_id,
+            a.social_id,
+            a.recipient_name,
+            a.road_name_address,
+            a.lot_number_address,
+            a.detail_address,
+            a.postal_code,
+            a.phone_number,
+            a.created_at,
+            a.updated_at
         FROM
             shipping_addresses a
         INNER JOIN
             customer c ON c.default_address_id = a.address_id
         <where>
-            a.social_id = #{social_id}
+            c.social_id = #{social_id}
         </where>
     </sql>
+    
 
     <select id="getBySocialId" parameterType="Long" resultType="shippingaddress">
         <include refid="getBySocialId"/>

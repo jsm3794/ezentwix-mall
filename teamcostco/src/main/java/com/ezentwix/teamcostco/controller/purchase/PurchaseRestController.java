@@ -39,13 +39,14 @@ public class PurchaseRestController {
     @PostMapping
     public ResponseEntity<String> createSales(@RequestBody SalesRequestDTO salesRequestDTO) {
         // Sales creation logic
-        if (salesService.createSales(salesRequestDTO)) {
+        Long sales_id = salesService.createSales(salesRequestDTO);
+        if (sales_id != null) {
             
             salesRequestDTO.getItems().forEach((item) ->{
                 cartService.deleteCartByProductCode(item.getProduct_code());
             });
             
-            return new ResponseEntity<>("주문 성공", HttpStatus.OK);
+            return new ResponseEntity<>(sales_id.toString(), HttpStatus.OK);
         } else {
             return new ResponseEntity<>("주문 실패", HttpStatus.BAD_REQUEST);
         }

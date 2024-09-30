@@ -129,6 +129,10 @@ public class SalesRepository {
         return sqlSession.selectList(NAMESPACE + "selectSalesByStatus", salesStatus);
     }
 
+    public boolean updateDeliveryFee(Long sales_id, Long delivery_fee){
+        int row = sqlSession.update(NAMESPACE + "updateDeliveryFee", Map.of("sales_id", sales_id, "delivery_fee", delivery_fee));
+        return row > 0;
+    }
     // SalesItem CRUD
 
     /**

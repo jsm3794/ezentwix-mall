@@ -91,7 +91,6 @@ $('.checkout-button').click(function (event) {
         payment_method: formData.payment_method,
         items: formData.items
     };
-
     $.ajax({
         url: '/api/sales', // 백엔드 엔드포인트
         type: 'POST',
@@ -99,10 +98,11 @@ $('.checkout-button').click(function (event) {
         data: JSON.stringify(payload),
         success: function (response) {
             alert("주문이 성공적으로 완료되었습니다!");
-            location.href = '/customer/customer_info';
+            // response는 sales_id 문자열 자체입니다.
+            location.href = '/customer/sales/detail/' + response;
         },
         error: function (xhr, status, error) {
             alert("주문 처리 중 오류가 발생했습니다: " + xhr.responseText);
         }
-    });
+    });    
 });
