@@ -86,6 +86,6 @@ document.addEventListener('DOMContentLoaded', function (event) {
 
     $('.description_area').click(function (event) {
         var pCode = $(event.target.parentElement).data('product-code');
-        window.open('/product/product_detail?product_code=' + pCode);
+        window.location.href = '/product/product_detail?product_code=' + pCode;
     });
 });

@@ -9,7 +9,7 @@
             <div class="sales_main">
                 <h3 th:text="${'주문번호: ' + sale.sales_id}"></h3>
                 <div class="sales_item_header">
-                    <h4>배송완료</h4>
+                    <h4>주문완료</h4>
                 </div>
                 <div class="sales_items">
                     <div class="sales_item" th:each="item: ${sale.sales_items}">
@@ -34,7 +34,6 @@
             </div>
             <div class="sales_menu">
                 <button class="view_detail" th:data-sales-id="${sale.sales_id}">상세보기</button>
-                <button class="shipping_trace" th:data-sales-id="${sale.sales_id}">배송추적</button>
             </div>
         </div>
     </div>
