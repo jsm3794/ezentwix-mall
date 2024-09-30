@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const faqLinks = document.querySelectorAll('.faq_nav > a');
+    const faqLinks = document.querySelectorAll('.faq_category > a');
     
     faqLinks.forEach(link => {
         link.addEventListener('click', function() {

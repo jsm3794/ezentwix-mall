@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.ezentwix.teamcostco.PageMetadataProvider;
-import com.ezentwix.teamcostco.dto.faq.FAQsCategoryDTO;
 import com.ezentwix.teamcostco.dto.faq.FAQsDTO;
 import com.ezentwix.teamcostco.repository.FAQsRepository;
 
@@ -13,35 +12,27 @@ import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
-public class FAQsService implements PageMetadataProvider {
+public class ContactUsService implements PageMetadataProvider {
+    
     private final FAQsRepository faqsRepository;
 
     public List<FAQsDTO> getAllFAQList() {
         return faqsRepository.getAllFAQList();
     }
 
-    public List<FAQsCategoryDTO> getAllCategoryList() {
-        return faqsRepository.getAllCategoryList();
-    }
-
     @Override
     public String getUri() {
-        return "customer/FAQs";
+        return "/contactus";
+        
     }
 
     @Override
     public String getPageTitle() {
-        return "자주 묻는 질문";
+        return "팀코스트코몰";
     }
 
     @Override
     public List<String> getCssFiles() {
-        return List.of("/css/contents/FAQs.css");
+        return List.of("/css/contents/contact_us.css");
     }
-
-    @Override
-    public List<String> getJsFiles() {
-        return List.of("/js/contents/FAQs.js");
-    }
-
 }

@@ -25,9 +25,10 @@
 
 .faq_nav {
     display: flex;
+    margin: 40px 5px;
 }
 
-.faq_nav > a {
+.faq_category > a {
     padding: 30px 30px;
     border: none;
     font-weight: bold;
@@ -35,11 +36,12 @@
     border-bottom: 2px solid #eaeaff;
 }
 
-.faq_nav > a.active {
+.faq_category > a.active {
     border-bottom: 3px solid black;
 }
 
 .faq_list > li {
     padding: 20px;
     border-bottom: 1px solid #eaeaff;
+    font-size: 20px;
 }
