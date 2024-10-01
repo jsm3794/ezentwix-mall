@@ -4,13 +4,9 @@
     <div th:replace="~{common/sidebar}"></div>
 
     <div class="content">
-        <h3>주문상세</h3>
         <div class="sales">
             <div class="sales_main">
-                <h3 th:text="${'주문번호: ' + item.sales_id}"></h3>
-                <div class="sales_item_header">
-                    <h4>주문완료</h4>
-                </div>
+                <h3 th:text="${'주문번호: ' + item.sales_id}"></h3>          
                 <div class="sales_items">
                     <div class="sales_item" th:each="salesItem: ${item.sales_items}">
                         <div class="sales_item_content">
@@ -33,7 +29,19 @@
                 </div>
             </div>
             <div class="sales_menu">
-                <!-- <button class="shipping_trace" th:data-sales-id="${item.sales_id}">배송추적</button> -->
+                <div class="sales_item_header">
+                    <h4 th:switch="${item.sales_status}" 
+                        th:classappend="${item.sales_status}">
+                        <span th:case="'pending'">결제대기</span>
+                        <span th:case="'preparing'">배송준비중</span>
+                        <span th:case="'shipped'">배송중</span>
+                        <span th:case="'delivered'">배송완료</span>
+                        <span th:case="'cancelled'">주문취소</span>
+                        <span th:case="'refunded'">환불됨</span>
+                    </h4>
+                </div>      
+
+                <button class="shipping_trace" th:data-sales-id="${item.sales_id}" disabled>배송조회</button>
             </div>
         </div>
 

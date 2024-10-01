@@ -38,7 +38,7 @@ public class SalesService implements PageMetadataProvider {
             SalesDTO sales = new SalesDTO();
             sales.setSocial_id(customer.getSocial_id());
             sales.setPayments_type(salesRequest.getPayment_method());
-            sales.setSales_status("ordered");
+            sales.setSales_status("pending");
 
             // Sales 테이블에 삽입 및 sales_id 반환
             sales_id = salesRepository.insertSales(sales);
