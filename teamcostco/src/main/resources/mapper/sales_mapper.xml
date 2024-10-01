@@ -4,8 +4,8 @@
 <mapper namespace="Sales">
 
     <!-- Sales Insert -->
-    <insert id="insertSales" parameterType="sales" useGeneratedKeys="true" keyProperty="salesId">
-        <selectKey keyProperty="salesId" resultType="long" order="BEFORE">
+    <insert id="insertSales" parameterType="sales" useGeneratedKeys="true" keyProperty="sales_id">
+        <selectKey keyProperty="sales_id" resultType="long" order="BEFORE">
             SELECT sales_seq.nextval FROM dual
         </selectKey>
 
@@ -34,6 +34,14 @@
             sales_status = #{sales_status},
             update_date = CURRENT_TIMESTAMP
         WHERE sales_id = #{sales_id}
+    </update>
+
+    <update id="updateDeliveryFee" parameterType="map">
+        UPDATE sales
+        SET
+            delivery_fee = #{delivery_fee}
+        WHERE
+            sales_id = #{sales_id}
     </update>
 
     <!-- Sales Delete (실제 삭제 대신 소프트 딜리트) -->
@@ -105,8 +113,8 @@
     </resultMap>
 
     <!-- SalesItem Insert -->
-    <insert id="insertSalesItem" parameterType="salesItems" useGeneratedKeys="true" keyProperty="salesItemId">
-        <selectKey keyProperty="salesItemId" resultType="long" order="BEFORE">
+    <insert id="insertSalesItem" parameterType="salesItems" useGeneratedKeys="true" keyProperty="sales_item_id">
+        <selectKey keyProperty="sales_item_id" resultType="long" order="BEFORE">
             SELECT sales_items_seq.nextval FROM dual
         </selectKey>
 

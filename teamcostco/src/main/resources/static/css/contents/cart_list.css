@@ -235,6 +235,8 @@ h4 {
 }
 
 .total_summary {
+    position: sticky;
+    top:20px;
     display: flex;
     flex-direction: column;
     background-color: #fff;

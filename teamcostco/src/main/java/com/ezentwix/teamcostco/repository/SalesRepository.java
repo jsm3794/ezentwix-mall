@@ -57,10 +57,6 @@ public class SalesRepository {
      */
     public List<SalesDTO> selectSalesBySocialId(String social_id) {
         List<SalesDTO> list = sqlSession.selectList(NAMESPACE + "selectSalesBySocialId", social_id);
-        System.out.println("@@@@@");
-        System.out.println(social_id);
-        System.out.println(list);
-        System.out.println("@@@@@");
         return list;
     }
 
@@ -129,6 +125,10 @@ public class SalesRepository {
         return sqlSession.selectList(NAMESPACE + "selectSalesByStatus", salesStatus);
     }
 
+    public boolean updateDeliveryFee(Long sales_id, Long delivery_fee){
+        int row = sqlSession.update(NAMESPACE + "updateDeliveryFee", Map.of("sales_id", sales_id, "delivery_fee", delivery_fee));
+        return row > 0;
+    }
     // SalesItem CRUD
 
     /**

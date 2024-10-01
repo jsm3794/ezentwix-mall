@@ -23,9 +23,11 @@ public class SalesService implements PageMetadataProvider {
     private final CustomerService customerService;
     private final ProductService productService;
     private final OrderShippingAddressService orderShippingAddressService;
+    private Integer totalPrice = 0;
+    private Long sales_id = null;
 
     @Transactional
-    public boolean createSales(SalesRequestDTO salesRequest) {
+    public Long createSales(SalesRequestDTO salesRequest) {
         // 세션에서 고객 정보 가져오기
         CustomerDTO customer = customerService.getCustomerFromSession();
 
@@ -36,10 +38,10 @@ public class SalesService implements PageMetadataProvider {
             SalesDTO sales = new SalesDTO();
             sales.setSocial_id(customer.getSocial_id());
             sales.setPayments_type(salesRequest.getPayment_method());
-            sales.setSales_status("ordered");
+            sales.setSales_status("pending");
 
             // Sales 테이블에 삽입 및 sales_id 반환
-            Long sales_id = salesRepository.insertSales(sales);
+            sales_id = salesRepository.insertSales(sales);
             if (sales_id == null) {
                 throw new RuntimeException("Failed to create sales record.");
             }
@@ -60,12 +62,16 @@ public class SalesService implements PageMetadataProvider {
                 salesItem.setQty(item.getQty());
                 salesItem.setUnit_price(product.getDiscountedPrice());
                 salesItem.setTotal_price(item.getQty() * product.getDiscountedPrice());
+                totalPrice += (item.getQty() * product.getDiscountedPrice());
 
                 // SalesItems 테이블에 삽입
                 if (!salesRepository.insertSalesItem(salesItem)) {
-                    throw new RuntimeException("Failed to insert sales item for product code: " + item.getProduct_code());
+                    throw new RuntimeException(
+                            "Failed to insert sales item for product code: " + item.getProduct_code());
                 }
             });
+
+            salesRepository.updateDeliveryFee(sales_id, Long.valueOf(totalPrice >= 50000 ? 0 : 3000));
 
             // 배송 주소 정보 처리
             OrderShippingAddressDTO orderShippingAddressDTO = new OrderShippingAddressDTO();
@@ -77,22 +83,25 @@ public class SalesService implements PageMetadataProvider {
             orderShippingAddressDTO.setLot_number_address(salesRequest.getShipping_address().getLot_number_address());
             orderShippingAddressDTO.setPostal_code(salesRequest.getShipping_address().getPostal_code());
             orderShippingAddressDTO.setRecipient_name(salesRequest.getShipping_address().getRecipient_name());
-            orderShippingAddressDTO.setRecipient_phone_number(salesRequest.getShipping_address().getRecipient_phone_number());
+            orderShippingAddressDTO
+                    .setRecipient_phone_number(salesRequest.getShipping_address().getRecipient_phone_number());
             orderShippingAddressDTO.setSender_name(salesRequest.getShipping_address().getSender_name());
             orderShippingAddressDTO.setSender_phone_number(salesRequest.getShipping_address().getSender_phone_number());
             orderShippingAddressDTO.setShipping_status("pending");
-            orderShippingAddressDTO.setShipping_request_message(salesRequest.getShipping_address().getShipping_request_message());
+            orderShippingAddressDTO
+                    .setShipping_request_message(salesRequest.getShipping_address().getShipping_request_message());
 
             // OrderShippingAddress 테이블에 삽입
             if (!orderShippingAddressService.insertOrderShippingAddress(orderShippingAddressDTO)) {
                 throw new RuntimeException("Failed to insert order shipping address.");
             }
 
-            return true;
+            return sales_id;
         } else {
             throw new RuntimeException("Customer not found in session.");
         }
     }
+
     /**
      * 판매 조회 by ID
      */
@@ -100,7 +109,7 @@ public class SalesService implements PageMetadataProvider {
         return salesRepository.selectSalesById(salesId);
     }
 
-    public List<SalesDTO> getSalesBySocialId(){
+    public List<SalesDTO> getSalesBySocialId() {
         String social_id = customerService.getSocialIdFromSession();
         return salesRepository.selectSalesBySocialId(social_id);
     }
@@ -205,6 +214,7 @@ public class SalesService implements PageMetadataProvider {
     public String getUri() {
         return "/customer/sales_list";
     }
+
     @Override
     public String getPageTitle() {
         return "주문내역";

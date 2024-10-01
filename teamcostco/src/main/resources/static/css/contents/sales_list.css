@@ -4,15 +4,19 @@
     gap: 20px;
     width: calc(100% - 220px);
     margin-left: 20px;
-    background-color: #fff;
-    border: 1px solid #eef;
-    padding: 20px;
+}
+
+.content > h1{
+    text-align: center;
+    font-size: 20px;
+    margin: 40px;
 }
 
 .sales {
     display: flex;
     flex-direction: row;
     border: 1px solid #eef;
+    background-color: #fff;
     padding: 20px;
 }
 
@@ -22,22 +26,6 @@
     flex: 3;
 }
 
-.sales_menu {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-    border-left: 1px solid #eef;
-    padding: 0 20px;
-    gap: 10px;
-    justify-content: center;
-}
-
-.sales_menu>button {
-    height: 40px;
-    border: 1px solid #eef;
-    background-color: #fefeff;
-    cursor: pointer;
-}
 
 .add_cart {
     height: 30px;
@@ -53,7 +41,7 @@
 }
 
 .content h3 {
-    margin: 0;
+    margin: 0 0 20px 0;
 }
 
 .description_area {
@@ -69,6 +57,17 @@
     flex-direction: row;
     gap: 5px;
     color: gray;
+}
+
+.sales_item {
+    margin-right: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eef;
+}
+
+.sales_item:last-child {
+    padding-bottom: 0;
+    border-bottom: none;
 }
 
 .sales_items {
@@ -95,4 +94,97 @@
     width: 70px;
     height: 70px;
     object-fit: cover;
+}
+
+.modal_content button {
+    padding: 8px 12px;
+    margin: 0 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#go_to_cart {
+    background-color: #007bff;
+    color: #fff;
+}
+
+#continue_shopping {
+    background-color: #6c757d;
+    color: #fff;
+}
+
+
+.cart_button {
+    height: 35px;
+    min-width: 100px;
+    width: 100px;
+    margin-top: auto;
+    margin-left: 20px;
+    border: 1px solid #eef;
+    background-color: #fefeff;
+    cursor: pointer;
+    margin-left: auto;
+}
+
+.sales_item_header {
+    display: flex;
+    justify-content: center;
+}
+
+.sales_menu {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    border-left: 1px solid #eef;
+    padding-left: 20px;
+    gap: 10px;
+    justify-content: center;
+}
+
+.sales_menu>button {
+    height: 35px;
+    border: 1px solid #eef;
+    background-color: #fefeff;
+    cursor: pointer;
+}
+
+.view_detail {
+    margin-top: auto;
+}
+
+.sales_item_header>h4 {
+    margin: 0;
+}
+
+.sales_item_header h4.pending {
+    color: #858585;
+    font-weight: bold;
+}
+
+.sales_item_header h4.preparing {
+    color: #d8961b;
+    font-weight: bold;
+}
+
+.sales_item_header h4.shipped {
+    color: #2a2a9e;
+    font-weight: bold;
+}
+
+.sales_item_header h4.delivered {
+    color: #008000;
+    font-weight: bold;
+}
+
+.sales_item_header h4.cancelled {
+    color: #FF0000;
+    /* Red */
+    font-weight: bold;
+}
+
+.sales_item_header h4.refunded {
+    color: #800080;
+    /* Purple */
+    font-weight: bold;
 }

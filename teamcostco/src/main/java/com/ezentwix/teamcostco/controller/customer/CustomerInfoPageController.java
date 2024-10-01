@@ -17,7 +17,7 @@ public class CustomerInfoPageController {
 
     @GetMapping("/customer")
     public String redirectToCustomerInfo() {
-        return "redirect:/customer/customer_info";
+        return "redirect:/customer/saleslist";
     }
 
     @GetMapping("/customer/customer_info")
