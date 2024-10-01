@@ -30,7 +30,7 @@ public class SearchListService implements PageMetadataProvider {
 
     @Override
     public String getUri() {
-        return "/search/search_product";
+        return "search/search_product";
     }
 
     @Override

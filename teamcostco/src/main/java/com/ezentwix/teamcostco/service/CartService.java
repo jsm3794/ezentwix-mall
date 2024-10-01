@@ -116,7 +116,7 @@ public class CartService implements PageMetadataProvider {
 
     @Override
     public String getUri() {
-        return "/customer/cart_list";
+        return "customer/cart_list";
     }
 
     @Override

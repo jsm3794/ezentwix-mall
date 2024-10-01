@@ -19,7 +19,6 @@ document.addEventListener("DOMContentLoaded", function () {
         e.preventDefault();
 
         const data = {
-            alias: document.getElementById("alias").value,
             recipient_name: document.getElementById("recipient").value,
             postal_code: document.getElementById("sample6_postcode").value,
             road_name_address: document.getElementById("sample6_address").value,

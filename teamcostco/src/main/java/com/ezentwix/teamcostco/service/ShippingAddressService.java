@@ -49,7 +49,7 @@ public class ShippingAddressService implements PageMetadataProvider {
 
     @Override
     public String getUri() {
-        return "/customer/shipping_address";
+        return "customer/shipping_address";
     }
 
     @Override

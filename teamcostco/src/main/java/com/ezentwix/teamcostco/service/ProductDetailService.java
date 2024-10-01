@@ -24,7 +24,7 @@ public class ProductDetailService implements PageMetadataProvider {
 
     @Override
     public String getUri() {
-        return "/product/product_detail";
+        return "product/product_detail";
     }
     
     @Override

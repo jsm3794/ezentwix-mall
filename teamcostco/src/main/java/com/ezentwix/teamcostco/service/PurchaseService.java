@@ -11,7 +11,7 @@ public class PurchaseService implements PageMetadataProvider {
 
     @Override
     public String getUri() {
-        return "/purchase/purchase";
+        return "purchase/purchase";
     }
 
     @Override

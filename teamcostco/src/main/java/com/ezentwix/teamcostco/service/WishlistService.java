@@ -49,7 +49,7 @@ public class WishlistService implements PageMetadataProvider {
 
     @Override
     public String getUri() {
-        return "/customer/wishlist";
+        return "customer/wishlist";
     }
 
     @Override

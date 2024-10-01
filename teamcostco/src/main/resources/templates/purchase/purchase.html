@@ -22,18 +22,18 @@
                     </div>
                     <div class="input-box">
                         <input type="text" id="recipient_name" name="recipient_name"
-                            th:value="${default_shipping.recipient_name ?: ''}" placeholder="받으시는분 성함">
+                            th:value="${default_shipping?.recipient_name ?: ''}" placeholder="받으시는분 성함">
                     </div>
                     <div class="input-box">
                         <input type="text" id="postal_code" name="postal_code"
-                            th:value="${default_shipping.postal_code ?: ''}" placeholder="우편번호" readonly>
+                            th:value="${default_shipping?.postal_code ?: ''}" placeholder="우편번호" readonly>
                         <input type="text" id="road_name_address" name="road_name_address"
-                            th:value="${default_shipping.road_name_address ?: ''}" placeholder="도로명주소" readonly>
+                            th:value="${default_shipping?.road_name_address ?: ''}" placeholder="도로명주소" readonly>
                         <span class="find_address">주소찾기</span>
                     </div>
                     <div class="input-box">
                         <input type="text" id="detail_address" name="detail_address"
-                            th:value="${default_shipping.detail_address ?: ''}" placeholder="상세주소">
+                            th:value="${default_shipping?.detail_address ?: ''}" placeholder="상세주소">
                     </div>
                     <div class="input-box">
                         <input type="text" id="recipient_phone_number" name="phone_number" placeholder="연락처">

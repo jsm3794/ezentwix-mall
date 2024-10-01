@@ -58,7 +58,7 @@ public class CustomerService implements PageMetadataProvider {
 
     @Override
     public String getUri() {
-        return "/customer/customer_info";
+        return "customer/customer_info";
     }
 
     @Override

@@ -212,7 +212,7 @@ public class SalesService implements PageMetadataProvider {
 
     @Override
     public String getUri() {
-        return "/customer/sales_list";
+        return "customer/sales_list";
     }
 
     @Override

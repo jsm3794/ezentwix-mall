@@ -14,7 +14,7 @@ public class SalesDetailService implements PageMetadataProvider {
 
     @Override
     public String getUri() {
-        return "/customer/sales/detail";
+        return "customer/sales/detail";
     }
 
     @Override

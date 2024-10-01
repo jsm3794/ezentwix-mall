@@ -14,7 +14,7 @@ public class AboutService implements PageMetadataProvider {
 
     @Override
     public String getUri() {
-        return "/aboutus";
+        return "aboutus";
     }
 
     @Override
