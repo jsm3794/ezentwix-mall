@@ -54,7 +54,7 @@ public class WishlistService implements PageMetadataProvider {
 
     @Override
     public String getPageTitle() {
-        return "찜목록";
+        return "위시리스트";
     }
 
     @Override

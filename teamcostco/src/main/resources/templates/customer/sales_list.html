@@ -2,48 +2,50 @@
     <h3 class="content_title" th:text="${pageTitle}"></h3>
 
     <div th:replace="~{common/sidebar}"></div>
-
-
     <div class="content">
-        <div class="sales" th:each="sale: ${items}">
-            <div class="sales_main">
-                <h3 th:text="${'주문번호: ' + sale.sales_id}"></h3>
-                <div class="sales_items">
-                    <div class="sales_item" th:each="item: ${sale.sales_items}">
-                        <div class="sales_item_content">
-                            <div class="image_area">
-                                <img class="product_image" th:src="${'/api/product_thumbnail/' + item.product_code}"
-                                    alt="">
-                            </div>
-                            <div class="description_area" th:data-product-code="${item.product_code}">
-                                <span th:text="${item.product_name}"></span>
-                                <div class="price_qty">
-                                    <span
-                                        th:text="${#numbers.formatInteger(item.unit_price, 0, 'COMMA') + ' 원'}"></span>
-                                    <span>·</span>
-                                    <span th:text="${#numbers.formatInteger(item.qty, 0, 'COMMA') + ' 개'}"></span>
+        <th:block th:if="${#lists.isEmpty(items)}">
+            <h1>주문내역이 없습니다.</h1>
+        </th:block>
+        <th:block th:if="${!#lists.isEmpty(items)}">
+            <div class="sales" th:each="sale: ${items}">
+                <div class="sales_main">
+                    <h3 th:text="${'주문번호: ' + sale.sales_id}"></h3>
+                    <div class="sales_items">
+                        <div class="sales_item" th:each="item: ${sale.sales_items}">
+                            <div class="sales_item_content">
+                                <div class="image_area">
+                                    <img class="product_image" th:src="${'/api/product_thumbnail/' + item.product_code}"
+                                        alt="">
                                 </div>
+                                <div class="description_area" th:data-product-code="${item.product_code}">
+                                    <span th:text="${item.product_name}"></span>
+                                    <div class="price_qty">
+                                        <span
+                                            th:text="${#numbers.formatInteger(item.unit_price, 0, 'COMMA') + ' 원'}"></span>
+                                        <span>·</span>
+                                        <span th:text="${#numbers.formatInteger(item.qty, 0, 'COMMA') + ' 개'}"></span>
+                                    </div>
+                                </div>
+                                <button class="cart_button" th:data-product-code="${item.product_code}">장바구니추가</button>
                             </div>
-                            <button class="cart_button" th:data-product-code="${item.product_code}">장바구니추가</button>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="sales_menu">
-                <div class="sales_item_header">
-                    <h4 th:switch="${sale.sales_status}" 
-                    th:classappend="${sale.sales_status}">
-                    <span th:case="'pending'">결제대기</span>
-                    <span th:case="'preparing'">배송준비중</span>
-                    <span th:case="'shipped'">배송중</span>
-                    <span th:case="'delivered'">배송완료</span>
-                    <span th:case="'cancelled'">주문취소</span>
-                    <span th:case="'refunded'">환불됨</span>
-                </h4>
+                <div class="sales_menu">
+                    <div class="sales_item_header">
+                        <h4 th:switch="${sale.sales_status}" th:classappend="${sale.sales_status}">
+                            <span th:case="'pending'">결제대기</span>
+                            <span th:case="'preparing'">배송준비중</span>
+                            <span th:case="'shipped'">배송중</span>
+                            <span th:case="'delivered'">배송완료</span>
+                            <span th:case="'cancelled'">주문취소</span>
+                            <span th:case="'refunded'">환불됨</span>
+                        </h4>
+                    </div>
+                    <button class="view_detail" th:data-sales-id="${sale.sales_id}">상세보기</button>
+                    <button class="shipping_trace" th:data-sales-id="${sale.sales_id}" disabled>배송조회</button>
                 </div>
-                <button class="view_detail" th:data-sales-id="${sale.sales_id}">상세보기</button>
-                <button class="shipping_trace" th:data-sales-id="${sale.sales_id}" disabled>배송조회</button>
             </div>
-        </div>
+        </th:block>
     </div>
 </div>
