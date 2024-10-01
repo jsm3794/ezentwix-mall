@@ -46,6 +46,13 @@ header {
 
 .icon-box>* {
     cursor: pointer;
+    padding:0 8px;
+}
+
+.icon-box{
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
 }
 
 
