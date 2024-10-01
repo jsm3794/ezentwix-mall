@@ -71,7 +71,6 @@ public class SalesService implements PageMetadataProvider {
                 }
             });
 
-            System.err.println("배송비:" + totalPrice);
             salesRepository.updateDeliveryFee(sales_id, Long.valueOf(totalPrice >= 50000 ? 0 : 3000));
 
             // 배송 주소 정보 처리

@@ -57,10 +57,6 @@ public class SalesRepository {
      */
     public List<SalesDTO> selectSalesBySocialId(String social_id) {
         List<SalesDTO> list = sqlSession.selectList(NAMESPACE + "selectSalesBySocialId", social_id);
-        System.out.println("@@@@@");
-        System.out.println(social_id);
-        System.out.println(list);
-        System.out.println("@@@@@");
         return list;
     }
 
