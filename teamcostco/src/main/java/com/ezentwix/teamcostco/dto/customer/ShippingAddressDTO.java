@@ -6,14 +6,15 @@ import lombok.Data;
 
 @Data
 public class ShippingAddressDTO {
-    Long address_id;
-    String social_id;
-    String recipient_name;
-    String road_name_address;
-    String lot_number_address;
-    String detail_address;
-    String postal_code;
-    String phone_number;
-    LocalDateTime create_date;
-    LocalDateTime update_date;
+    private Long address_id;
+    private String social_id;
+    private String recipient_name;
+    private String road_name_address;
+    private String lot_number_address;
+    private String detail_address;
+    private String postal_code;
+    private String phone_number;
+    private LocalDateTime create_date;
+    private LocalDateTime update_date;
+    private String alias;
 }

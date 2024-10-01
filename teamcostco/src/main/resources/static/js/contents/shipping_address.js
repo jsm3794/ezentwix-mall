@@ -18,16 +18,18 @@ document.addEventListener("DOMContentLoaded", function () {
     addressForm.addEventListener("submit", function (e) {
         e.preventDefault();
 
-        const formData = new FormData(addressForm);
         const data = {
-            alias: formData.get("alias"),
-            recipient: formData.get("recipient"),
-            address: formData.get("address"),
-            phone: formData.get("phone")
+            alias: document.getElementById("alias").value,
+            recipient_name: document.getElementById("recipient").value,
+            postal_code: document.getElementById("sample6_postcode").value,
+            road_name_address: document.getElementById("sample6_address").value,
+            detail_address: document.getElementById("sample6_detailAddress").value,
+            lot_number_address: document.getElementById("sample6_extraAddress").value,
+            phone_number: document.getElementById("phone").value
         };
 
         // AJAX 요청으로 서버에 데이터 저장
-        fetch('/customer/address/add', {
+        fetch('/customer/shipping_address/add', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -37,15 +39,14 @@ document.addEventListener("DOMContentLoaded", function () {
             .then(response => response.json())
             .then(result => {
                 if (result.success) {
-                    alert('배송지가 성공적으로 추가되었습니다.');
+                    alert(result.message);
                     location.reload(); // 페이지 새로고침으로 테이블 업데이트
                 } else {
-                    alert('추가하는 중 오류가 발생했습니다.');
+                    alert(result.message);
                 }
             });
     });
 });
-
 
 // 카카오 주소 API
 function sample6_execDaumPostcode() {

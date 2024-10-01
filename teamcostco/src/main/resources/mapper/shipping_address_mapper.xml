@@ -16,6 +16,16 @@
         </where>
     </sql>
 
+    <insert id="insertAddress" parameterType="shippingaddress">
+        INSERT INTO shipping_addresses (
+            address_id, social_id, recipient_name, road_name_address, lot_number_address,
+            detail_address, postal_code, phone_number, created_at, updated_at
+        ) VALUES (
+            shipping_seq.nextval, #{social_id}, #{recipient_name}, #{road_name_address}, #{lot_number_address},
+            #{detail_address}, #{postal_code}, #{phone_number}, SYSDATE, SYSDATE
+        )
+    </insert>
+
     <sql id="getDefaultAddressBySocialId">
         SELECT
             a.address_id, a.social_id, a.recipient_name, a.road_name_address, a.lot_number_address, a.detail_address, a.postal_code,

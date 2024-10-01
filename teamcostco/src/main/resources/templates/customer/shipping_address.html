@@ -80,9 +80,10 @@
                 </colgroup>
                 <thead>
                     <tr>
-                        <th scope="col">주소별칭</th>
+                        <th scope="col">기본주소</th>
                         <th scope="col">받으실분</th>
                         <th scope="col">배송주소</th>
+                        <th scope="cole">별칭</th>
                         <th scope="col">연락처</th>
                         <th scope="col">관리</th>
                     </tr>
@@ -91,37 +92,34 @@
                     <!-- 배송지 목록을 반복하여 표시 -->
                     <tr th:each="address : ${shippingAddresses}">
                         <td>
-                            <span th:if="${address.address_id == defaultShippingAddress.address_id}"
-                                class="sub_title">기본배송지</span>
-                            <span th:text="${address.recipient_name}" class="notranslate"></span>
+                            <span th:if="${defaultShippingAddress != null and address != null and address.address_id == defaultShippingAddress.address_id}" class="star">★</span>
                         </td>
-                        <td class="notranslate" th:text="${address.recipient_name}"></td>
+                        <td class="notranslate" th:text="${address != null ? address.recipient_name : ''}"></td>
                         <td class="subject address">
                             <div class="item_row">
                                 <span>우편번호</span>
-                                <span th:text="${address.postal_code}"></span>
+                                <span th:text="${address != null ? address.postal_code : ''}"></span>
                             </div>
                             <div class="item_row">
                                 <span>도로명주소</span>
-                                <span th:text="${address.road_name_address}"></span>
+                                <span th:text="${address != null ? address.road_name_address : ''}"></span>
                             </div>
                             <div class="item_row">
                                 <span>상세주소</span>
-                                <span th:text="${address.detail_address}"></span>
+                                <span th:text="${address != null ? address.detail_address : ''}"></span>
                             </div>
                         </td>
-                        <td th:text="${address.phone_number}"></td>
+                        <td th:text="${address != null ? address.alias : ''}"></td>
+                        <td th:text="${address != null ? address.phone_number : ''}"></td>
                         <td>
-                            <a th:href="@{'/customer/address/edit/' + ${address.address_id}}" class="btn btn_edit">
+                            <a th:if="${address != null}" th:href="@{'/customer/address/edit/' + ${address.address_id}}" class="btn btn_edit">
                                 <span>수정</span>
                             </a>
-                            <a th:href="@{'#'}" th:data-address-id="${address.address_id}"
-                                class="btn btn_edit set-default-btn">
+                            <a th:if="${address != null}" th:href="@{'#'}" th:data-address-id="${address.address_id}" class="btn btn_edit set-default-btn">
                                 <span>기본설정</span>
                             </a>
                         </td>
                     </tr>
-                    <!-- 추가적인 배송지 항목들을 여기에 추가할 수 있습니다. -->
                 </tbody>
             </table>
         </div>
