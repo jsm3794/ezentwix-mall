@@ -29,12 +29,16 @@ public class ShippingAddressService implements PageMetadataProvider {
         return "/customer/shipping_address";
     }
 
-    
     @Override
     public List<String> getCssFiles() {
         return List.of("/css/contents/shipping_address.css");
     }
-    
+
+    @Override
+    public List<String> getJsFiles() {
+        return List.of("/js/contents/shipping_address.js");
+    }
+
     @Override
     public String getPageTitle() {
         return "배송지 관리";

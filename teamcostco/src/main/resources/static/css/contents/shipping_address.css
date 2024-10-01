@@ -128,3 +128,36 @@
 .pagination strong {
     font-weight: bold;
 }
+
+/* 팝업창 스타일 */
+.popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    border: 1px solid #eaeaff;
+    padding: 20px;
+    width: 400px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+}
+
+.popup_content {
+    padding: 10px;
+}
+
+.popup .form_group {
+    margin-bottom: 15px;
+}
+
+.popup .form_group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.popup .form_group input {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+}

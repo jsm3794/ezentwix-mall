@@ -26,11 +26,47 @@
                 <span th:text="${defaultShippingAddress.phone_number}"></span>
             </div>
         </div>
+        <!-- 배송지 추가 버튼 -->
         <div class="button_group">
-            <a th:href="@{'/customer/address/new'}" class="btn btn_add">
-                <span>새 배송지 추가</span>
-            </a>
+            <button class="btn btn_add" id="openPopupBtn">새 배송지 추가</button>
         </div>
+
+        <!-- 팝업창 HTML -->
+        <div id="popup" class="popup" style="display: none;">
+            <div class="popup_content">
+                <h3>새 배송지 추가</h3>
+                <form id="addressForm">
+                    <div class="form_group">
+                        <label for="alias">주소 별칭</label>
+                        <input type="text" id="alias" name="alias" required>
+                    </div>
+                    <div class="form_group">
+                        <label for="recipient">받으실 분</label>
+                        <input type="text" id="recipient" name="recipient" required>
+                    </div>
+                    <div class="form_group">
+                        <label for="address">배송 주소</label>
+                        <!-- <input type="text" id="address" name="address" required> -->
+
+                        <input type="text" id="sample6_postcode" placeholder="우편번호">
+                        <input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
+                        <input type="text" id="sample6_address" placeholder="주소"><br>
+                        <input type="text" id="sample6_detailAddress" placeholder="상세주소">
+                        <input type="text" id="sample6_extraAddress" placeholder="참고항목">
+
+                    </div>
+                    <div class="form_group">
+                        <label for="phone">연락처</label>
+                        <input type="text" id="phone" name="phone" required>
+                    </div>
+                    <div class="button_group">
+                        <button type="submit" class="btn btn_primary">저장</button>
+                        <button type="button" class="btn" id="closePopupBtn">취소</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
         <!-- 배송지 목록 테이블 -->
         <div id="address_list" class="section data_table content active">
             <table border="1" class="data_table">
@@ -91,3 +127,5 @@
         </div>
     </div>
 </div>
+
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
