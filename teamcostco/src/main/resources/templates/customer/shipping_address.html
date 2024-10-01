@@ -92,7 +92,9 @@
                     <!-- 배송지 목록을 반복하여 표시 -->
                     <tr th:each="address : ${shippingAddresses}">
                         <td>
-                            <span th:if="${defaultShippingAddress != null and address != null and address.address_id == defaultShippingAddress.address_id}" class="star">★</span>
+                            <span
+                                th:if="${defaultShippingAddress != null and address != null and address.address_id == defaultShippingAddress.address_id}"
+                                class="star">★</span>
                         </td>
                         <td class="notranslate" th:text="${address != null ? address.recipient_name : ''}"></td>
                         <td class="subject address">
@@ -112,10 +114,15 @@
                         <td th:text="${address != null ? address.alias : ''}"></td>
                         <td th:text="${address != null ? address.phone_number : ''}"></td>
                         <td>
-                            <a th:if="${address != null}" th:href="@{'/customer/address/edit/' + ${address.address_id}}" class="btn btn_edit">
-                                <span>수정</span>
+                            <a th:if="${address != null}"
+                                th:href="@{'/customer/address/delete/' + ${address.address_id} + '/' + ${address.social_id}}"
+                                class="btn btn_edit">
+                                <span>삭제</span>
                             </a>
-                            <a th:if="${address != null}" th:href="@{'#'}" th:data-address-id="${address.address_id}" class="btn btn_edit set-default-btn">
+
+                            <a th:if="${address != null}" 
+                                th:href="@{'/customer/address/fix/' + ${address.address_id}}"
+                                class="btn btn_edit set-default-btn">
                                 <span>기본설정</span>
                             </a>
                         </td>

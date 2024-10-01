@@ -26,4 +26,12 @@ public class ShippingAddressRepository {
         sql.insert("ShippingAddresses.insertAddress", shippingAddressDTO);
     }
 
+    public void deleteAddress(ShippingAddressDTO shippingAddressDTO) {
+        sql.delete("ShippingAddresses.deleteAddress", shippingAddressDTO);
+    }
+
+    public void updateDefaultDestination (ShippingAddressDTO shippingAddressDTO) {
+        sql.update("ShippingAddresses.updateDefaultDestination", shippingAddressDTO);
+    }
+
 }

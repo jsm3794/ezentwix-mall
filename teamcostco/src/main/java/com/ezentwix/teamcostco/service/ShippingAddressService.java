@@ -39,6 +39,14 @@ public class ShippingAddressService implements PageMetadataProvider {
         }
     }
 
+    public void deleteAddress(ShippingAddressDTO shippingAddressDTO) {
+        shippingAddressRepository.deleteAddress(shippingAddressDTO);
+    }
+
+    public void updateDefaultDestination(ShippingAddressDTO shippingAddressDTO) {
+        shippingAddressRepository.updateDefaultDestination(shippingAddressDTO);
+    }
+
     @Override
     public String getUri() {
         return "/customer/shipping_address";

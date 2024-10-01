@@ -26,6 +26,23 @@
         )
     </insert>
 
+    <delete id="deleteAddress">
+        DELETE FROM 
+            shipping_addresses
+        WHERE
+            address_id = #{address_id} AND social_id = #{social_id}
+        
+    </delete>
+
+    <update id="updateDefaultDestination" parameterType="shippingaddress">
+        UPDATE 
+            customer 
+        SET
+            default_address_id = #{address_id}
+        WHERE
+            social_id = #{social_id}
+    </update>
+
     <sql id="getDefaultAddressBySocialId">
         SELECT
             a.address_id,
